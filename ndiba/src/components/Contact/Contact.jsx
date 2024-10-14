@@ -66,13 +66,10 @@ const Contact = () => {
 
     emailjs
       .send(
-        "service_t0dr289",
-        "template_aqzoafp",
-        // process.env.REACT_APP_SERVICE_ID,  
-        // process.env.REACT_APP_TEMPLATE_ID,  
+        process.env.REACT_APP_SERVICE_ID,  
+        process.env.REACT_APP_TEMPLATE_ID,  
         templateParams,  // Pass the template parameters
-        "aHVbGlgElqYcHq2nj"
-        // process.env.REACT_APP_PUBLIC_KEY 
+        process.env.REACT_APP_PUBLIC_KEY 
       )
       .then(
         (result) => {
