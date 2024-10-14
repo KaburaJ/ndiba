@@ -2,40 +2,51 @@ import React, { useEffect, useState } from "react";
 import "./Contact.css";
 import { FaEnvelope, FaGithub, FaLinkedinIn, FaMapMarker, FaPhone, FaTwitter } from "react-icons/fa";
 import emailjs from '@emailjs/browser';
-import { database } from "../../firebase"; // Adjust the path based on your structure
-import { ref, onValue, set, off } from "firebase/database";
-
+import { database } from "../../firebase"; 
+import { ref, onValue } from "firebase/database";
 
 const Contact = () => {
-  const [name, setName] = useState("Peter Ndiba");
-  const [roles, setRoles] = useState(["ROS Developer"]); // Initialize as an array
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const userID = "user1"; // Replace with a dynamic value in a real app
+  const userId = "user1"; 
+  const [socialLinks, setSocialLinks] = useState({
+      linkedin: '',
+      github: '',
+      youtube: '',
+      twitter: ''
+  });
+  const [contactInfo, setContactInfo] = useState({
+      email: '',
+      phone: '',
+      about: '',
+      resumeUrl: '', 
+  });
 
   useEffect(() => {
-    // Load initial data from Firebase using the unique user ID
-    const nameRef = ref(database, `users/${userID}/name`);
-    const roleRef = ref(database, `users/${userID}/role`);
+      const userRef = ref(database, `users/${userId}/about/`);
+      const unsubscribe = onValue(userRef, (snapshot) => {
+          const data = snapshot.val();
+          if (data) {
+              setSocialLinks({
+                  linkedin: data.socialLinks?.linkedin || '',
+                  github: data.socialLinks?.github || '',
+                  youtube: data.socialLinks?.youtube || '',
+                  twitter: data.socialLinks?.twitter || ''
+              });
+              setContactInfo({
+                  email: data.email || '',
+                  phone: data.phone || '',
+                  about: data.about || '',
+                  resumeUrl: data.resumeUrl || '',
+              });
+          } else {
+              console.log("No entries found.");
+          }
+      });
 
-    // Listen for value changes
-    onValue(nameRef, (snapshot) => {
-      setName(snapshot.val() || "Peter Ndiba");
-    });
+      return () => unsubscribe();
+  }, [userId]);
 
-    onValue(roleRef, (snapshot) => {
-      setRoles(snapshot.val() ? snapshot.val().split(",") : ["ROS Developer"]); // Split roles string into array
-    });
-
-    // Cleanup the listener on unmount
-    return () => {
-      off(nameRef); // Remove listener for name
-      off(roleRef); // Remove listener for role
-    };
-  }, [userID]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [stateMessage, setStateMessage] = useState(null);
-
-  // Store sender data in state
   const [senderData, setSenderData] = useState({
     from_name: '',
     user_email: '',
@@ -43,7 +54,6 @@ const Contact = () => {
     message: ''
   });
 
-  // Function to update senderData from form fields
   const handleChange = (e) => {
     const { name, value } = e.target;
     setSenderData((prevData) => ({
@@ -56,7 +66,6 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Prepare template params for EmailJS
     const templateParams = {
       from_name: senderData.from_name,
       user_email: senderData.user_email,
@@ -68,7 +77,7 @@ const Contact = () => {
       .send(
         process.env.REACT_APP_SERVICE_ID,  
         process.env.REACT_APP_TEMPLATE_ID,  
-        templateParams,  // Pass the template parameters
+        templateParams, 
         process.env.REACT_APP_PUBLIC_KEY 
       )
       .then(
@@ -84,7 +93,6 @@ const Contact = () => {
         }
       );
 
-    // Reset form after submission
     e.target.reset();
     setSenderData({
       from_name: '',
@@ -107,26 +115,38 @@ const Contact = () => {
             <h3 className="title">Let's get in touch</h3>
             <p className="text">Feel free to reach out to me for any inquiries or collaborations!</p>
             <div className="info">
-              {/* <div className="information">
-                <FaMapMarker style={{ color: "#003363", fontSize: "1rem", marginRight: "10px" }} />
-                <p>92 Cherry Drive Uniondale, NY 11553</p>
-              </div> */}
               <div className="information">
                 <FaEnvelope style={{ color: "#003363", fontSize: "1rem", marginRight: "10px" }} />
-                <p>lorem@ipsum.com</p>
+                <p>{contactInfo.email || 'lorem@ipsum.com'}</p>
               </div>
               <div className="information">
                 <FaPhone style={{ color: "#003363", fontSize: "1rem", marginRight: "10px" }} />
-                <p>123-456-789</p>
+                <p>{contactInfo.phone || '123-456-789'}</p>
               </div>
             </div>
             <div className="social-media">
               <p>Connect with me :</p>
               <div className="social-icons">
-                <FaLinkedinIn style={{ color: "#003363", fontSize: "1.5rem" }} />
-                <FaTwitter style={{ color: "#003363", fontSize: "1.5rem", marginLeft: "10px" }} />
-                <FaGithub style={{ color: "#003363", fontSize: "1.5rem", marginLeft: "10px" }} />
-                <FaEnvelope style={{ color: "#003363", fontSize: "1.5rem", marginLeft: "10px" }} />
+                {socialLinks.linkedin && (
+                  <a href={socialLinks.linkedin} target="_blank" rel="noopener noreferrer">
+                    <FaLinkedinIn style={{ color: "#003363", fontSize: "1.5rem" }} />
+                  </a>
+                )}
+                {socialLinks.twitter && (
+                  <a href={socialLinks.twitter} target="_blank" rel="noopener noreferrer">
+                    <FaTwitter style={{ color: "#003363", fontSize: "1.5rem", marginLeft: "10px" }} />
+                  </a>
+                )}
+                {socialLinks.github && (
+                  <a href={socialLinks.github} target="_blank" rel="noopener noreferrer">
+                    <FaGithub style={{ color: "#003363", fontSize: "1.5rem", marginLeft: "10px" }} />
+                  </a>
+                )}
+                {contactInfo.email && (
+                  <a href={`mailto:${contactInfo.email}`}>
+                    <FaEnvelope style={{ color: "#003363", fontSize: "1.5rem", marginLeft: "10px" }} />
+                  </a>
+                )}
               </div>
             </div>
           </div>
@@ -178,7 +198,11 @@ const Contact = () => {
                 className="btn"
                 disabled={isSubmitting}
               />
-              {stateMessage && <p>{stateMessage}</p>}
+              {stateMessage && (
+                <p className={stateMessage.includes("successfully") ? "success" : "error"}>
+                  {stateMessage}
+                </p>
+              )}
             </form>
           </div>
         </div>
