@@ -258,7 +258,7 @@ textarea.input {
   width: 35px;
   height: 35px;
   border-radius: 5px;
-  background: linear-gradient(45deg, #24a8e6, #003363);
+  /* background: linear-gradient(45deg, #24a8e6, #003363); */
   color: #fff;
   text-align: center;
   line-height: 35px;
