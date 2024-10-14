@@ -203,4 +203,10 @@ a.repeat:hover {
     gap: 5px;
     padding: 5px;
   }
+
+  
+  .one span{
+    margin-top: -30px;
+    font-size: 40%;
+  }
 }
