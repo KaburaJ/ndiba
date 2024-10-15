@@ -90,10 +90,17 @@ const App = () => {
 
   // Function to convert name into span elements
   const formatName = (name) => {
-    return name.split('').map((char, index) => (
-      <span key={index}>{char}</span>
+    // Split the name by spaces and map over the words
+    return name.split(' ').map((word, wordIndex) => (
+      <span key={wordIndex} style={{ marginRight: '5px' }}>
+        {/* For each word, split by characters */}
+        {word.split('').map((char, index) => (
+          <span key={index}>{char}</span>
+        ))}
+      </span>
     ));
   };
+
 
   return (
     <div id="home">
