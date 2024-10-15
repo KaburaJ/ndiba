@@ -21,7 +21,7 @@ const Experience = () => {
                     ...data[key],  // Spread the experience data for each key
                 }));
                 setCards(loadedCards);
-                console.log(blogCards)
+                // console.log(blogCards)
             } else {
                 setCards([]);  // If no data is found, clear the card list
             }
@@ -52,7 +52,7 @@ const Experience = () => {
             <div className="cardsa">
                 {blogCards.map((card) => (
                     <div key={card.id}>
-                        {console.log(card)}  {/* Check each card's content */}
+                        {/* {console.log(card)}  Check each card's content */}
                         {card && (
                             <PublicationCard cardData={card} />
                         )}
