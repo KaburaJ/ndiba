@@ -1,12 +1,9 @@
 import React, { useState } from "react";
 import "./PublicationCard.css";
 import { FaPencilAlt, FaTrash } from "react-icons/fa";
-import { storage } from "../../firebase";  // Firebase Storage
-import { ref as storageRef, uploadBytes, getDownloadURL } from "firebase/storage"; // Firebase Storage functions
 
 const PublicationCard = ({ cardData, onSave, onDelete }) => {
     const [isEditing, setIsEditing] = useState(false);
-    const [newImageFile, setNewImageFile] = useState(null); // To hold the selected image file
 
     const handleEditClick = () => {
         setIsEditing(true);
@@ -16,22 +13,9 @@ const PublicationCard = ({ cardData, onSave, onDelete }) => {
         onDelete(cardData.id);
     };
 
-    const handleSaveClick = async (newData) => {
-        if (newImageFile) {
-            // Upload new image to Firebase Storage if there is a new image file
-            const imageRef = storageRef(storage, `images/${newImageFile.name}`);
-            await uploadBytes(imageRef, newImageFile);
-            const imageUrl = await getDownloadURL(imageRef);
-            newData.image = imageUrl; // Update image URL in newData
-        }
+    const handleSaveClick = (newData) => {
         onSave(cardData.id, newData);
         setIsEditing(false);
-    };
-
-    const handleImageChange = (e) => {
-        if (e.target.files && e.target.files[0]) {
-            setNewImageFile(e.target.files[0]); // Set the new image file
-        }
     };
 
     const handleCardClick = () => {
@@ -42,12 +26,18 @@ const PublicationCard = ({ cardData, onSave, onDelete }) => {
 
     const EditModal = ({ cardData, onSave, onCancel }) => {
         const [newData, setNewData] = useState(cardData);
-
+    
         const handleChange = (e) => {
             const { name, value } = e.target;
             setNewData({ ...newData, [name]: value });
         };
-
+    
+        const handleImageChange = (e) => {
+            if (e.target.files && e.target.files[0]) {
+                setNewData({ ...newData, image: URL.createObjectURL(e.target.files[0]) });
+            }
+        };
+    
         return (
             <div className="modal">
                 <div className="modal-content">
@@ -67,6 +57,7 @@ const PublicationCard = ({ cardData, onSave, onDelete }) => {
                     />
                     <input type="file" onChange={handleImageChange} />
                     <img src={newData.image} alt="Preview" style={{ width: "150px", height: "150px" }} />
+    
                     {cardData.link !== undefined && (
                         <input
                             type="text"
@@ -76,7 +67,7 @@ const PublicationCard = ({ cardData, onSave, onDelete }) => {
                             placeholder="Enter the link to your blog"
                         />
                     )}
-
+    
                     <div className="buttons">
                         <button onClick={() => onSave(newData)} className="button">Save</button>
                         <button onClick={onCancel} className="button">Cancel</button>
@@ -84,7 +75,8 @@ const PublicationCard = ({ cardData, onSave, onDelete }) => {
                 </div>
             </div>
         );
-    };
+    };    
+    
 
     return (
         <>
@@ -96,8 +88,8 @@ const PublicationCard = ({ cardData, onSave, onDelete }) => {
                         </figure>
                         <div className="article-body">
                             <div className="icon-container">
-                                <FaPencilAlt onClick={(e) => { e.stopPropagation(); handleEditClick(); }} className="icon" style={{zIndex:99}}/>
-                                <FaTrash onClick={(e) => { e.stopPropagation(); handleDeleteClick(); }} className="icon" style={{zIndex:99}}/>
+                                <FaPencilAlt onClick={(e) => { e.stopPropagation(); handleEditClick(); }} className="icon" style={{zIndex:999}}/>
+                                <FaTrash onClick={(e) => { e.stopPropagation(); handleDeleteClick(); }} className="icon" style={{zIndex:999}}/>
                             </div>
                             <h2>{cardData.title}</h2>
                             <p>{cardData.content}</p>
@@ -122,6 +114,48 @@ const PublicationCard = ({ cardData, onSave, onDelete }) => {
                 )}
             </section>
         </>
+    );
+};
+
+const EditModal = ({ cardData, onSave, onCancel }) => {
+    const [newData, setNewData] = useState(cardData);
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setNewData({ ...newData, [name]: value });
+    };
+
+    const handleImageChange = (e) => {
+        if (e.target.files && e.target.files[0]) {
+            setNewData({ ...newData, image: URL.createObjectURL(e.target.files[0]) });
+        }
+    };
+
+    return (
+        <div className="modal">
+            <div className="modal-content">
+                <h2>Edit Card</h2>
+                <input
+                    type="text"
+                    name="title"
+                    value={newData.title}
+                    onChange={handleChange}
+                    placeholder="Title"
+                />
+                <textarea
+                    name="content"
+                    value={newData.content}
+                    onChange={handleChange}
+                    placeholder="Content"
+                />
+                <input type="file" onChange={handleImageChange} />
+                <img src={newData.image} alt="Preview" style={{ width: "150px", height: "150px" }} />
+                <div className="buttons">
+                    <button onClick={() => onSave(newData)} className="button">Save</button>
+                    <button onClick={onCancel} className="button">Cancel</button>
+                </div>
+            </div>
+        </div>
     );
 };
 

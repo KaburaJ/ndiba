@@ -1,7 +1,6 @@
+// src/firebase.js
 import { initializeApp } from 'firebase/app';
 import { getDatabase } from 'firebase/database'; // Import for Realtime Database
-import { getStorage } from 'firebase/storage';   // Import for Firebase Storage
-import { getFirestore } from 'firebase/firestore'; // Import for Firestore
 
 const firebaseConfig = {
     apiKey: `${process.env.REACT_APP_API_KEY}`,
@@ -19,10 +18,4 @@ const app = initializeApp(firebaseConfig);
 // Initialize Realtime Database
 const database = getDatabase(app); // Initialize Realtime Database
 
-// Initialize Firebase Storage
-const storage = getStorage(app);   // Initialize Firebase Storage
-
-// Initialize Firestore
-const db = getFirestore(app);       // Initialize Firestore
-
-export { database, storage, db }; // Export Realtime Database, Firebase Storage, and Firestore
+export { database }; // Export the Realtime Database instance

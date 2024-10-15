@@ -2,45 +2,74 @@ import React, { useEffect, useState } from "react";
 import "./Publications.css";
 import PublicationCard from "../PublicationCard/PublicationCard";
 import blogImg from "../images/yucel-moran-fZYgnAoeio4-unsplash.jpg";
-import { db, storage } from "../../firebase";  // Firestore and Firebase Storage
-import { collection, addDoc, updateDoc, deleteDoc, doc, onSnapshot } from "firebase/firestore"; // Firestore functions
+import { database } from "../../firebase";
+import { ref, set, remove, onValue } from "firebase/database";
 
 const Publications = () => {
-    const [blogCards, setCards] = useState([]);
     const userId = "user1";
 
-    useEffect(() => {
-        const cardsCollection = collection(db, `users/${userId}/blogs`);
-        const unsubscribe = onSnapshot(cardsCollection, (snapshot) => {
-            const loadedCards = snapshot.docs.map((doc) => ({
-                id: doc.id,
-                ...doc.data(),
-            }));
-            setCards(loadedCards);
-        });
+    const [blogCards, setCards] = useState([]);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [currentCard, setCurrentCard] = useState(null);
+    const [updatedData, setUpdatedData] = useState({ title: "", content: "", link: "" });
 
-        return () => unsubscribe();
+    useEffect(() => {
+        const cardsRef = ref(database, `users/${userId}/blogs`);
+        onValue(cardsRef, (snapshot) => {
+            const data = snapshot.val();
+            if (data) {
+                const loadedCards = Object.keys(data).map((key) => ({
+                    id: key,
+                    ...data[key],
+                }));
+                setCards(loadedCards);
+            } else {
+                setCards([]);
+            }
+        });
     }, [userId]);
 
-    const handleAddCard = async () => {
+    const handleAddCard = () => {
         const newCard = {
             title: "New Blog",
             content: "Blog description goes here.",
             image: blogImg,
-            link: "Please enter the link to your blog:",
+            link: "Please enter the link to your blog:",  
         };
-
-        await addDoc(collection(db, `users/${userId}/blogs`), newCard);
+    
+        const newCardRef = ref(database, `users/${userId}/blogs/${Date.now()}`);
+        set(newCardRef, newCard);
     };
 
-    const handleSaveCard = async (id, newData) => {
-        const cardDocRef = doc(db, `users/${userId}/blogs`, id);
-        await updateDoc(cardDocRef, newData);
+    const handleSaveCard = (id, newData) => {
+        const cardRef = ref(database, `users/${userId}/blogs/${id}`);
+        set(cardRef, newData);
+
+        const updatedCards = blogCards.map((card) => (card.id === id ? { ...card, ...newData } : card));
+        setCards(updatedCards);
     };
 
-    const handleDeleteCard = async (id) => {
-        const cardDocRef = doc(db, `users/${userId}/blogs`, id);
-        await deleteDoc(cardDocRef);
+    const handleDeleteCard = (id) => {
+        const cardRef = ref(database, `users/${userId}/blogs/${id}`);
+        remove(cardRef);
+
+        const updatedCards = blogCards.filter((card) => card.id !== id);
+        setCards(updatedCards);
+    };
+
+    const handleEditClicked = (card) => {
+        setCurrentCard(card);
+        setUpdatedData({
+            title: card.title,
+            content: card.content,
+            link: card.link || "",  // Include the link in the state
+        });
+        setIsModalOpen(true);
+    };
+
+    const handleModalSave = () => {
+        handleSaveCard(currentCard.id, updatedData);
+        setIsModalOpen(false);
     };
 
     return (
@@ -64,6 +93,7 @@ const Publications = () => {
                 <span>t</span>
                 <span>i</span>
                 <span>o</span>
+                <span>n</span>
                 <span>s</span>
             </div>
             <div className="cardsb">
@@ -73,37 +103,73 @@ const Publications = () => {
                             cardData={card}
                             onSave={handleSaveCard}
                             onDelete={handleDeleteCard}
+                            onEditClick={() => handleEditClicked(card)}
                         />
                     </div>
                 ))}
                 <button
-                    onClick={handleAddCard}
-                    style={{
-                        marginLeft: "6%",
-                        marginTop: "5%",
-                        width: "240px",
-                        height: "50px",
-                        borderRadius: "8px",
-                        border: "none",
-                        backgroundColor: "#24a8e6",
-                        color: "#FFF",
-                        fontSize: "18px",
-                        cursor: "pointer",
-                        boxShadow: "0 4px 10px rgba(0, 0, 0, 0.3)",
-                        transition: "background-color 0.3s ease, transform 0.2s ease",
-                    }}
-                    onMouseEnter={(e) => {
-                        e.target.style.backgroundColor = "#1a8ac1";
-                        e.target.style.transform = "scale(1.05)";
-                    }}
-                    onMouseLeave={(e) => {
-                        e.target.style.backgroundColor = "#24a8e6";
-                        e.target.style.transform = "scale(1)";
-                    }}
-                >
-                    Add Blog
-                </button>
+                onClick={handleAddCard}
+                style={{
+                    marginLeft:"6%",
+                    marginTop: "5%",
+                    width: "240px",
+                    height: "50px",
+                    borderRadius: "8px",
+                    border: "none",
+                    backgroundColor: "#24a8e6",
+                    color: "#FFF",
+                    fontSize: "18px",
+                    cursor: "pointer",
+                    boxShadow: "0 4px 10px rgba(0, 0, 0, 0.3)",
+                    transition: "background-color 0.3s ease, transform 0.2s ease",
+                }}
+                onMouseEnter={(e) => {
+                    e.target.style.backgroundColor = "#1a8ac1";
+                    e.target.style.transform = "scale(1.05)";
+                }}
+                onMouseLeave={(e) => {
+                    e.target.style.backgroundColor = "#24a8e6";
+                    e.target.style.transform = "scale(1)";
+                }}
+            >
+                Add Blog
+            </button>
             </div>
+
+            {isModalOpen && (
+                <div className="modal">
+                    <div className="modal-content">
+                        <h2>Edit Card</h2>
+                        <label>
+                            Title:
+                            <input
+                                type="text"
+                                value={updatedData.title}
+                                onChange={(e) => setUpdatedData({ ...updatedData, title: e.target.value })}
+                            />
+                        </label>
+                        <label>
+                            Content:
+                            <textarea
+                                value={updatedData.content}
+                                onChange={(e) => setUpdatedData({ ...updatedData, content: e.target.value })}
+                            />
+                        </label>
+                        <label>
+                            Link to your Blog:
+                            <input
+                                type="text"
+                                value={updatedData.link}
+                                onChange={(e) => setUpdatedData({ ...updatedData, link: e.target.value })}
+                            />
+                        </label>
+                        <div style={{ display: "flex", flexDirection: "row" }}>
+                            <button onClick={handleModalSave}>Save</button>
+                            <button onClick={() => setIsModalOpen(false)}>Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
