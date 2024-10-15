@@ -262,13 +262,13 @@ a.repeat:hover {
   border-radius: 4px;
 }
 
-@media (min-width: 1200px) {
+@media (max-width: 1280px) {
   .overlay{
     height: 102.3%;
   }
 }
 
-@media (min-width: 992px) {
+@media (max-width: 1200px) {
   .overlay{
     height: 101.8%;
   }
