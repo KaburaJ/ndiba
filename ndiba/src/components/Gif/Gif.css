@@ -57,3 +57,10 @@
     font-weight: 200;
     font-size: 3rem;
   }
+
+  @media (max-width: 575px) {
+    .gif-container {
+      height: 60vh;
+    }
+
+  }

@@ -262,7 +262,17 @@ a.repeat:hover {
   border-radius: 4px;
 }
 
+@media (min-width: 1200px) {
+  .overlay{
+    height: 102.3%;
+  }
+}
 
+@media (min-width: 992px) {
+  .overlay{
+    height: 101.8%;
+  }
+}
 /* Media queries for responsiveness */
 @media (max-width: 1200px) {
   .about {
@@ -326,10 +336,32 @@ a.repeat:hover {
   }
 }
 
+@media (max-width: 853px) {
+
+  #home .content {
+    height: 103vh;
+  }
+
+  .intro-text {
+   margin-top: 60%;
+   margin-left: 15%;
+   font-size: 350%;
+  }
+
+  .intro-sub-text {
+    margin-top: 5%;
+    margin-left: 15%;
+    font-size: 350%;
+  }
+}
+
 @media (max-width: 575px) {
+  #home .content {
+    height: 60vh;
+  }
 
   .overlay {
-    height: 81%;
+    height: 58%;
   }
 
   .intro-text {
@@ -359,7 +391,7 @@ a.repeat:hover {
   }
 }
 
-@media (max-width: 375px) {
+/* @media (min-width: 300px) and (max-width: 768px) {
   .overlay {
     height: 107.4%;
   }
@@ -380,6 +412,38 @@ a.repeat:hover {
     color: white;
     margin-left: 5%;
     font-size: 200%;
+    font-weight: 200;
+    margin-bottom: 5%;
+    display: flex;
+  }
+
+  #edit-button {
+    margin-left: 20% !important;
+    width: 240px;
+    font-size: 50%
+  }} */
+
+@media (max-width: 375px) {
+  .overlay {
+    height: 57.3%;
+  }
+
+  .intro-text {
+    position: relative;
+    color: white;
+    margin-left: 10%;
+    margin-top: 40%;
+    margin-bottom: 5%;
+    font-weight: 600;
+    font-size: 160%;
+    display: flex;
+  }
+
+  .intro-sub-text {
+    position: relative;
+    color: white;
+    margin-left: 8%;
+    font-size: 180%;
     font-weight: 200;
     margin-bottom: 5%;
     /* font-size: 3rem; */
