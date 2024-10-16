@@ -125,7 +125,6 @@ a.repeat:hover {
 /* Animation One */
 
 .one span {
-  font-size: 50%;
   color: #24a8e6;
   opacity: 0;
   transform: translate(-150px, -50px) rotate(-180deg) scale(3);
@@ -203,10 +202,5 @@ a.repeat:hover {
     /* 1 card per row */
     gap: 5px;
     padding: 5px;
-  }
-  
-  .one span{
-    margin-top: -30px;
-    font-size: 40%;
   }
 }

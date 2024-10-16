@@ -1,66 +1,149 @@
 .gif-container {
-    position: relative;
-    width: 70%;
-    height: 110vh;
-    margin: 0 auto;
-    overflow: hidden;
-    margin-top: -5%;
-    background-color: transparent;
+  position: relative;
+  width: 70%;
+  height: 110vh;
+  margin: 0 auto;
+  overflow: hidden;
+  margin-top: -5%;
+  background-color: transparent;
 }
 
 .tenor-gif-embed {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
 }
 
 .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    z-index: 2;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 2;
+}
+
+.overlay-text {
+  position: relative;
+  z-index: 3;
+  color: white;
+  text-align: center;
+  margin-top: 10%;
+}
+
+.overlay-text h1,
+.overlay-text p {
+  margin: 0;
+}
+
+.intro-text {
+  position: relative;
+  color: white;
+  margin-left: 30%;
+  margin-top: 20%;
+  font-weight: 600;
+  font-size: 3rem;
+  display: flex;
+}
+
+.intro-sub-text {
+  position: relative;
+  color: white;
+  margin-left: 5%;
+  font-weight: 200;
+  font-size: 3rem;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 1200px) {
+  .gif-container {
+      width: 80%;
+      height: 100vh;
+      margin-top: -3%;
   }
-  
-  .overlay-text {
-    position: relative;
-    z-index: 3;
-    color: white;
-    text-align: center;
-    margin-top: 10%;
-  }
-  
-  .overlay-text h1,
-  .overlay-text p {
-    margin: 0;
-  }
-  
+
   .intro-text {
-    position: relative;
-    color: white;
-    margin-left: 30%;
-    margin-top: 20%;
-    font-weight: 600;
-    font-size: 3rem;
-    display: flex;
+      margin-left: 25%;
+      font-size: 2.5rem;
   }
-  
+
   .intro-sub-text {
-    position: relative;
-    color: white;
-    margin-left: 5%;
-    font-weight: 200;
-    font-size: 3rem;
+      font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .gif-container {
+      width: 90%;
+      height: 90vh;
+      margin-top: -2%;
   }
 
-  @media (max-width: 575px) {
-    .gif-container {
+  .intro-text {
+      margin-left: 20%;
+      font-size: 2rem;
+  }
+
+  .intro-sub-text {
+      font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .gif-container {
+      width: 100%;
+      height: 80vh;
+      margin-top: 0;
+  }
+
+  .intro-text {
+      margin-left: 10%;
+      font-size: 1.5rem;
+      margin-top: 15%;
+  }
+
+  .intro-sub-text {
+      font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .gif-container {
+      width: 100%;
+      height: 70vh;
+  }
+
+  .intro-text {
+      margin-left: 5%;
+      font-size: 1.2rem;
+      margin-top: 10%;
+  }
+
+  .intro-sub-text {
+      font-size: 1.2rem;
+      margin-left: 2%;
+  }
+}
+
+@media (max-width: 375px) {
+  .gif-container {
+      width: 100%;
       height: 60vh;
-    }
-
+      margin-top: -8%;
   }
+
+  .intro-text {
+      margin-left: 2%;
+      font-size: 1rem;
+      margin-top: 5%;
+  }
+
+  .intro-sub-text {
+      font-size: 1rem;
+      margin-left: 1%;
+  }
+}
