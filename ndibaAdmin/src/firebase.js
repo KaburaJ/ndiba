@@ -1,6 +1,7 @@
 // src/firebase.js
 import { initializeApp } from 'firebase/app';
 import { getDatabase } from 'firebase/database'; // Import for Realtime Database
+import { getAuth, signInWithPopup, GoogleAuthProvider} from 'firebase/auth'
 
 const firebaseConfig = {
     apiKey: `${process.env.REACT_APP_API_KEY}`,
@@ -18,4 +19,11 @@ const app = initializeApp(firebaseConfig);
 // Initialize Realtime Database
 const database = getDatabase(app); // Initialize Realtime Database
 
-export { database }; // Export the Realtime Database instance
+//Auth
+const auth = getAuth(app);
+
+const provider = new GoogleAuthProvider()
+provider.setCustomParameters({prompt: 'select_account'})
+
+const signInWithGoogle = () => signInWithPopup(auth, provider)
+export { database, auth, signInWithGoogle }; // Export the Realtime Database instance

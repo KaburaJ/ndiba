@@ -1,0 +1,481 @@
+:root{
+    --white:#fff;
+    --black:#000;
+    
+    --dark:#171615;
+    --gray:#4d5156;
+    --lite:#e3e3e3;
+    
+    --primary:#24a8e6;
+    --primary_lite:#74DFEF;
+    --primary_dark:#181E2B;
+  }
+  
+  
+  .login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* flex-direction: column; */
+    background-color: #0A0A0A;
+    text-align: center;
+    /* font-family: 'Montserrat', sans-serif; */
+    height: 100vh;
+   
+    
+  }
+  
+  .login h1 {
+    font-weight: bold;
+    margin: 0;
+    color: #181E2B;
+  }
+  
+  .login h2 {
+    text-align: center;
+  }
+  
+  .login p {
+    font-size: 14px;
+    font-weight: 100;
+    line-height: 20px;
+    letter-spacing: 0.5px;
+    margin: 20px 0 30px;
+  }
+  
+  .login span {
+    font-size: 12px;
+    color: #181E2B;
+  }
+  
+  .login a {
+    color: #333;
+    font-size: 14px;
+    text-decoration: none;
+    margin: 15px 0;
+  }
+  
+  .login button {
+    border-radius: 20px;
+    border: 1px solid #1D2434;
+    background-color: #1D2434;
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    cursor: pointer;
+  
+  }
+  
+  .login button:hover,
+  .login button:active {
+    transform: scale(0.95);
+    color: #24a8e6;
+  }
+  
+  .login button:focus {
+    outline: none;
+  }
+  
+  .login button.ghost {
+    background-color: transparent;
+    border-color: #FFFFFF;
+    cursor: pointer;
+  }
+  
+  .login form {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 50px;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .login input {
+    background-color: #ced0d3;
+    border: none;
+    padding: 12px 15px;
+    margin: 8px 0;
+    width: 100%;
+    border-radius: 40px;
+    display: block;
+  }
+  
+  .login .container {
+    background-color: #fff;
+    border-radius: 10px;
+      box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+        0 10px 10px rgba(0,0,0,0.22);
+    position: relative;
+    overflow: hidden;
+    width: 768px;
+    max-width: 100%;
+    min-height: 480px;
+  }
+  
+  .login .form-container {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all 0.6s ease-in-out;
+  }
+  
+  .sign-in-container {
+    left: 0;
+    width: 50%;
+    z-index: 2;
+  }
+  
+  .container.right-panel-active .sign-in-container {
+    transform: translateX(100%);
+  }
+  
+  .sign-in-container a:hover {
+    color: #24a8e6;
+  }
+  .sign-up-container {
+    left: 0;
+    width: 50%;
+    opacity: 0;
+    z-index: 1;
+  }
+  
+  .container.right-panel-active .sign-up-container {
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+    animation: show 0.6s;
+  }
+  
+  
+  
+  @keyframes show {
+    0%, 49.99% {
+      opacity: 0;
+      z-index: 1;
+    }
+    
+    50%, 100% {
+      opacity: 1;
+      z-index: 5;
+    }
+  }
+  
+  .login-overlay-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: transform 0.6s ease-in-out;
+    z-index: 100;
+  }
+  
+  .container.right-panel-active .login-overlay-container{
+    transform: translateX(-100%);
+  }
+  
+  .login-overlay {
+    background: #181E2B;
+    /* background: -webkit-linear-gradient(to right, #181E2B, #FF416C); */
+    /* background: linear-gradient(to right, #181E2B, #FF416C); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0 0;
+    color: #FFFFFF;
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+      transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
+    background-image: url("../images/cheech-login-light.png");
+  
+  }
+  
+  .container.right-panel-active .login-overlay {
+      transform: translateX(50%);
+  }
+  
+  .login-overlay-panel {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    text-align: center;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
+  }
+  
+  .login-overlay-left {
+    transform: translateX(-20%);
+  }
+
+  .login-overlay-left p {
+    padding-right: 48px;
+  }
+  
+  .container.right-panel-active .login-overlay-left {
+    transform: translateX(0);
+  }
+  
+  .login-overlay-right {
+    right: 0;
+    transform: translateX(0);
+  }
+
+  .login-overlay-right p {
+    padding-left: 55px;
+  }
+
+  .login-overlay-right .hey {
+    display: flex;
+    margin-left: 80px;
+  }
+
+  .login-overlay-left .welcome {
+padding-right: 50px;
+  }
+  .login-overlay-left .ghost{
+    margin-right: 80px;
+  }
+  .login-overlay-right .ghost{
+    margin-left: 80px;
+  }
+  
+  .container.right-panel-active .login-overlay-right {
+    transform: translateX(20%);
+  }
+  
+  .login-social-container {
+    margin: 20px 0;
+  }
+  
+  .login-social-container a {
+    color: black;
+    border: 1px solid #DDDDDD;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 5px;
+    height: 40px;
+    width: 40px;
+  }
+  
+  .login-social-container a:hover {
+    color: #24a8e6;
+  }
+
+  .login-social {
+    border: none;
+
+  }
+  
+  
+  .wave {
+      animation-name: wave-animation;  
+      animation-duration: 2.5s;       
+      animation-iteration-count: infinite; 
+      transform-origin: 70% 70%;       
+      display: inline-block;
+    }
+    
+    @keyframes wave-animation {
+        0% { transform: rotate( 0.0deg) }
+       10% { transform: rotate(14.0deg) }  
+       20% { transform: rotate(-8.0deg) }
+       30% { transform: rotate(14.0deg) }
+       40% { transform: rotate(-4.0deg) }
+       50% { transform: rotate(10.0deg) }
+       60% { transform: rotate( 0.0deg) }  
+      100% { transform: rotate( 0.0deg) }
+    }
+    
+    
+    .login-with-google-btn {
+        transition: background-color 0.3s, box-shadow 0.3s;
+        padding: 12px 16px 12px 42px;
+        border: none;
+        border-radius: 3px;
+        box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 1px 1px rgba(0, 0, 0, .25);
+        color: #757575;
+        font-size: 14px;
+        font-weight: 500;
+        margin-left: -25%;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+        /* background-image: url("data:image/svg+xml; */
+       /* base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBkPSJNMTcuNiA5LjJsLS4xLTEuOEg5djMuNGg0LjhDMTMuNiAxMiAxMyAxMyAxMiAxMy42djIuMmgzYTguOCA4LjggMCAwIDAgMi42LTYuNnoiIGZpbGw9IiM0Mjg1RjQiIGZpbGwtcnVsZT0ibm9uemVybyIvPjxwYXRoIGQ9Ik05IDE4YzIuNCAwIDQuNS0uOCA2LTIuMmwtMy0yLjJhNS40IDUuNCAwIDAgMS04LTIuOUgxVjEzYTkgOSAwIDAgMCA4IDV6IiBmaWxsPSIjMzRBODUzIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNNCAxMC43YTUuNCA1LjQgMCAwIDEgMC0zLjRWNUgxYTkgOSAwIDAgMCAwIDhsMy0yLjN6IiBmaWxsPSIjRkJCQzA1IiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNOSAzLjZjMS4zIDAgMi41LjQgMy40IDEuM0wxNSAyLjNBOSA5IDAgMCAwIDEgNWwzIDIuNGE1LjQgNS40IDAgMCAxIDUtMy43eiIgZmlsbD0iI0VBNDMzNSIgZmlsbC1ydWxlPSJub256ZXJvIi8+PHBhdGggZD0iTTAgMGgxOHYxOEgweiIvPjwvZz48L3N2Zz4=""); */
+        background-color: white;
+        background-repeat: no-repeat;
+        background-position: 12px 11px;
+   }
+    .login-with-google-btn:hover {
+        box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 2px 4px rgba(0, 0, 0, .25);
+   }
+    .login-with-google-btn:active {
+        background-color: #eee;
+   }
+    .login-with-google-btn:focus {
+        outline: none;
+        box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 2px 4px rgba(0, 0, 0, .25), 0 0 0 3px #c8dafc;
+   }
+    .login-with-google-btn:disabled {
+        filter: grayscale(100%);
+        background-color: #ebebeb;
+        box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 1px 1px rgba(0, 0, 0, .25);
+        cursor: not-allowed;
+   }
+   
+@media (max-width: 768px) {
+  .login .container {
+    max-width: 90%;
+  }
+
+}
+
+@media (max-width: 575px) {
+  .login .container {
+    max-width: 90%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .login-with-google-btn {
+    padding: 2px 6px 2px 4px;
+    width: 80%;
+    margin-right: 40px;
+    height: 60px;
+    
+  }
+
+  .login-with-google-btn p {
+    font-size: 10px;
+    margin-top: -5%;
+    width: 130%;
+    display: inline;
+    margin-left: -15%;
+  }
+
+  .login-with-google-btn .icon {
+    display: none !important;
+  }
+
+  .login-overlay-left .welcome {
+    font-size: 25px;
+  }
+  .login-overlay-left p{
+    padding-right: 65px;
+  }
+  .login-overlay-right .hey {
+    width: 100%;
+    padding-left: 25%;
+    font-size: 20px;
+  }
+
+}
+
+@media (max-width: 540px) {
+  .login-with-google-btn p {
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 412px){
+  .login-with-google-btn p {
+    margin-top: -4px;
+  }
+}
+
+@media (max-width: 375px) {
+  .login .container {
+    max-width: 90%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .login-with-google-btn {
+    padding: 2px 6px 2px 4px;
+    width: 80%;
+    margin-right: 40px;
+    height: 80px;
+    
+  }
+
+  .login-with-google-btn p {
+    font-size: 10px;
+    margin-top: -5%;
+    width: 130%;
+    display: inline;
+    margin-left: -15%;
+  }
+
+  .login-with-google-btn .icon {
+    display: none in !important;
+  }
+  .login-overlay-left .welcome {
+    font-size: 25px;
+  }
+  .login-overlay-left p{
+    padding-right: 65px;
+  }
+  .login-overlay-right .hey {
+    width: 100%;
+    padding-left: 25%;
+    font-size: 20px;
+  }
+
+}
+
+@media (max-width: 390px) {
+  .login .container {
+    max-width: 90%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .login-with-google-btn {
+    padding: 2px 6px 2px 4px;
+    width: 80%;
+    margin-right: 40px;
+    height: 80px;
+    
+  }
+
+  .login-with-google-btn p {
+    font-size: 10px;
+    margin-top: -5%;
+    width: 130%;
+    display: inline;
+    margin-left: -15%;
+  }
+
+  .login-with-google-btn .icon {
+    display: none in !important;
+  }
+  .login-overlay-left .welcome {
+    font-size: 25px;
+  }
+  .login-overlay-left p{
+    padding-right: 65px;
+  }
+  .login-overlay-right .hey {
+    width: 100%;
+    padding-left: 25%;
+    font-size: 20px;
+  }
+
+}

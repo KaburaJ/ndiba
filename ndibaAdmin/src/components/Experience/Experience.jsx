@@ -40,6 +40,9 @@ const Experience = () => {
 
         const newCardRef = ref(database, `users/${userId}/experience/${Date.now()}`);
         set(newCardRef, newCard);
+        if(!newCardRef) {
+            alert("Please sign in again for authentication")
+        }
     };
 
     const handleSaveCard = (id, newData) => {

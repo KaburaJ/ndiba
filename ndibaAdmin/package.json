@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "dotenv": "^16.4.5",
     "firebase": "^10.14.1",
     "font-awesome-icons": "^1.6.0",
     "ionicons": "^7.4.0",
@@ -41,6 +42,7 @@
     ]
   },
   "devDependencies": {
-    "ajv": "^7.2.4"
+    "ajv": "^7.2.4",
+    "react-router-dom": "^6.27.0"
   }
 }

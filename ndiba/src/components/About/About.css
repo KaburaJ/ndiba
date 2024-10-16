@@ -61,7 +61,9 @@
   color: #24a8e6;
 }
 
-a, a:link, a:visited {
+a,
+a:link,
+a:visited {
   text-decoration: none;
   padding: 9px 15px;
   border: 1px solid #ececec;
@@ -101,57 +103,75 @@ a.repeat:hover {
 .animatea span:nth-of-type(2) {
   animation-delay: .05s;
 }
+
 .animatea span:nth-of-type(3) {
   animation-delay: .1s;
 }
+
 .animatea span:nth-of-type(4) {
   animation-delay: .15s;
 }
+
 .animatea span:nth-of-type(5) {
   animation-delay: .2s;
 }
+
 .animatea span:nth-of-type(6) {
   animation-delay: .25s;
 }
+
 .animatea span:nth-of-type(7) {
   animation-delay: .3s;
 }
+
 .animatea span:nth-of-type(8) {
   animation-delay: .35s;
 }
+
 .animatea span:nth-of-type(9) {
   animation-delay: .4s;
 }
+
 .animatea span:nth-of-type(10) {
   animation-delay: .45s;
 }
+
 .animatea span:nth-of-type(11) {
   animation-delay: .5s;
 }
+
 .animatea span:nth-of-type(12) {
   animation-delay: .55s;
 }
+
 .animatea span:nth-of-type(13) {
   animation-delay: .6s;
 }
+
 .animatea span:nth-of-type(14) {
   animation-delay: .65s;
 }
+
 .animatea span:nth-of-type(15) {
   animation-delay: .7s;
 }
+
 .animatea span:nth-of-type(16) {
   animation-delay: .75s;
 }
+
 .animatea span:nth-of-type(17) {
   animation-delay: .8s;
 }
+
 .animatea span:nth-of-type(18) {
   animation-delay: .85s;
 }
+
 .animatea span:nth-of-type(19) {
   animation-delay: .9s;
 }
+
 .animatea span:nth-of-type(20) {
   animation-delay: .95s;
 }
@@ -181,98 +201,99 @@ a.repeat:hover {
 /* Media queries for responsiveness */
 @media (max-width: 1200px) {
   .about {
-      padding-left: 50px;
-      padding-right: 50px;
-      padding-top: 40px;
-      padding-bottom: 40px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 40px;
+    padding-bottom: 40px;
   }
 
   .github .resume-download {
-      width: 25vw;
-      height: 8vh;
+    width: 25vw;
+    height: 8vh;
   }
 }
 
 @media (max-width: 992px) {
   .about {
-      padding-left: 30px;
-      padding-right: 30px;
-      padding-top: 30px;
-      padding-bottom: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
   }
 
   .github .resume-download {
-      width: 30vw;
-      height: 7vh;
+    width: 30vw;
+    height: 7vh;
   }
 
   .column-tag {
-      width: 50vw;
+    width: 50vw;
   }
 }
 
 @media (max-width: 768px) {
   .about {
-      flex-direction: column;
-      padding-left: 20px;
-      padding-right: 20px;
-      padding-top: 20px;
-      padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
   }
 
   .github .resume-download {
-      width: 40vw;
-      height: 6vh;
+    width: 40vw;
+    height: 6vh;
   }
 
   .column-tag {
-      width: 80vw;
+    width: 80vw;
   }
 }
 
 @media (max-width: 576px) {
   .about {
-      padding-left: 10px;
-      padding-right: 10px;
-      padding-top: 10px;
-      padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 
   .github .resume-download {
-      width: 50vw;
-      height: 5vh;
+    width: 50vw;
+    height: 5vh;
   }
 
   .column-tag {
-      width: 90vw;
-      flex-direction: column;
-      gap: 10px;
+    width: 90vw;
+    flex-direction: column;
+    gap: 10px;
   }
 
   .icons {
-      justify-content: center;
-      gap: 5px;
+    justify-content: center;
+    gap: 5px;
   }
 }
 
-@media (max-width: 375px) {
+@media (max-width: 540px) {
   .about {
-      padding-left: 15px;
-      padding-right: 15px;
-      padding-top: 5px;
-      padding-bottom: 5px;
+    display: flex;
+    flex-direction: column;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
   }
 
   .github .resume-download {
-      width: 60vw;
-      height: 5vh;
+    width: 60vw;
+    height: 5vh;
   }
 
   .column-one .column-tag {
-      width: 95vw;
-      margin-left: -40px;
-      display: flex;
-      flex-direction: row;
+    width: 95vw;
+    margin-left: -40px;
+    display: flex;
+    flex-direction: row;
   }
 
   .column-tag p {
@@ -283,16 +304,164 @@ a.repeat:hover {
     width: 30vw;
   }
 
-  .one span{
+  .one span {
     margin-top: -30px;
   }
 
   .icons {
-      gap: 2px;
+    gap: 2px;
   }
 
   .animatea {
-      font-size: 30px;
+    font-size: 30px;
+  }
+
+  .github .resume-download {
+    height: 50px;
+    width: 60%;
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 430px) {
+  .about {
+    flex-direction: column;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  .github .resume-download {
+    width: 60vw;
+    height: 5vh;
+  }
+
+  .column-one .column-tag {
+    width: 95vw;
+    margin-left: -40px;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .column-tag p {
+    width: 50vw;
+  }
+
+  .column-tag-title {
+    width: 30vw;
+  }
+
+  .one span {
+    margin-top: -30px;
+  }
+
+  .icons {
+    gap: 2px;
+  }
+
+  .animatea {
+    font-size: 30px;
+  }
+
+  .github .resume-download {
+    height: 50px;
+    width: 60%;
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+}
+
+
+@media (max-width: 412px) {
+  .about {
+    flex-direction: column;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  .github .resume-download {
+    width: 60vw;
+    height: 5vh;
+  }
+
+  .column-one .column-tag {
+    width: 95vw;
+    margin-left: -40px;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .column-tag p {
+    width: 50vw;
+  }
+
+  .column-tag-title {
+    width: 30vw;
+  }
+
+  .one span {
+    margin-top: -30px;
+  }
+
+  .icons {
+    gap: 2px;
+  }
+
+  .animatea {
+    font-size: 30px;
+  }
+
+  .github .resume-download {
+    height: 50px;
+    width: 60%;
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+}
+
+
+@media (max-width: 375px) {
+  .about {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  .github .resume-download {
+    width: 60vw;
+    height: 5vh;
+  }
+
+  .column-one .column-tag {
+    width: 95vw;
+    margin-left: -40px;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .column-tag p {
+    width: 50vw;
+  }
+
+  .column-tag-title {
+    width: 30vw;
+  }
+
+  .one span {
+    margin-top: -30px;
+  }
+
+  .icons {
+    gap: 2px;
+  }
+
+  .animatea {
+    font-size: 30px;
   }
 
   .github .resume-download {
