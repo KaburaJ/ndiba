@@ -233,6 +233,8 @@ a.repeat:hover {
 
 @media (max-width: 768px) {
   .about {
+    display: flex;
+    flex-direction: column;
     padding-left: 20px;
     padding-right: 20px;
     padding-top: 20px;

@@ -30,12 +30,16 @@ const TenorGif = () => {
                 <a href="https://tenor.com/view/rob%C3%B4-gif-24233833"></a>
                 f<a href="https://tenor.com/search/rob%C3%B4-stickers"></a>
             </div> */}
+            <div className="tenor-gif-embed" data-postid="18871668" data-share-method="host" data-aspect-ratio="1" data-width="100%">
+                <a href="https://tenor.com/view/rob%C3%B4-gif-24233833"></a>
+                <a href="https://tenor.com/search/rob%C3%B4-stickers"></a>
+            </div>
             {/* <div class="tenor-gif-embed" data-postid="24233833" data-share-method="host" data-aspect-ratio="1" data-width="100%"><a href="https://tenor.com/view/rob%C3%B4-gif-24233833">Robô Sticker</a>from <a href="https://tenor.com/search/rob%C3%B4-stickers">Robô Stickers</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script> */}
 
-            <div className="tenor-gif-embed" data-postid="5175695279238915494" data-share-method="host" data-aspect-ratio="1.33155" data-width="100%">
+            {/* <div className="tenor-gif-embed" data-postid="5175695279238915494" data-share-method="host" data-aspect-ratio="1.33155" data-width="100%">
                 <a href="https://tenor.com/view/happy-hello-excited-hi-wave-gif-5175695279238915494"></a>
                 <a href="https://tenor.com/search/happy-gifs"></a>
-            </div>
+            </div> */}
             {/* <div class="tenor-gif-embed" data-postid="5072286" data-share-method="host" data-aspect-ratio="1" data-width="100%"><a href="https://tenor.com/view/hello-gif-5072286">Hello GIF</a>from <a href="https://tenor.com/search/hello-gifs">Hello GIFs</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script> */}
         </div>
     );
