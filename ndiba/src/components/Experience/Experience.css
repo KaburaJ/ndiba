@@ -246,7 +246,7 @@ a.repeat:hover {
     gap: 5px;
     padding: 5px;
     width: 100%;
-    margin:0 auto
+    margin:0 auto !important
   }
 }
 
@@ -259,6 +259,6 @@ a.repeat:hover {
     gap: 5px;
     padding: 5px;
     width: 100%;
-    margin:0 auto
+    margin:0 auto !important
   }
 }
