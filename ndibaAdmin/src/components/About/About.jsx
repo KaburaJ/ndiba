@@ -102,10 +102,10 @@ const About = () => {
                         <p className="column-tag-title">Name: </p>
                         <p >Peter Ndiba</p>
                     </div>
-                    <div className="column-tag">
+                    {/* <div className="column-tag">
                         <p className="column-tag-title">Roles: </p>
                         <p >ROS Developer, PCB Designer, Mechatronics Engineer</p>
-                    </div>
+                    </div> */}
                     <div className="column-tag">
                         <p className="column-tag-title">Email: </p>
                         <p >{contactInfo.email || 'my email'}</p>
@@ -116,7 +116,7 @@ const About = () => {
                     </div>
                     <div className="column-tag">
                         <p className="column-tag-title">Profiles: </p>
-                        <div className="icons" style={{ cursor: 'pointer' }}>
+                        <div className="icons" style={{ cursor: 'pointer', marginTop:"15px" }}>
                             <FaLinkedin style={{ color: "#24a8e6", fontSize: "1.5rem" }} onClick={() => openSocialLink(socialLinks.linkedin)} />
                             <FaGithub style={{ color: "#24a8e6", fontSize: "1.5rem", marginLeft: "10px" }} onClick={() => openSocialLink(socialLinks.github)} />
                             <FaYoutube style={{ color: "#24a8e6", fontSize: "1.5rem", marginLeft: "10px" }} onClick={() => openSocialLink(socialLinks.youtube)} />
