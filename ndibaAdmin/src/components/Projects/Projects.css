@@ -153,7 +153,7 @@ a.repeat:hover {
 /* Larger screens, 992px and above */
 @media (min-width: 992px) {
   .cardsp {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr); 
     gap: 20px;
     padding: 20px 40px;
   }
@@ -162,7 +162,7 @@ a.repeat:hover {
 /* Medium screens, 768px to 991px */
 @media (min-width: 768px) and (max-width: 991px) {
   .cardsp {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr); 
     gap: 15px;
     padding: 20px 30px;
   }
@@ -171,25 +171,57 @@ a.repeat:hover {
 /* Small screens, 576px to 767px */
 @media (min-width: 576px) and (max-width: 767px) {
   .cardsp {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 38px;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 25px;
     /* padding: 15px 20px; */
   }
-
-  .projects-container {
+  #experience {
     padding: 34px;
   }
+}
 
+@media (max-width: 540px) {
+  .cardsp {
+    display: flex;
+    flex-direction: column; /* 1 card per row */
+    gap: 15px;
+    padding: 10px;
+    margin-left: -45px;
+    width: 90%;
+  }
 }
 
 /* Extra small screens, 575px and below */
 @media (max-width: 575px) {
   .cardsp {
     display: flex;
-    flex-direction: column;
-    /* 1 card per row */
+    flex-direction: column; /* 1 card per row */
     gap: 15px;
     padding: 10px;
+  }
+}
+
+/* 430px screen*/
+@media (max-width: 430px) {
+  .cardsp {
+    display: flex;
+    flex-direction: column; /* 1 card per row */
+    gap: 15px;
+    padding: 10px;
+    margin-left: -40px;
+    width: 90%;
+  }
+}
+
+@media (max-width: 360px) {
+
+  .cardsp {
+    display: flex;
+    flex-direction: column; /* 1 card per row */
+    gap: 5px;
+    padding: 5px;
+    margin-left: -10px;
+    width: 100%;
   }
 }
 
@@ -198,8 +230,7 @@ a.repeat:hover {
 
   .cardsp {
     display: flex;
-    flex-direction: column;
-    /* 1 card per row */
+    flex-direction: column; /* 1 card per row */
     gap: 5px;
     padding: 5px;
   }

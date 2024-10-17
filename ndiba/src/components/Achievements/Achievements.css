@@ -154,7 +154,7 @@ a.repeat:hover {
 /* Larger screens, 992px and above */
 @media (min-width: 992px) {
   .cardsach {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr); 
     gap: 20px;
     padding: 20px 40px;
   }
@@ -163,7 +163,7 @@ a.repeat:hover {
 /* Medium screens, 768px to 991px */
 @media (min-width: 768px) and (max-width: 991px) {
   .cardsach {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr); 
     gap: 15px;
     padding: 20px 30px;
   }
@@ -172,13 +172,26 @@ a.repeat:hover {
 /* Small screens, 576px to 767px */
 @media (min-width: 576px) and (max-width: 767px) {
   .cardsach {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr); 
     gap: 25px;
     /* padding: 15px 20px; */
   }
-
-  .projects-container {
+  #experience {
     padding: 34px;
+  }
+}
+
+@media (max-width: 540px) {
+  .cardsach {
+    display: flex;
+    flex-direction: column; /* 1 card per row */
+    gap: 15px;
+    padding: 10px;
+    margin-left: -45px !important;
+    width: 95% !important;
+    /* margin-left: -40px; */
+
+    /* margin:0 auto */
   }
 }
 
@@ -186,10 +199,74 @@ a.repeat:hover {
 @media (max-width: 575px) {
   .cardsach {
     display: flex;
-    flex-direction: column;
-    /* 1 card per row */
+    flex-direction: column; /* 1 card per row */
     gap: 15px;
     padding: 10px;
+    width: 100%;
+    margin:0 auto
+  }
+}
+
+/* 430px screen*/
+@media (max-width: 430px) {
+  .cardsach {
+    display: flex;
+    flex-direction: column; /* 1 card per row */
+    gap: 15px;
+    padding: 10px;
+    width: 100%;
+    margin-left: -40px;
+    /* margin:0 auto */
+  }
+}
+
+@media (max-width: 412px) {
+
+  .cardsach {
+    display: flex;
+    flex-direction: column; /* 1 card per row */
+    gap: 5px;
+    padding: 5px;
+    width: 100%;
+    margin-left: -35px !important;
+    /* margin:0 auto */
+  }
+}
+
+@media (max-width: 414px) {
+
+  .cardsach {
+    display: flex;
+    flex-direction: column; /* 1 card per row */
+    gap: 5px;
+    padding: 5px;
+    width: 100%;
+    margin-left: -40px;
+    /* margin:0 auto */
+  }
+}
+
+@media (max-width: 344px) {
+
+  .cardsach {
+    display: flex;
+    flex-direction: column; /* 1 card per row */
+    gap: 5px;
+    padding: 5px;
+    width: 100% !important;
+    margin:0 auto !important
+  }
+}
+
+@media (max-width: 360px) {
+
+  .cardsach {
+    display: flex;
+    flex-direction: column; /* 1 card per row */
+    gap: 5px;
+    padding: 5px;
+    width: 100%;
+    margin:0 auto
   }
 }
 
@@ -198,9 +275,10 @@ a.repeat:hover {
 
   .cardsach {
     display: flex;
-    flex-direction: column;
-    /* 1 card per row */
+    flex-direction: column; /* 1 card per row */
     gap: 5px;
     padding: 5px;
+    width: 100%;
+    margin:0 auto
   }
 }

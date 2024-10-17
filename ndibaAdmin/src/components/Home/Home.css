@@ -1,5 +1,6 @@
 body {
   background-color: transparent !important;
+  box-sizing: border-box !important;
 }
 
 .App {
@@ -39,11 +40,13 @@ body {
   font-weight: 600;
   font-size: 290%;
   display: flex;
+  max-width: 100%;
 }
 
 .intro-sub-text {
   position: relative;
   color: white;
+  max-width: 100%;
   margin-left: 32%;
   font-size: 290%;
   font-weight: 200;
@@ -262,6 +265,11 @@ a.repeat:hover {
   border-radius: 4px;
 }
 
+@media (max-width: 1280px) {
+  .overlay {
+    height: 102.5vh;
+  }
+}
 
 /* Media queries for responsiveness */
 @media (max-width: 1200px) {
@@ -282,6 +290,31 @@ a.repeat:hover {
 @media (max-width: 1024px) {
   .overlay {
     height: 98vh;
+  }
+
+  .intro-text {
+    position: relative;
+    color: white;
+    margin-left: 18%;
+    margin-top: 20%;
+    font-weight: 600;
+    font-size: 290%;
+    display: flex;
+  }
+
+  .intro-sub-text {
+    position: relative;
+    color: white;
+    margin-left: 20%;
+    font-size: 25px;
+    font-weight: 200;
+    /* font-size: 3rem; */
+    display: flex;
+  }
+  #edit-button {
+    margin-left: 30% !important;
+    width: 240px;
+    font-size: 50%
   }
 }
 
@@ -317,7 +350,7 @@ a.repeat:hover {
     position: relative;
     color: white;
     margin-left: 18%;
-    margin-top: 30%;
+    margin-top: 45%;
     font-weight: 600;
     font-size: 290%;
     display: flex;
@@ -327,7 +360,7 @@ a.repeat:hover {
     position: relative;
     color: white;
     margin-left: 20%;
-    font-size: 290%;
+    font-size: 20px;
     font-weight: 200;
     /* font-size: 3rem; */
     display: flex;
@@ -357,8 +390,9 @@ a.repeat:hover {
     position: relative;
     color: white;
     margin-left: 10%;
-    font-size: 290%;
+    font-size: 200%;
     font-weight: 200;
+    width: 80%;
     /* font-size: 3rem; */
     display: flex;
   }
@@ -407,10 +441,29 @@ a.repeat:hover {
     height: 70.4vh;
   }
   .intro-text {
-    margin-left: 18%;
+    position: relative;
+    color: white;
+    margin-left: 10%;
+    margin-top: 40%;
+    font-weight: 600;
+    font-size: 190%;
+    display: flex;
   }
+
   .intro-sub-text {
-    margin-left: 18%;
+    position: relative;
+    color: white;
+    margin-left: 10%;
+    font-size: 16px;
+    font-weight: 200;
+    /* font-size: 3rem; */
+    display: flex;
+  }
+
+  #edit-button {
+    margin-left: 18% !important;
+    width: 240px;
+    font-size: 50%
   }
 }
 @media (max-width: 430px) {
@@ -432,7 +485,7 @@ a.repeat:hover {
     position: relative;
     color: white;
     margin-left: 10%;
-    font-size: 200%;
+    font-size: 16px;
     font-weight: 200;
     /* font-size: 3rem; */
     display: flex;
@@ -463,7 +516,7 @@ a.repeat:hover {
     position: relative;
     color: white;
     margin-left: 10%;
-    font-size: 200%;
+    font-size: 16px;
     font-weight: 200;
     /* font-size: 3rem; */
     display: flex;
@@ -497,7 +550,8 @@ a.repeat:hover {
     position: relative;
     color: white;
     margin-left: 5%;
-    font-size: 200%;
+    font-size: 16px;
+    max-width: 100%;
     font-weight: 200;
     margin-bottom: 5%;
     /* font-size: 3rem; */
@@ -520,10 +574,10 @@ a.repeat:hover {
     position: relative;
     color: white;
     margin-left: 5%;
-    margin-top: 25%;
+    margin-top: 35%;
     margin-bottom: 5%;
     font-weight: 600;
-    font-size: 190%;
+    font-size: 160%;
     display: flex;
   }
 
@@ -531,7 +585,7 @@ a.repeat:hover {
     position: relative;
     color: white;
     margin-left: 5%;
-    font-size: 200%;
+    font-size: 16px;
     font-weight: 200;
     margin-bottom: 5%;
     /* font-size: 3rem; */
@@ -557,7 +611,7 @@ a.repeat:hover {
     margin-top: 45%;
     margin-bottom: 5%;
     font-weight: 600;
-    font-size: 160%;
+    font-size: 140%;
     display: flex;
   }
 
@@ -565,7 +619,7 @@ a.repeat:hover {
     position: relative;
     color: white;
     margin-left: 8%;
-    font-size: 160%;
+    font-size: 16px;
     font-weight: 200;
     margin-bottom: 5%;
     /* font-size: 3rem; */

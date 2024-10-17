@@ -132,53 +132,132 @@ a.repeat:hover {
 
 /* Larger screens, 992px and above */
 @media (min-width: 992px) {
-.cardsb {
-  grid-template-columns: repeat(3, 1fr); 
-  gap: 20px;
-  padding: 20px 40px;
-}
+  .cardsb {
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px;
+    padding: 20px 40px;
+  }
 }
 
 /* Medium screens, 768px to 991px */
 @media (min-width: 768px) and (max-width: 991px) {
-.cardsb {
-  grid-template-columns: repeat(2, 1fr); 
-  gap: 15px;
-  padding: 20px 30px;
-}
+  .cardsb {
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 15px;
+    padding: 20px 30px;
+  }
 }
 
 /* Small screens, 576px to 767px */
 @media (min-width: 576px) and (max-width: 767px) {
-.cardsb {
-  grid-template-columns: repeat(2, 1fr); 
-  gap: 25px;
-  /* padding: 15px 20px; */
+  .cardsb {
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 25px;
+    /* padding: 15px 20px; */
+  }
+  #experience {
+    padding: 34px;
+  }
 }
-.projects-container {
-  padding: 24px;
-}
+
+@media (max-width: 540px) {
+  .cardsb {
+    display: flex;
+    flex-direction: column; /* 1 card per row */
+    gap: 15px;
+    padding: 10px;
+    margin-left: -45px !important;
+    width: 95% !important;
+    /* margin-left: -40px; */
+
+    /* margin:0 auto */
+  }
 }
 
 /* Extra small screens, 575px and below */
 @media (max-width: 575px) {
-.cardsb {
-  display: flex;
-  flex-direction: column; /* 1 card per row */
-  gap: 15px;
-  padding: 10px;
+  .cardsb {
+    display: flex;
+    flex-direction: column; /* 1 card per row */
+    gap: 15px;
+    padding: 10px;
+    width: 100%;
+    margin:0 auto
+  }
 }
+
+/* 430px screen*/
+@media (max-width: 430px) {
+  .cardsb {
+    display: flex;
+    flex-direction: column; /* 1 card per row */
+    gap: 15px;
+    padding: 10px;
+    width: 100%;
+    margin-left: -40px;
+    /* margin:0 auto */
+  }
+}
+
+@media (max-width: 412px) {
+
+  .cardsb {
+    display: flex;
+    flex-direction: column; /* 1 card per row */
+    gap: 5px;
+    padding: 5px;
+    width: 100%;
+    margin-left: -35px !important;
+    /* margin:0 auto */
+  }
+}
+
+@media (max-width: 414px) {
+
+  .cardsb {
+    display: flex;
+    flex-direction: column; /* 1 card per row */
+    gap: 5px;
+    padding: 5px;
+    width: 100%;
+    margin-left: -40px;
+    /* margin:0 auto */
+  }
+}
+
+@media (max-width: 344px) {
+
+  .cardsb {
+    display: flex;
+    flex-direction: column; /* 1 card per row */
+    gap: 5px;
+    padding: 5px;
+    width: 100% !important;
+    margin:0 auto !important
+  }
+}
+
+@media (max-width: 360px) {
+
+  .cardsb {
+    display: flex;
+    flex-direction: column; /* 1 card per row */
+    gap: 5px;
+    padding: 5px;
+    width: 100%;
+    margin:0 auto
+  }
 }
 
 /* Very small screens, 375px and below */
 @media (max-width: 375px) {
 
-.cardsb {
-  display: flex;
-  flex-direction: column; /* 1 card per row */
-  gap: 10px;
-  padding: 5px;
-  
+  .cardsb {
+    display: flex;
+    flex-direction: column; /* 1 card per row */
+    gap: 5px;
+    padding: 5px;
+    width: 100%;
+    margin:0 auto
+  }
 }
-}
-
