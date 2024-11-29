@@ -1,35 +1,4 @@
-// import React, { useState, useEffect } from "react";
 import blogImg from "../images/yucel-moran-fZYgnAoeio4-unsplash.jpg";
-
-
-
-// const PublicationCard = ({ cardData }) => {
-//     // If cardData is undefined, return null to prevent rendering errors
-//     if (!cardData || !cardData.image) return null;
-
-//     console.log({ cardData });  // Verify cardData content
-
-//     return (
-//         <section className="articles" style={{ position: "relative" }}>
-//             <article>
-//                 <div className="article-wrapper" style={{ marginBottom: "20px" }}>
-//                     <figure>
-//                         {/* Provide a fallback image if cardData.image is undefined */}
-//                         <img src={cardData.image || blogImg} alt={cardData.title || "Image"} />
-//                     </figure>
-//                     <div className="article-body">
-//                         <h2>{cardData.title || "No Title"}</h2>
-//                         <p>{cardData.content || "No Content Available"}</p>
-//                     </div>
-//                 </div>
-//             </article>
-//         </section>
-//     );
-// };
-
-// export default PublicationCard;
-
-
 import React, { useState } from "react";
 import "./PublicationCard.css";
 import { FaPencilAlt, FaTrash } from "react-icons/fa";
@@ -45,8 +14,8 @@ const PublicationCard = ({ cardData }) => {
                         <img src={cardData.image || blogImg} alt={cardData.title || "Image"} />
                         </figure>
                         <div className="article-body">
-                            <h2>{cardData.title}</h2>
-                            <p>{cardData.content}</p>
+                            <h2 style={{fontSize:"16px"}}>{cardData.title}</h2>
+                            <p style={{fontSize:"14px"}}>{cardData.content}</p>
                             {cardData.link && (
                                 <a href={cardData.link} className="read-more" target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} style={{ marginTop: "20px" }}>
                                     Read more

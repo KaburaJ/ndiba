@@ -92,7 +92,7 @@ article:has(:hover, :focus) {
   /* padding-inline: 4px; */
   grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
   gap: 2px;
-  height: 70vh;
+  /* height: 70vh; */
 }
 
 /* @media screen and (max-width: 960px) {

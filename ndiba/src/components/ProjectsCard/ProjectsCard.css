@@ -1,6 +1,6 @@
 .card-hover {
   width: 100%;
-  height: 500px;
+  /* height: 500px; */
   position: relative;
   overflow: hidden;
   box-shadow: 0 0 32px -10px rgba(0, 0, 0, 0.08);

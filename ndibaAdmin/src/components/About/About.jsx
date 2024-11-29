@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { FaDownload, FaGithub, FaLinkedin, FaTwitter, FaYoutube } from "react-icons/fa";
+import { FaDiscord, FaDownload, FaGithub, FaLinkedin, FaTwitter, FaYoutube } from "react-icons/fa";
 import { database } from "../../firebase"; // Adjust the path based on your structure
 import { ref, onValue, set } from "firebase/database";
 import "./About.css";
@@ -11,7 +11,8 @@ const About = () => {
         linkedin: '',
         github: '',
         youtube: '',
-        twitter: ''
+        twitter: '',
+        discord: ''
 
     });
     const [contactInfo, setContactInfo] = useState({
@@ -31,7 +32,8 @@ const About = () => {
                     linkedin: data.socialLinks?.linkedin || '',
                     github: data.socialLinks?.github || '',
                     youtube: data.socialLinks?.youtube || '',
-                    twitter: data.socialLinks?.twitter || ''
+                    twitter: data.socialLinks?.twitter || '',
+                    discord: data.socialLinks?.discord || ''
                 });
                 setContactInfo({
                     email: data.email || '',
@@ -52,7 +54,7 @@ const About = () => {
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        if (['linkedin', 'github', 'youtube', 'twitter'].includes(name)) {
+        if (['linkedin', 'github', 'youtube', 'twitter', 'discord'].includes(name)) {
             setSocialLinks({ ...socialLinks, [name]: value });
         } else {
             setContactInfo({ ...contactInfo, [name]: value });
@@ -121,6 +123,7 @@ const About = () => {
                             <FaGithub style={{ color: "#24a8e6", fontSize: "1.5rem", marginLeft: "10px" }} onClick={() => openSocialLink(socialLinks.github)} />
                             <FaYoutube style={{ color: "#24a8e6", fontSize: "1.5rem", marginLeft: "10px" }} onClick={() => openSocialLink(socialLinks.youtube)} />
                             <FaTwitter style={{ color: "#24a8e6", fontSize: "1.5rem", marginLeft: "10px" }} onClick={() => openSocialLink(socialLinks.twitter)} />
+                            <FaDiscord style={{ color: "#24a8e6", fontSize: "1.5rem", marginLeft: "10px" }} onClick={() => openSocialLink(socialLinks.twitter)} />
                         </div>
                     </div>
                 </div>
@@ -182,6 +185,7 @@ const About = () => {
                 <div className="modal">
                     <div className="modal-content">
                         <h3>Edit Your Information</h3>
+                        <div style={{display:"flex", flexDirection:"row", gap:"90px"}}>
                         <input
                             type="text"
                             name="email"
@@ -196,6 +200,7 @@ const About = () => {
                             onChange={handleInputChange}
                             placeholder="Phone Number"
                         />
+                        </div>
                         <textarea
                             name="about"
                             value={contactInfo.about}
@@ -236,6 +241,13 @@ const About = () => {
                             value={socialLinks.twitter}
                             onChange={handleInputChange}
                             placeholder="Twittter URL"
+                        />
+                        <input
+                            type="text"
+                            name="discord"
+                            value={socialLinks.discord}
+                            onChange={handleInputChange}
+                            placeholder="Discord URL"
                         />
                         <div className="modal-actions">
                             <button onClick={handleSaveInfo}>Save</button>

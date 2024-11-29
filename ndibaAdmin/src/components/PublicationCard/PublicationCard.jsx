@@ -83,16 +83,16 @@ const PublicationCard = ({ cardData, onSave, onDelete }) => {
             <section className="articles" style={{ position: "relative" }}>
                 <article onClick={handleCardClick} style={{ cursor: cardData.link ? "pointer" : "default" }}>
                     <div className="article-wrapper" style={{ marginBottom: "20px" }}>
-                        <figure>
-                            <img src={cardData.image} alt="" />
-                        </figure>
+                    <figure>
+                        <img src={cardData.image || "defaultImage.jpg"} alt="Card" />
+                    </figure>
                         <div className="article-body">
                             <div className="icon-container">
                                 <FaPencilAlt onClick={(e) => { e.stopPropagation(); handleEditClick(); }} className="icon" style={{zIndex:999}}/>
                                 <FaTrash onClick={(e) => { e.stopPropagation(); handleDeleteClick(); }} className="icon" style={{zIndex:999}}/>
                             </div>
-                            <h2>{cardData.title}</h2>
-                            <p>{cardData.content}</p>
+                            <h2 style={{fontSize:"16px"}}>{cardData.title}</h2>
+                            <p style={{fontSize:"16px"}}>{cardData.content}</p>
                             {cardData.link && (
                                 <a href={cardData.link} className="read-more" target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} style={{ marginTop: "20px" }}>
                                     Read more

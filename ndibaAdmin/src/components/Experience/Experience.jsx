@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { database } from "../../firebase"; // Make sure to adjust the import based on your file structure
-import { ref, set, remove, onValue } from "firebase/database";
+import { database, storage } from "../../firebase";
+import { ref as dbRef, set, remove, onValue } from "firebase/database";
+import { ref as storageRef, uploadBytes, getDownloadURL } from "firebase/storage";
 import "./Experience.css";
 import ProjectsCard from "../ProjectsCard/ProjectsCard";
 import PublicationCard from "../PublicationCard/PublicationCard";
 import blogImg from "../images/yucel-moran-fZYgnAoeio4-unsplash.jpg";
 
 const Experience = () => {
-    const userId = "user1"; 
-
+    const userId = "user1";
     const [blogCards, setCards] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [currentCard, setCurrentCard] = useState(null);
-    const [updatedData, setUpdatedData] = useState({ title: "", content: "" });
+    const [updatedData, setUpdatedData] = useState({ title: "", content: "", image: "" });
 
     useEffect(() => {
-        const cardsRef = ref(database, `users/${userId}/experience`);
+        const cardsRef = dbRef(database, `users/${userId}/experience`);
         onValue(cardsRef, (snapshot) => {
             const data = snapshot.val();
             if (data) {
@@ -30,6 +30,29 @@ const Experience = () => {
         });
     }, [userId]);
 
+    const handleSaveCard = (id, newData) => {
+        const cardRef = dbRef(database, `users/${userId}/experience/${id}`);
+        set(cardRef, newData).catch((error) => {
+            console.error("Error saving card:", error);
+        });
+
+        const updatedCards = blogCards.map((card) =>
+            card.id === id ? { ...card, ...newData } : card
+        );
+        setCards(updatedCards);
+    };
+
+    const handleEditClicked = (card) => {
+        setCurrentCard(card);
+        setUpdatedData({ title: card.title, content: card.content, image: card.image || "" });
+        setIsModalOpen(true);
+    };
+
+    const handleModalSave = () => {
+        handleSaveCard(currentCard.id, updatedData);
+        setIsModalOpen(false);
+    };
+
     const handleAddCard = () => {
         const newCard = {
             title: "New Job",
@@ -38,39 +61,39 @@ const Experience = () => {
             link: "",
         };
 
-        const newCardRef = ref(database, `users/${userId}/experience/${Date.now()}`);
+        const newCardRef = dbRef(database, `users/${userId}/experience/${Date.now()}`);
         set(newCardRef, newCard);
         if(!newCardRef) {
             alert("Please sign in again for authentication")
         }
     };
 
-    const handleSaveCard = (id, newData) => {
-        const cardRef = ref(database, `users/${userId}/experience/${id}`);
-        set(cardRef, newData); // Update Firebase with new data
+    // const handleSaveCard = (id, newData) => {
+    //     const cardRef = ref(database, `users/${userId}/experience/${id}`);
+    //     set(cardRef, newData); // Update Firebase with new data
 
-        const updatedCards = blogCards.map((card) => (card.id === id ? { ...card, ...newData } : card));
-        setCards(updatedCards);
-    };
+    //     const updatedCards = blogCards.map((card) => (card.id === id ? { ...card, ...newData } : card));
+    //     setCards(updatedCards);
+    // };
 
     const handleDeleteCard = (id) => {
-        const cardRef = ref(database, `users/${userId}/experience/${id}`);
+        const cardRef = dbRef(database, `users/${userId}/experience/${id}`);
         remove(cardRef); // Remove card from Firebase
 
         const updatedCards = blogCards.filter((card) => card.id !== id);
         setCards(updatedCards);
     };
 
-    const handleEditClicked = (card) => {
-        setCurrentCard(card);
-        setUpdatedData({ title: card.title, content: card.content });
-        setIsModalOpen(true);
-    };
+    // const handleEditClicked = (card) => {
+    //     setCurrentCard(card);
+    //     setUpdatedData({ title: card.title, content: card.content });
+    //     setIsModalOpen(true);
+    // };
 
-    const handleModalSave = () => {
-        handleSaveCard(currentCard.id, updatedData);
-        setIsModalOpen(false);
-    };
+    // const handleModalSave = () => {
+    //     handleSaveCard(currentCard.id, updatedData);
+    //     setIsModalOpen(false);
+    // };
 
     return (
         <div className="projects-container" id="experience">
@@ -149,9 +172,24 @@ const Experience = () => {
                                 onChange={(e) => setUpdatedData({ ...updatedData, content: e.target.value })}
                             />
                         </label>
-                        <div style={{display:"flex", flexDirection:"row"}}>
-                        <button onClick={handleModalSave}>Save</button>
-                        <button onClick={() => setIsModalOpen(false)}>Cancel</button>
+                        <label>
+                            Image:
+                            <input
+                                type="file"
+                                onChange={async (e) => {
+                                    const file = e.target.files[0];
+                                    if (file) {
+                                        const imageRef = storageRef(storage, `images/${userId}/${file.name}`);
+                                        await uploadBytes(imageRef, file);
+                                        const url = await getDownloadURL(imageRef);
+                                        setUpdatedData((prev) => ({ ...prev, image: url }));
+                                    }
+                                }}
+                            />
+                        </label>
+                        <div style={{ display: "flex", flexDirection: "row" }}>
+                            <button onClick={handleModalSave}>Save</button>
+                            <button onClick={() => setIsModalOpen(false)}>Cancel</button>
                         </div>
                     </div>
                 </div>
