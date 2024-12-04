@@ -69,8 +69,7 @@ const EditModal = ({ cardData, onSave, onCancel }) => {
                     method: 'POST',
                     body: formData,
                   })
-                    .then((response) => {response.json() 
-                        console.log(response.json())})
+                    .then((response) => response.json())
                     .then((response) => {
                         setNewData({ ...newData, image: response.data["secure_url"]})
                         setPreviewUrl({ ...newData, image: response.data["secure_url"]}); 
