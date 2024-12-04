@@ -44,12 +44,24 @@ const Projects = () => {
 
     // Save the edited card to Firebase
     const handleSaveCard = (id, newData) => {
+        if (newData.image && !newData.image.startsWith("https://")) {
+            console.error("Invalid image URL:", newData.image);
+            return;
+        }
+    
         const cardRef = ref(database, `users/${userId}/projects/${id}`);
-        set(cardRef, newData); // Update Firebase with new data
-
+        set(cardRef, newData) // Update Firebase with the correct URL
+            .then(() => {
+                console.log("Card updated successfully:", newData);
+            })
+            .catch((error) => {
+                console.error("Error updating card:", error);
+            });
+    
         const updatedCards = cards.map((card) => (card.id === id ? { ...card, ...newData } : card));
         setCards(updatedCards);
     };
+    
 
     // Delete a card from Firebase
     const handleDeleteCard = (id) => {
