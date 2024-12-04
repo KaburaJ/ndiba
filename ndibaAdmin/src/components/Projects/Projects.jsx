@@ -48,6 +48,7 @@ const Projects = () => {
             console.error("Invalid image URL:", newData.image);
             return;
         }
+        //////////////////////////////////////////
     
         const cardRef = ref(database, `users/${userId}/projects/${id}`);
         set(cardRef, newData) // Update Firebase with the correct URL
