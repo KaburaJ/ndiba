@@ -21,7 +21,7 @@ const ProjectsCard = ({ cardData, onSave, onDelete }) => {
         onSave(cardData.id, newData); // Pass the correct data to Firebase
     };
 
-
+//////////
     return (
         <div className="card-hover">
             <div className="card-hover__content">
