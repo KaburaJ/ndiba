@@ -137,7 +137,8 @@ const EditModal = ({ cardData, onSave, onCancel }) => {
                                 <img
                                     src={previewUrl}
                                     alt="Preview"
-                                    style={{ width: '150px', height: '150px', objectFit: 'cover' }}
+                                    className="preview"
+                                    style={{ width: '150px', height: '150px' }}
                                 />
                             )}
                         </>
