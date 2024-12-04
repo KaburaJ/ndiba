@@ -66,8 +66,8 @@ const EditModal = ({ cardData, onSave, onCancel }) => {
 
             try {
                 setNewData({ ...newData, image: formData.data.secure_url});
-                setPreviewUrl(formData.data.secure_url); // Set the preview URL to the uploaded image or video'
-                console.log(formData.data.secure_url)
+                setPreviewUrl(formData.data?formData.data.secure_url:null); // Set the preview URL to the uploaded image or video'
+                console.log(formData.data?formData.data.secure_url:null)
             } catch (error) {
                 console.error('Error while uploading post:', error);
             }
