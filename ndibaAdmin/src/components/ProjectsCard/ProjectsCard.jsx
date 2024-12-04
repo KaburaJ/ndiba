@@ -54,46 +54,42 @@ const EditModal = ({ cardData, onSave, onCancel }) => {
 
     const handleFileUpload = async (e) => {
         e.preventDefault();
-
+    
         if (selectedFile) {
             const formData = new FormData();
             formData.append('file', selectedFile);
             formData.append('upload_preset', 'ibu9fmn9');
-
+    
             const url = selectedFile.type && selectedFile.type.startsWith('image')
                 ? 'https://api.cloudinary.com/v1_1/dfqjfd2iv/image/upload'
                 : 'https://api.cloudinary.com/v1_1/dfqjfd2iv/video/upload';
-
+    
             try {
-                fetch(url, {
+                const response = await fetch(url, {
                     method: 'POST',
                     body: formData,
-                  })
-                    .then((response) => response.json())
-                    .then((response) => {
-                        setNewData({ ...newData, image: response.data? response.data:null})
-                        setPreviewUrl({ ...newData, image: response.data? response.data:null}); 
-                        console.log(response.data ? response.data:null)
-
-            });
+                });
+                const result = await response.json();
+    
+                if (result.secure_url) {
+                    // Update the new data with the correct URL
+                    setNewData({ ...newData, image: result.secure_url });
+                    setPreviewUrl(result.secure_url); // Set preview URL for display
+                    console.log('Uploaded URL:', result.secure_url);
+                } else {
+                    console.error('Failed to retrieve secure_url from the response');
                 }
-            catch (error) {
-                console.error('Error while uploading post:', error);
+            } catch (error) {
+                console.error('Error while uploading file:', error);
             }
         }
     };
+    
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setNewData({ ...newData, [name]: value });
     };
-
-    const handleImageChange = (e) => {
-        if (e.target.files && e.target.files[0]) {
-            setNewData({ ...newData, image: URL.createObjectURL(e.target.files[0]) });
-        }
-    };
-
 
     return (
         <div className="modal">
