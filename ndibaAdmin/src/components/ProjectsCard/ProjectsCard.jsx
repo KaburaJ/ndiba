@@ -125,11 +125,12 @@ const EditModal = ({ cardData, onSave, onCancel }) => {
                     <input type="file" onChange={(e) => setSelectedFile(e.target.files[0])} />
 
                 </label>
-                <button type="submit" onSubmit={handleFileUpload}>Upload</button>
+                {selectedFile && selectedFile && (<button type="submit" onSubmit={handleFileUpload}>Upload</button>)}
                 {/* </form> */}
-                {previewUrl && (
-                    <img src={newData.image} alt="Preview" style={{ width: "150px", height: "150px" }} />
-                )}                <div className="buttons">
+                {previewUrl&& previewUrl ? (
+                    <img src={newData.image||null} alt="Preview" style={{ width: "150px", height: "150px" }} />
+                ): null}                
+                <div className="buttons">
                     <button onClick={() => onSave(newData)} className="button">Save</button>
                     <button onClick={onCancel} className="button">Cancel</button>
                 </div>
