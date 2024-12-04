@@ -21,7 +21,7 @@ const ProjectsCard = ({ cardData, onSave, onDelete }) => {
         onSave(cardData.id, newData); // Pass the correct data to Firebase
     };
 
-//////////
+    //////////
     return (
         <div className="card-hover">
             <div className="card-hover__content">
@@ -119,14 +119,15 @@ const EditModal = ({ cardData, onSave, onCancel }) => {
                     onChange={handleChange}
                     placeholder="Link to your project"
                 />
-                {/* <form  className="upload-form"> */}
-                <label htmlFor="file-input" style={{ height: "3em" }}>
-                    Choose File
-                    <input type="file" onChange={(e) => setSelectedFile(e.target.files[0])} />
+                <form className="upload-form">
+                    <label htmlFor="file-input" style={{ height: "3em" }}>
+                        Choose File
+                        <input type="file" onChange={(e) => setSelectedFile(e.target.files[0])} />
 
-                </label>
-                {selectedFile && selectedFile && (<button type="submit" onSubmit={handleFileUpload}>Upload</button>)}
-                    <img src={newData.image||null} alt="Preview" style={{ position:"relative",width: "150px", height: "150px" }} />
+                    </label>
+                    {selectedFile && selectedFile && (<button type="submit" onSubmit={handleFileUpload}>Upload</button>)}
+                    <img src={newData.image || null} alt="Preview" style={{ position: "relative", width: "150px", height: "150px" }} />
+                </form>
                 <div className="buttons">
                     <button onClick={() => onSave(newData)} className="button">Save</button>
                     <button onClick={onCancel} className="button">Cancel</button>
