@@ -126,7 +126,7 @@ const EditModal = ({ cardData, onSave, onCancel }) => {
 
                 </label>
                 {selectedFile && selectedFile && (<button type="submit" onSubmit={handleFileUpload}>Upload</button>)}
-                    <img src={newData.image||null} alt="Preview" style={{ width: "150px", height: "150px" }} />
+                    {/* <img src={newData.image||null} alt="Preview" style={{ width: "150px", height: "150px" }} /> */}
                 <div className="buttons">
                     <button onClick={() => onSave(newData)} className="button">Save</button>
                     <button onClick={onCancel} className="button">Cancel</button>
