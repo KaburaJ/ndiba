@@ -71,9 +71,9 @@ const EditModal = ({ cardData, onSave, onCancel }) => {
                   })
                     .then((response) => response.json())
                     .then((response) => {
-                        setNewData({ ...newData, image: response.data["secure_url"]})
-                        setPreviewUrl({ ...newData, image: response.data["secure_url"]}); 
-                        console.log(response.data?response.data["secure_url"]:null)
+                        setNewData({ ...newData, image: response.data? response.data:null})
+                        setPreviewUrl({ ...newData, image: response.data? response.data:null}); 
+                        console.log(response.data ? response.data["secure_url"]:null)
 
             });
                 }
