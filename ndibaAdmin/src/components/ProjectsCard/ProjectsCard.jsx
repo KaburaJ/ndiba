@@ -36,7 +36,7 @@ const ProjectsCard = ({ cardData, onSave, onDelete }) => {
                     </svg>
                 </a>
             </div>
-            <img src={cardData.image} alt="Project" />
+            <img src={cardData.image} alt="Project" className="back" />
             {isEditing && (
                 <EditModal
                     cardData={cardData}
