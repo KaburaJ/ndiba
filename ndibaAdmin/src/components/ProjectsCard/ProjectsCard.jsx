@@ -77,7 +77,7 @@ const EditModal = ({ cardData, onSave, onCancel }) => {
     
                 if (result.secure_url) {
                     // Update the new data with the correct URL
-                    setNewData({ ...newData, image: result.secure_url });
+                    setNewData((prevData) => ({ ...prevData, image: result.secure_url }));
                     setPreviewUrl(result.secure_url); // Set preview URL for display
                     console.log('Uploaded URL:', result.secure_url);
                 } else {
