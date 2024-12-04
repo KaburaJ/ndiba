@@ -23,8 +23,8 @@ const ProjectsCard = ({ cardData, onSave, onDelete }) => {
             <div className="card-hover__content">
                 <FaPencilAlt onClick={handleEditClick} className="icon" />
                 <FaTrash onClick={handleDeleteClick} className="icon" />
-                <h3 className="card-hover__title" style={{fontSize:"16px"}}>{cardData.title}</h3>
-                <p className="card-hover__text" style={{marginBottom:"30px", fontSize:"16px"}}>{cardData.content}</p>
+                <h3 className="card-hover__title" style={{ fontSize: "16px" }}>{cardData.title}</h3>
+                <p className="card-hover__text" style={{ marginBottom: "30px", fontSize: "16px" }}>{cardData.content}</p>
                 <a href={cardData.link} className="card-hover__link" target="_blank" rel="noopener noreferrer">
                     <span>See More</span>
                     <svg fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
@@ -67,6 +67,8 @@ const EditModal = ({ cardData, onSave, onCancel }) => {
             try {
                 setNewData({ ...newData, image: url });
                 setPreviewUrl(url); // Set the preview URL to the uploaded image or video
+                console.log(newData)
+                console.log(url)
             } catch (error) {
                 console.error('Error while uploading post:', error);
             }
@@ -109,8 +111,14 @@ const EditModal = ({ cardData, onSave, onCancel }) => {
                     onChange={handleChange}
                     placeholder="Link to your project"
                 />
-                <input type="file" onChange={handleFileUpload} />
-                <img src={newData.image} alt="Preview" style={{ position: "relative", width: "150px", height: "150px", paddingTop: "20px", paddingBottom: "10px" }} />
+                <form onSubmit={handleFileUpload} className="upload-form">
+                    <label htmlFor="file-input" style={{ height: "3em" }}>
+                        Choose File
+                        <input id="file-input" type="file" onChange={(e) => setSelectedFile(e.target.files[0])} />
+                    </label>
+                    <button type="submit" className="button">Upload</button>
+                </form>
+                {previewUrl && (<img src={newData.image} alt="Preview" style={{ position: "relative", width: "150px", height: "150px", paddingTop: "20px", paddingBottom: "10px" }} />)}
                 <div className="buttons">
                     <button onClick={() => onSave(newData)} className="button">Save</button>
                     <button onClick={onCancel} className="button">Cancel</button>

@@ -21,13 +21,15 @@ const Projects = () => {
                     ...data[key],  // Spread the experience data for each key
                 }));
                 setCards(loadedCards);
-                // console.log(blogCards)
+                console.log(blogCards)
             } else {
                 setCards([]);  // If no data is found, clear the card list
             }
         }, (error) => {
             console.error("Error fetching experience data: ", error);
         });
+
+
 
         // Clean up the listener when the component is unmounted
         return () => unsubscribe();
