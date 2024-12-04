@@ -66,7 +66,8 @@ const EditModal = ({ cardData, onSave, onCancel }) => {
 
             try {
                 setNewData({ ...newData, image: formData});
-                setPreviewUrl(formData); // Set the preview URL to the uploaded image or video
+                setPreviewUrl(formData); // Set the preview URL to the uploaded image or video'
+                console.log(formData)
             } catch (error) {
                 console.error('Error while uploading post:', error);
             }
@@ -114,7 +115,7 @@ const EditModal = ({ cardData, onSave, onCancel }) => {
                         Choose File
                         <input id="file-input" type="file" onChange={(e) => setSelectedFile(e.target.files[0])} />
                     </label>
-                    <button type="submit" className="button">Upload</button>
+                    <button type="submit" className="button" sty>Upload</button>
                 </form>
                 {previewUrl && (
                     <div className="post-preview">

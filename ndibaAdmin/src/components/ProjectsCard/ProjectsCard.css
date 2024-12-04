@@ -4,7 +4,7 @@
     position: relative;
     align-items: center;
     margin: 0 auto;
-        overflow: hidden;
+        overflow: scroll;
     box-shadow: 0 0 32px -10px rgba(0, 0, 0, 0.08);
   }
   .card-hover:has(.card-hover__link:hover) .card-hover__extra {
