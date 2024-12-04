@@ -125,7 +125,7 @@ const EditModal = ({ cardData, onSave, onCancel }) => {
                     <input type="file" onChange={(e) => setSelectedFile(e.target.files[0])} />
 
                 </label>
-                <button type="submit" onSubmit={handleFileUpload} className="button" sty>Upload</button>
+                <button type="submit" onSubmit={handleFileUpload}>Upload</button>
                 {/* </form> */}
                 {previewUrl && (
                     <img src={newData.image} alt="Preview" style={{ width: "150px", height: "150px" }} />
