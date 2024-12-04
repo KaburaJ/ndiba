@@ -20,7 +20,7 @@ const ProjectsCard = ({ cardData, onSave, onDelete }) => {
         }
         onSave(cardData.id, newData); // Pass the correct data to Firebase
     };
-    
+
 
     return (
         <div className="card-hover">
@@ -58,23 +58,23 @@ const EditModal = ({ cardData, onSave, onCancel }) => {
 
     const handleFileUpload = async (e) => {
         e.preventDefault();
-    
+
         if (selectedFile) {
             const formData = new FormData();
             formData.append('file', selectedFile);
             formData.append('upload_preset', 'ibu9fmn9');
-    
+
             const url = selectedFile.type && selectedFile.type.startsWith('image')
                 ? 'https://api.cloudinary.com/v1_1/dfqjfd2iv/image/upload'
                 : 'https://api.cloudinary.com/v1_1/dfqjfd2iv/video/upload';
-    
+
             try {
                 const response = await fetch(url, {
                     method: 'POST',
                     body: formData,
                 });
                 const result = await response.json();
-    
+
                 if (result.secure_url) {
                     // Update the new data with the correct URL
                     setNewData((prevData) => ({ ...prevData, image: result.secure_url }));
@@ -88,7 +88,7 @@ const EditModal = ({ cardData, onSave, onCancel }) => {
             }
         }
     };
-    
+
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -119,22 +119,16 @@ const EditModal = ({ cardData, onSave, onCancel }) => {
                     onChange={handleChange}
                     placeholder="Link to your project"
                 />
-                <form onSubmit={handleFileUpload} className="upload-form">
-                    <label htmlFor="file-input" style={{ height: "3em" }}>
-                        Choose File
-                        <input id="file-input" type="file" onChange={(e) => setSelectedFile(e.target.files[0])} />
-                    </label>
-                    <button type="submit" className="button" sty>Upload</button>
-                </form>
+                {/* <form  className="upload-form"> */}
+                <label htmlFor="file-input" style={{ height: "3em" }}>
+                    Choose File
+                    <input type="file" onChange={(e) => setSelectedFile(e.target.files[0])} />
+
+                </label>
+                <button type="submit" onSubmit={handleFileUpload} className="button" sty>Upload</button>
+                {/* </form> */}
                 {previewUrl && (
-                    <div className="post-preview">
-                        {selectedFile.type && selectedFile.type.startsWith('image') && (
-                            <img src={previewUrl} alt="Post Preview" />
-                        )}
-                        {selectedFile.type && (selectedFile.type.startsWith('video') || selectedFile.type.startsWith('audio')) && (
-                            <video src={previewUrl} alt="Post Preview" controls />
-                        )}
-                    </div>
+                    <img src={newData.image} alt="Preview" style={{ width: "150px", height: "150px" }} />
                 )}                <div className="buttons">
                     <button onClick={() => onSave(newData)} className="button">Save</button>
                     <button onClick={onCancel} className="button">Cancel</button>
