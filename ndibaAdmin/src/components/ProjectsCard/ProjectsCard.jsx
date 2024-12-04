@@ -65,10 +65,8 @@ const EditModal = ({ cardData, onSave, onCancel }) => {
                 : 'https://api.cloudinary.com/v1_1/dfqjfd2iv/video/upload';
 
             try {
-                setNewData({ ...newData, image: url });
-                setPreviewUrl(url); // Set the preview URL to the uploaded image or video
-                console.log(newData)
-                console.log(url)
+                setNewData({ ...newData, image: formData});
+                setPreviewUrl(formData); // Set the preview URL to the uploaded image or video
             } catch (error) {
                 console.error('Error while uploading post:', error);
             }
@@ -118,8 +116,16 @@ const EditModal = ({ cardData, onSave, onCancel }) => {
                     </label>
                     <button type="submit" className="button">Upload</button>
                 </form>
-                {previewUrl && (<img src={newData.image} alt="Preview" style={{ position: "relative", width: "150px", height: "150px", paddingTop: "20px", paddingBottom: "10px" }} />)}
-                <div className="buttons">
+                {previewUrl && (
+                    <div className="post-preview">
+                        {selectedFile.type && selectedFile.type.startsWith('image') && (
+                            <img src={previewUrl} alt="Post Preview" />
+                        )}
+                        {selectedFile.type && (selectedFile.type.startsWith('video') || selectedFile.type.startsWith('audio')) && (
+                            <video src={previewUrl} alt="Post Preview" controls />
+                        )}
+                    </div>
+                )}                <div className="buttons">
                     <button onClick={() => onSave(newData)} className="button">Save</button>
                     <button onClick={onCancel} className="button">Cancel</button>
                 </div>
