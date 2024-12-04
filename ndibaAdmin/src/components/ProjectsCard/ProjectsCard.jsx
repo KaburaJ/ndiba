@@ -71,7 +71,7 @@ const EditModal = ({ cardData, onSave, onCancel }) => {
                   })
                     .then((response) => response.json())
                     .then((data) => {
-                        setNewData({ ...newData, image: formData.data.secure_url})
+                        setNewData({ ...newData, image: formData.data})
                         setPreviewUrl({ ...newData, image: formData.data.secure_url}); // Set the preview URL to the uploaded image or video'
                         console.log(formData.data?formData.data.secure_url:null)
 
