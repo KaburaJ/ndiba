@@ -65,9 +65,9 @@ const EditModal = ({ cardData, onSave, onCancel }) => {
                 : 'https://api.cloudinary.com/v1_1/dfqjfd2iv/video/upload';
 
             try {
-                setNewData({ ...newData, image: formData});
-                setPreviewUrl(formData); // Set the preview URL to the uploaded image or video'
-                console.log(formData)
+                setNewData({ ...newData, image: formData.data.secure_url});
+                setPreviewUrl(formData.data.secure_url); // Set the preview URL to the uploaded image or video'
+                console.log(formData.data.secure_url)
             } catch (error) {
                 console.error('Error while uploading post:', error);
             }
