@@ -326,6 +326,17 @@
   color: #fff;
 }
 
+.upload-form img,
+.upload-form video {
+    max-width: 100%;
+    max-height: 150px;
+    display: block;
+    margin: 10px auto;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+
 @media (max-width: 768px) {
 
   .card-hover {

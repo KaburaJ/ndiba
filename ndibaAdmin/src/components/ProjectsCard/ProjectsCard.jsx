@@ -51,10 +51,8 @@ const ProjectsCard = ({ cardData, onSave, onDelete }) => {
 const EditModal = ({ cardData, onSave, onCancel }) => {
     const [newData, setNewData] = useState(cardData);
 
-    //Cloudinary Implementation
     const [selectedFile, setSelectedFile] = useState(null);
-    const [caption, setCaption] = useState('');
-    const [previewUrl, setPreviewUrl] = useState(null);
+    const [previewUrl, setPreviewUrl] = useState(cardData.image || null);
 
     const handleFileUpload = async (e) => {
         e.preventDefault();
@@ -76,9 +74,8 @@ const EditModal = ({ cardData, onSave, onCancel }) => {
                 const result = await response.json();
 
                 if (result.secure_url) {
-                    // Update the new data with the correct URL
                     setNewData((prevData) => ({ ...prevData, image: result.secure_url }));
-                    setPreviewUrl(result.secure_url); // Set preview URL for display
+                    setPreviewUrl(result.secure_url);
                     console.log('Uploaded URL:', result.secure_url);
                 } else {
                     console.error('Failed to retrieve secure_url from the response');
@@ -88,7 +85,6 @@ const EditModal = ({ cardData, onSave, onCancel }) => {
             }
         }
     };
-
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -119,14 +115,34 @@ const EditModal = ({ cardData, onSave, onCancel }) => {
                     onChange={handleChange}
                     placeholder="Link to your project"
                 />
-                <form className="upload-form">
+                <form onSubmit={handleFileUpload} className="upload-form">
                     <label htmlFor="file-input" style={{ height: "3em" }}>
                         Choose File
-                        <input type="file" onChange={(e) => setSelectedFile(e.target.files[0])} />
-
+                        <input
+                            id="file-input"
+                            type="file"
+                            onChange={(e) => setSelectedFile(e.target.files[0])}
+                        />
                     </label>
-                    {selectedFile && selectedFile && (<button type="submit" onSubmit={handleFileUpload}>Upload</button>)}
-                    <img src={newData.image || null} alt="Preview" style={{ position: "relative", width: "150px", height: "150px" }} />
+                    {previewUrl && (
+                        <>
+                            {previewUrl.includes('video') ? (
+                                <video
+                                    src={previewUrl}
+                                    alt="Preview"
+                                    style={{ width: '150px', height: '150px' }}
+                                    controls
+                                />
+                            ) : (
+                                <img
+                                    src={previewUrl}
+                                    alt="Preview"
+                                    style={{ width: '150px', height: '150px', objectFit: 'cover' }}
+                                />
+                            )}
+                        </>
+                    )}
+                    <button type="submit" className="button">Upload</button>
                 </form>
                 <div className="buttons">
                     <button onClick={() => onSave(newData)} className="button">Save</button>
@@ -136,5 +152,7 @@ const EditModal = ({ cardData, onSave, onCancel }) => {
         </div>
     );
 };
+
+
 
 export default ProjectsCard;
