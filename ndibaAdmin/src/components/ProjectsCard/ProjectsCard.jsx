@@ -13,10 +13,14 @@ const ProjectsCard = ({ cardData, onSave, onDelete }) => {
         onDelete(cardData.id);
     };
 
-    const handleSaveClick = (newData) => {
-        onSave(cardData.id, newData);
-        setIsEditing(false);
+    const handleSaveClick = () => {
+        if (!newData.image || !newData.image.startsWith("https://")) {
+            console.error("Invalid image URL in newData:", newData.image);
+            return;
+        }
+        onSave(cardData.id, newData); // Pass the correct data to Firebase
     };
+    
 
     return (
         <div className="card-hover">
