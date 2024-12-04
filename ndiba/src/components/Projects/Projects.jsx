@@ -8,6 +8,7 @@ const Projects = () => {
     const userId = "user1"; // Replace with dynamic user ID if needed
 
     const [blogCards, setCards] = useState([]);
+    
     // Fetch cards from Firebase
     useEffect(() => {
         const cardsRef = ref(database, `users/${userId}/projects`);

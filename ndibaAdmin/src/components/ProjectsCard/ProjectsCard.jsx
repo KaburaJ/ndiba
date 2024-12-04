@@ -47,6 +47,32 @@ const ProjectsCard = ({ cardData, onSave, onDelete }) => {
 const EditModal = ({ cardData, onSave, onCancel }) => {
     const [newData, setNewData] = useState(cardData);
 
+    //Cloudinary Implementation
+    const [selectedFile, setSelectedFile] = useState(null);
+    const [caption, setCaption] = useState('');
+    const [previewUrl, setPreviewUrl] = useState(null);
+
+    const handleFileUpload = async (e) => {
+        e.preventDefault();
+
+        if (selectedFile) {
+            const formData = new FormData();
+            formData.append('file', selectedFile);
+            formData.append('upload_preset', 'ibu9fmn9');
+
+            const url = selectedFile.type && selectedFile.type.startsWith('image')
+                ? 'https://api.cloudinary.com/v1_1/dfqjfd2iv/image/upload'
+                : 'https://api.cloudinary.com/v1_1/dfqjfd2iv/video/upload';
+
+            try {
+                setNewData({ ...newData, image: url });
+                setPreviewUrl(url); // Set the preview URL to the uploaded image or video
+            } catch (error) {
+                console.error('Error while uploading post:', error);
+            }
+        }
+    };
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setNewData({ ...newData, [name]: value });
@@ -57,6 +83,7 @@ const EditModal = ({ cardData, onSave, onCancel }) => {
             setNewData({ ...newData, image: URL.createObjectURL(e.target.files[0]) });
         }
     };
+
 
     return (
         <div className="modal">
@@ -82,7 +109,7 @@ const EditModal = ({ cardData, onSave, onCancel }) => {
                     onChange={handleChange}
                     placeholder="Link to your project"
                 />
-                <input type="file" onChange={handleImageChange} />
+                <input type="file" onChange={handleFileUpload} />
                 <img src={newData.image} alt="Preview" style={{ position: "relative", width: "150px", height: "150px", paddingTop: "20px", paddingBottom: "10px" }} />
                 <div className="buttons">
                     <button onClick={() => onSave(newData)} className="button">Save</button>

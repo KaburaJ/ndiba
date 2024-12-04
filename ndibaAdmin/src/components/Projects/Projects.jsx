@@ -99,32 +99,32 @@ const Projects = () => {
                     </div>
                 ))}
                 <button
-                onClick={handleAddCard}
-                style={{
-                    // marginLeft:"120%",
-                    marginTop: "5%",
-                    width: "240px",
-                    height: "50px",
-                    borderRadius: "8px",
-                    border: "none",
-                    backgroundColor: "#24a8e6",
-                    color: "#FFF",
-                    fontSize: "18px",
-                    cursor: "pointer",
-                    boxShadow: "0 4px 10px rgba(0, 0, 0, 0.3)",
-                    transition: "background-color 0.3s ease, transform 0.2s ease",
-                }}
-                onMouseEnter={(e) => {
-                    e.target.style.backgroundColor = "#1a8ac1";
-                    e.target.style.transform = "scale(1.05)";
-                }}
-                onMouseLeave={(e) => {
-                    e.target.style.backgroundColor = "#24a8e6";
-                    e.target.style.transform = "scale(1)";
-                }}
-            >
-                Add Project
-            </button>
+                    onClick={handleAddCard}
+                    style={{
+                        // marginLeft:"120%",
+                        marginTop: "5%",
+                        width: "240px",
+                        height: "50px",
+                        borderRadius: "8px",
+                        border: "none",
+                        backgroundColor: "#24a8e6",
+                        color: "#FFF",
+                        fontSize: "18px",
+                        cursor: "pointer",
+                        boxShadow: "0 4px 10px rgba(0, 0, 0, 0.3)",
+                        transition: "background-color 0.3s ease, transform 0.2s ease",
+                    }}
+                    onMouseEnter={(e) => {
+                        e.target.style.backgroundColor = "#1a8ac1";
+                        e.target.style.transform = "scale(1.05)";
+                    }}
+                    onMouseLeave={(e) => {
+                        e.target.style.backgroundColor = "#24a8e6";
+                        e.target.style.transform = "scale(1)";
+                    }}
+                >
+                    Add Project
+                </button>
             </div>
 
             {isModalOpen && (
