@@ -21,7 +21,7 @@ const ProjectsCard = ({cardData}) => {
                 {/* <div className="card-hover__extra">
                     <h4>Learn <span>now</span> and get <span>40%</span> discount!</h4>
                 </div> */}
-                <img src={cardData.image} alt={projectSampleImage}></img>
+                <img src={cardData.image} alt={projectSampleImage} className="back"></img>
             </div>
     )
 }
