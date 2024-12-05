@@ -124,7 +124,7 @@ const EditModal = ({ cardData, onSave, onCancel }) => {
                             onChange={(e) => setSelectedFile(e.target.files[0])}
                         />
                     </label>
-                    {previewUrl && (
+                    {/* {previewUrl && (
                         <>
                             {previewUrl.includes('video') ? (
                                 <video
@@ -142,7 +142,7 @@ const EditModal = ({ cardData, onSave, onCancel }) => {
                                 />
                             )}
                         </>
-                    )}
+                    )} */}
                     <button type="submit" className="button">Upload</button>
                 </form>
                 <div className="buttons">
