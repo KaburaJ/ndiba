@@ -103,7 +103,7 @@ const EditModal = ({ cardData, onSave, onCancel }) => {
     };
 
     return (
-        <div className="modal">
+        <div className="modal" style={{backgroundColor:"#001931"}}>
             <div className="modal-content">
                 <h2>Edit Card</h2>
                 <input
@@ -148,7 +148,7 @@ const EditModal = ({ cardData, onSave, onCancel }) => {
                         />
                     )}
                     {loading ? (
-                        <p>Uploading...</p>
+                        <p style={{color:"black"}}>Uploading...</p>
                     ) : (
                         <button type="submit" className="button">
                             Upload
