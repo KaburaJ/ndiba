@@ -52,7 +52,7 @@ const EditModal = ({ cardData, onSave, onCancel }) => {
     const [newData, setNewData] = useState(cardData);
 
     const [selectedFile, setSelectedFile] = useState(null);
-    const [previewUrl, setPreviewUrl] = useState(cardData.image || null);
+    const [previewUrl, setPreviewUrl] = useState(selectedFile || null);
 
     const handleFileUpload = async (e) => {
         e.preventDefault();
@@ -75,7 +75,7 @@ const EditModal = ({ cardData, onSave, onCancel }) => {
 
                 if (result.secure_url) {
                     setNewData((prevData) => ({ ...prevData, image: result.secure_url }));
-                    setPreviewUrl(result.secure_url);
+                    // setPreviewUrl(result.secure_url);
                     console.log('Uploaded URL:', result.secure_url);
                 } else {
                     console.error('Failed to retrieve secure_url from the response');
