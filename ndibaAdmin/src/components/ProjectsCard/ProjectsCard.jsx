@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./ProjectsCard.css";
 import { FaPencilAlt, FaTrash } from "react-icons/fa";
 
@@ -50,6 +50,16 @@ const EditModal = ({ cardData, onSave, onCancel }) => {
     const [loading, setLoading] = useState(false);
     const [previewUrl, setPreviewUrl] = useState(cardData.image || "");
 
+    // Check for internet connection
+    useEffect(() => {
+        const handleOffline = () => alert("You are offline. Check your internet connection!");
+        window.addEventListener("offline", handleOffline);
+
+        return () => {
+            window.removeEventListener("offline", handleOffline);
+        };
+    }, []);
+
     const handleFileUpload = async (e) => {
         e.preventDefault();
         if (!selectedFile) return;
@@ -76,9 +86,11 @@ const EditModal = ({ cardData, onSave, onCancel }) => {
                 setPreviewUrl(result.secure_url);
                 console.log("Uploaded URL:", result.secure_url);
             } else {
+                alert("File upload failed. Please try again.");
                 console.error("Failed to retrieve secure_url");
             }
         } catch (error) {
+            alert("Error during upload. Check your internet connection and try again.");
             console.error("Error during upload:", error);
         } finally {
             setLoading(false);
@@ -120,8 +132,11 @@ const EditModal = ({ cardData, onSave, onCancel }) => {
                         <input
                             type="file"
                             onChange={(e) => {
-                                setSelectedFile(e.target.files[0]);
-                                setPreviewUrl(URL.createObjectURL(e.target.files[0]));
+                                const file = e.target.files[0];
+                                if (file) {
+                                    setSelectedFile(file);
+                                    setPreviewUrl(URL.createObjectURL(file));
+                                }
                             }}
                         />
                     </label>
@@ -141,7 +156,16 @@ const EditModal = ({ cardData, onSave, onCancel }) => {
                     )}
                 </form>
                 <div className="buttons">
-                    <button onClick={() => onSave(newData)} className="button">
+                    <button
+                        onClick={() => {
+                            if (newData.image.startsWith("blob:")) {
+                                alert("Please upload the file to host it before saving.");
+                                return;
+                            }
+                            onSave(newData);
+                        }}
+                        className="button"
+                    >
                         Save
                     </button>
                     <button onClick={onCancel} className="button">
