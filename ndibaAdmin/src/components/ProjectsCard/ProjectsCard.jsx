@@ -50,16 +50,6 @@ const EditModal = ({ cardData, onSave, onCancel }) => {
     const [loading, setLoading] = useState(false);
     const [previewUrl, setPreviewUrl] = useState(cardData.image || "");
 
-    // Check for internet connection
-    useEffect(() => {
-        const handleOffline = () => alert("You are offline. Check your internet connection!");
-        window.addEventListener("offline", handleOffline);
-
-        return () => {
-            window.removeEventListener("offline", handleOffline);
-        };
-    }, []);
-
     const handleFileUpload = async (e) => {
         e.preventDefault();
         if (!selectedFile) return;
@@ -82,9 +72,12 @@ const EditModal = ({ cardData, onSave, onCancel }) => {
             const result = await response.json();
 
             if (result.secure_url) {
-                setNewData({ ...newData, image: result.secure_url });
-                setPreviewUrl(result.secure_url);
                 console.log("Uploaded URL:", result.secure_url);
+                setNewData((prevData) => ({
+                    ...prevData,
+                    image: result.secure_url, // Update the image field
+                }));
+                setPreviewUrl(result.secure_url); // Update the preview with the hosted URL
             } else {
                 alert("File upload failed. Please try again.");
                 console.error("Failed to retrieve secure_url");
@@ -102,8 +95,17 @@ const EditModal = ({ cardData, onSave, onCancel }) => {
         setNewData({ ...newData, [name]: value });
     };
 
+    const handleSave = () => {
+        // Check if image is uploaded properly
+        if (newData.image.startsWith("blob:")) {
+            alert("Please upload the file to host it before saving.");
+            return;
+        }
+        onSave(newData); // Save after ensuring the image is a hosted URL
+    };
+
     return (
-        <div className="modal" style={{backgroundColor:"#001931"}}>
+        <div className="modal">
             <div className="modal-content">
                 <h2>Edit Card</h2>
                 <input
@@ -135,7 +137,7 @@ const EditModal = ({ cardData, onSave, onCancel }) => {
                                 const file = e.target.files[0];
                                 if (file) {
                                     setSelectedFile(file);
-                                    setPreviewUrl(URL.createObjectURL(file));
+                                    setPreviewUrl(URL.createObjectURL(file)); // Show blob preview
                                 }
                             }}
                         />
@@ -148,7 +150,7 @@ const EditModal = ({ cardData, onSave, onCancel }) => {
                         />
                     )}
                     {loading ? (
-                        <p style={{color:"black"}}>Uploading...</p>
+                        <p>Uploading...</p>
                     ) : (
                         <button type="submit" className="button">
                             Upload
@@ -156,16 +158,7 @@ const EditModal = ({ cardData, onSave, onCancel }) => {
                     )}
                 </form>
                 <div className="buttons">
-                    <button
-                        onClick={() => {
-                            if (newData.image.startsWith("blob:")) {
-                                alert("Please upload the file to host it before saving.");
-                                return;
-                            }
-                            onSave(newData);
-                        }}
-                        className="button"
-                    >
+                    <button onClick={handleSave} className="button">
                         Save
                     </button>
                     <button onClick={onCancel} className="button">
@@ -176,5 +169,6 @@ const EditModal = ({ cardData, onSave, onCancel }) => {
         </div>
     );
 };
+
 
 export default ProjectsCard;
