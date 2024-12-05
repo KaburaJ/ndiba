@@ -44,10 +44,10 @@ const Projects = () => {
 
     // Save the edited card to Firebase
     const handleSaveCard = (id, newData) => {
-        if (newData.image && !newData.image.startsWith("https://")) {
-            console.error("Invalid image URL:", newData.image);
-            return;
-        }
+        // if (newData.image && !newData.image.startsWith("https://")) {
+        //     console.error("Invalid image URL:", newData.image);
+        //     return;
+        // }
         ///////
     
         const cardRef = ref(database, `users/${userId}/projects/${id}`);
