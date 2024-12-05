@@ -39,6 +39,7 @@ a.repeat {
   position: relative;
   bottom: 15px;
 }
+/*  */
 
 a.repeat:hover {
   background: rgba(0, 0, 0, 0.7);
