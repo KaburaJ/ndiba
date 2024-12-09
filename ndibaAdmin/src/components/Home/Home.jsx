@@ -11,6 +11,7 @@ import Footer from "../Footer/Footer";
 import Navbar from "../Navbar/Navbar";
 import TenorGif from "../Gif/Gif";
 import ConsoleText from "../ConsoleText/ConsoleText";
+import Skills from "../Skills/Skills";
 
 const Modal = ({ isOpen, onClose, onSave, name, roles }) => {
   const [newName, setNewName] = useState(name);
@@ -156,6 +157,7 @@ const Home = () => {
 
       </div>
       <About />
+      <Skills/>
       <Experience />
       <Projects />
       <Publications />

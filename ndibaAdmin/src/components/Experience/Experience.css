@@ -1,3 +1,128 @@
+/* Modal Background */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  color: white;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal Content */
+.modal-content {
+  background: #0E435C;
+  color: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  width: 90%;
+  max-width: 500px;
+  animation: fadeIn 0.3s ease-in-out;
+  position: relative;
+}
+
+/* Animation for Modal */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Title Styling */
+.modal-content h2 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  text-align: center;
+  color: white;
+}
+
+/* Label Styling */
+.modal-content label {
+  display: block;
+  font-size: 1rem;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.modal-content input,
+.modal-content textarea {
+    min-width: 100%; /* Ensures it fills the entire width */
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: #333;
+    box-sizing: border-box; /* Prevents padding from increasing the element size */
+    resize: vertical; /* Allows resizing vertically but not horizontally */
+  }
+  
+
+.modal-content input[type="file"] {
+  padding: 0.4rem;
+}
+
+/* Button Container */
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Buttons */
+.modal-save-button,
+.modal-cancel-button {
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Save Button */
+.modal-save-button {
+  background: #28a745;
+  color: #fff;
+}
+
+.modal-save-button:hover {
+  background: #218838;
+}
+
+/* Cancel Button */
+.modal-cancel-button {
+  background: #dc3545;
+  color: #000;
+}
+
+.modal-cancel-button:hover {
+  background: #c82333;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .modal-content {
+    padding: 1.5rem;
+    width: 90%;
+  }
+
+  .modal-save-button,
+  .modal-cancel-button {
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+  }
+}
+
 #experience {
     background-color: rgba(0, 0, 0, 0.9);
     text-align: center;
@@ -126,35 +251,37 @@ a, a:link, a:visited {
   }
   
 
-  .cardsa {
+  .cards-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    gap: 20px 20px;
     margin-top: 30px;
   }
+
 /* Larger screens, 992px and above */
 @media (min-width: 992px) {
-  .cardsa {
+  .cards-grid {
     grid-template-columns: repeat(3, 1fr); 
-    gap: 20px;
+    gap: 20px 40px;
     padding: 20px 40px;
   }
 }
 
 /* Medium screens, 768px to 991px */
 @media (min-width: 768px) and (max-width: 991px) {
-  .cardsa {
+  .cards-grid {
     grid-template-columns: repeat(2, 1fr); 
-    gap: 15px;
+    gap: 15px 15px;
     padding: 20px 30px;
   }
 }
 
 /* Small screens, 576px to 767px */
-@media (min-width: 576px) and (max-width: 767px) {
-  .cardsa {
+@media (min-width: 576px) and (max-width: 991px) {
+  .cards-grid {
     grid-template-columns: repeat(2, 1fr); 
-    gap: 25px;
+    gap: 15px 30px;
+    margin: 0 auto;
     /* padding: 15px 20px; */
   }
   #experience {
@@ -163,10 +290,11 @@ a, a:link, a:visited {
 }
 
 @media (max-width: 540px) {
-  .cardsa {
+  .cards-grid {
     display: flex;
     flex-direction: column; /* 1 card per row */
     gap: 15px;
+    margin: 0 auto;
     padding: 10px;
     margin-left: -45px;
     width: 90%;
@@ -175,45 +303,77 @@ a, a:link, a:visited {
 
 /* Extra small screens, 575px and below */
 @media (max-width: 575px) {
-  .cardsa {
+  .cards-grid {
     display: flex;
     flex-direction: column; /* 1 card per row */
     gap: 15px;
+    margin: 0 auto;
     padding: 10px;
   }
 }
 
 /* 430px screen*/
 @media (max-width: 430px) {
-  .cardsa {
+  .cards-grid {
     display: flex;
     flex-direction: column; /* 1 card per row */
     gap: 15px;
+    margin: 0 auto;
     padding: 10px;
-    margin-left: -40px;
+    /* margin-left: -40px; */
     width: 90%;
+  }
+}
+
+@media (max-width: 390px) {
+
+  .cards-grid {
+    display: flex;
+    flex-direction: column; /* 1 card per row */
+    gap: 20px;
+    padding: 5px;
+    margin: 0 auto;
+    margin-left: -10px;
+    width: 100%;
   }
 }
 
 @media (max-width: 360px) {
 
-  .cardsa {
+  .cards-grid {
     display: flex;
-    flex-direction: column; /* 1 card per row */
-    gap: 5px;
+    flex-direction: column; 
+    gap: 15px !important;
     padding: 5px;
-    margin-left: -10px;
-    width: 100%;
+    margin: 0 auto !important;
+    /* margin-left: -10px; */
+    /* width: 100%; */
   }
 }
 
 /* Very small screens, 375px and below */
 @media (max-width: 375px) {
 
-  .cardsa {
+  .cards-grid {
     display: flex;
     flex-direction: column; /* 1 card per row */
     gap: 5px;
+    left: -2%;
+    /* margin: 0 auto !important; */
+    padding: 5px;
+  }
+}
+
+
+/* Very small screens, 375px and below */
+@media (max-width: 414px) {
+
+  .cards-grid {
+    display: flex;
+    flex-direction: column; /* 1 card per row */
+    gap: 20px;
+    left: -2%;
+    margin: 0 auto !important;
     padding: 5px;
   }
 }

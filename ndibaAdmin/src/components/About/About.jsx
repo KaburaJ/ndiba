@@ -177,7 +177,7 @@ const About = () => {
                     e.target.style.transform = "scale(1)";
                 }}
             >
-                Edit About Me
+                Edit About
             </button>
 
             {/* Modal for Social Links and Contact Info */}

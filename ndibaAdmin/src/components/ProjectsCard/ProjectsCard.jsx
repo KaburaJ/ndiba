@@ -234,8 +234,9 @@ const EditModal = ({ cardData, onSave, onCancel }) => {
                     {loading && <progress value={progress} max="100" />}
                     <button type="submit" disabled={loading}>Upload</button>
                 </form>
+                <div style={{display:"flex", flexDirection:"row", marginTop:"20px"}}>
                 <button onClick={() => onSave(newData)} disabled={loading}>Save</button>
-                <button onClick={onCancel}>Cancel</button>
+                <button onClick={onCancel}>Cancel</button></div>
             </div>
         </div>
     );

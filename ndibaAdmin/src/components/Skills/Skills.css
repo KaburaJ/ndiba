@@ -1,0 +1,110 @@
+/* Base Styles */
+section {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-left: 20%;
+}
+
+.parent-skill {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.skills-container {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 40px 50px;
+    justify-content: space-evenly;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.skill {
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    background-color: #1A8AC1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.progress {
+    width: 97%;
+    height: 97%;
+    border-radius: 100%;
+    background: linear-gradient(280deg, #1e2024, #23272b);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.progress-number {
+    color: #1A8AC1;
+    font-size: 2rem;
+}
+
+.title {
+    color: #1A8AC1;
+    font-size: 20px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Responsiveness */
+
+/* For tablets and small screens (768px and below) */
+@media (max-width: 768px) {
+    section {
+        width: 100%;
+        padding-left: 0;
+    }
+
+    .skills-container {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px 40px;
+    }
+
+    .skill {
+        width: 120px;
+        height: 120px;
+    }
+
+    .progress-number {
+        font-size: 1.5rem;
+    }
+
+    .title {
+        font-size: 18px;
+    }
+}
+
+/* For mobile screens (480px and below) */
+@media (max-width: 480px) {
+    section {
+        width: 100%;
+        padding: 0 10px;
+    }
+
+    .skills-container {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+
+    .skill {
+        width: 90px;
+        height: 90px;
+    }
+
+    .progress-number {
+        font-size: 1.2rem;
+    }
+
+    .title {
+        font-size: 16px;
+    }
+}

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./PublicationCard.css";
 import { FaPencilAlt, FaTrash } from "react-icons/fa";
 
-const PublicationCard = ({ cardData, onSave, onDelete }) => {
+const PublicationCard = ({ cardData, onSave, onDelete, showImage = true }) => {
     const [isEditing, setIsEditing] = useState(false);
 
     const handleEditClick = () => {
@@ -18,117 +18,57 @@ const PublicationCard = ({ cardData, onSave, onDelete }) => {
         setIsEditing(false);
     };
 
-    const handleCardClick = () => {
-        if (cardData.link) {
-            window.open(cardData.link, "_blank", "noopener noreferrer");
-        }
-    };
-
-    const EditModal = ({ cardData, onSave, onCancel }) => {
-        const [newData, setNewData] = useState(cardData);
-    //Cloudinary Implementation
-    const [selectedFile, setSelectedFile] = useState(null);
-    const [caption, setCaption] = useState('');
-    const [previewUrl, setPreviewUrl] = useState(null);
-
-    const handleFileUpload = async (e) => {
-        e.preventDefault();
-
-        if (selectedFile) {
-            const formData = new FormData();
-            formData.append('file', selectedFile);
-            formData.append('upload_preset', 'ibu9fmn9');
-
-            const url = selectedFile.type && selectedFile.type.startsWith('image')
-                ? 'https://api.cloudinary.com/v1_1/dfqjfd2iv/image/upload'
-                : 'https://api.cloudinary.com/v1_1/dfqjfd2iv/video/upload';
-
-            try {
-                setNewData({ ...newData, image: url });
-                setPreviewUrl(url); // Set the preview URL to the uploaded image or video
-            } catch (error) {
-                console.error('Error while uploading post:', error);
-            }
-        }
-    };
-        const handleChange = (e) => {
-            const { name, value } = e.target;
-            setNewData({ ...newData, [name]: value });
-        };
-    
-        const handleImageChange = (e) => {
-            if (e.target.files && e.target.files[0]) {
-                setNewData({ ...newData, image: URL.createObjectURL(e.target.files[0]) });
-            }
-        };
-    
-        return (
-            <div className="modal">
-                <div className="modal-content">
-                    <h2>Edit Card</h2>
-                    <input
-                        type="text"
-                        name="title"
-                        value={newData.title}
-                        onChange={handleChange}
-                        placeholder="Title"
-                    />
-                    <textarea
-                        name="content"
-                        value={newData.content}
-                        onChange={handleChange}
-                        placeholder="Content"
-                    />
-                    <input type="file" onChange={handleFileUpload} />
-                    <img src={newData.image} alt="Preview" style={{ width: "150px", height: "150px" }} />
-    
-                    {cardData.link !== undefined && (
-                        <input
-                            type="text"
-                            name="link"
-                            value={newData.link || ""}
-                            onChange={handleChange}
-                            placeholder="Enter the link to your blog"
-                        />
-                    )}
-    
-                    <div className="buttons">
-                        <button onClick={() => onSave(newData)} className="button">Save</button>
-                        <button onClick={onCancel} className="button">Cancel</button>
-                    </div>
-                </div>
-            </div>
-        );
-    };    
-    
-
     return (
         <>
             <section className="articles" style={{ position: "relative" }}>
-                <article onClick={handleCardClick} style={{ cursor: cardData.link ? "pointer" : "default" }}>
+                <article
+                    onClick={() => cardData.link && window.open(cardData.link, "_blank")}
+                    style={{ cursor: cardData.link ? "pointer" : "default" }}
+                >
                     <div className="article-wrapper" style={{ marginBottom: "20px" }}>
-                    <figure>
-                        <img src={cardData.image || "defaultImage.jpg"} alt="Card" />
-                    </figure>
+                        {showImage && (
+                            <figure>
+                                <img
+                                    src={cardData.image || "defaultImage.jpg"}
+                                    alt="Card"
+                                />
+                            </figure>
+                        )}
                         <div className="article-body">
                             <div className="icon-container">
-                                <FaPencilAlt onClick={(e) => { e.stopPropagation(); handleEditClick(); }} className="icon" style={{zIndex:999}}/>
-                                <FaTrash onClick={(e) => { e.stopPropagation(); handleDeleteClick(); }} className="icon" style={{zIndex:999}}/>
+                                <FaPencilAlt
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        handleEditClick();
+                                    }}
+                                    style={{zIndex:99}}
+                                    className="icon"
+                                />
+                                <FaTrash
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        handleDeleteClick();
+                                    }}
+                                    style={{zIndex:99}}
+                                    className="icon"
+                                />
                             </div>
-                            <h2 style={{fontSize:"16px"}}>{cardData.title}</h2>
-                            <p style={{fontSize:"16px"}}>{cardData.content}</p>
+                            <h2>{cardData.title}</h2>
+                            <p>{cardData.content}</p>
                             {cardData.link && (
-                                <a href={cardData.link} className="read-more" target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} style={{ marginTop: "20px" }}>
+                                <a
+                                    href={cardData.link}
+                                    className="read-more"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    onClick={(e) => e.stopPropagation()}
+                                >
                                     Read more
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="icon" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                                    </svg>
                                 </a>
                             )}
                         </div>
                     </div>
                 </article>
-
                 {isEditing && (
                     <EditModal
                         cardData={cardData}
@@ -142,7 +82,9 @@ const PublicationCard = ({ cardData, onSave, onDelete }) => {
 };
 
 const EditModal = ({ cardData, onSave, onCancel }) => {
-    const [newData, setNewData] = useState(cardData);
+    const [newData, setNewData] = useState({ ...cardData });
+    const [imagePreview, setImagePreview] = useState(cardData.image || "");
+    const [loading, setLoading] = useState(false);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -150,8 +92,47 @@ const EditModal = ({ cardData, onSave, onCancel }) => {
     };
 
     const handleImageChange = (e) => {
-        if (e.target.files && e.target.files[0]) {
-            setNewData({ ...newData, image: URL.createObjectURL(e.target.files[0]) });
+        const file = e.target.files[0];
+        if (file) {
+            setNewData({ ...newData, image: file });
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setImagePreview(reader.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
+    const handleSave = () => {
+        if (newData.image && newData.image instanceof File) {
+            // Upload image to Cloudinary first
+            handleImageUpload();
+        } else {
+            onSave(newData);
+        }
+    };
+
+    const handleImageUpload = async () => {
+        const formData = new FormData();
+        formData.append("file", newData.image);
+        formData.append("upload_preset", "ibu9fmn9");
+
+        const url = "https://api.cloudinary.com/v1_1/dfqjfd2iv/image/upload";
+
+        setLoading(true);
+        try {
+            const response = await fetch(url, { method: "POST", body: formData });
+            const result = await response.json();
+            if (result.secure_url) {
+                newData.image = result.secure_url;
+                onSave(newData);
+            } else {
+                alert("Image upload failed.");
+            }
+        } catch (error) {
+            alert("Error during upload.");
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -164,20 +145,21 @@ const EditModal = ({ cardData, onSave, onCancel }) => {
                     name="title"
                     value={newData.title}
                     onChange={handleChange}
-                    placeholder="Title"
                 />
                 <textarea
                     name="content"
                     value={newData.content}
                     onChange={handleChange}
-                    placeholder="Content"
                 />
-                <input type="file" onChange={handleImageChange} />
-                <img src={newData.image} alt="Preview" style={{ width: "150px", height: "150px" }} />
-                <div className="buttons">
-                    <button onClick={() => onSave(newData)} className="button">Save</button>
-                    <button onClick={onCancel} className="button">Cancel</button>
-                </div>
+                <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageChange}
+                />
+                {imagePreview && <img src={imagePreview} alt="Image Preview" />}
+                <div style={{display:"flex", flexDirection:"row", marginTop:"20px"}}>
+                <button onClick={handleSave} disabled={loading}>Save</button>
+                <button onClick={onCancel}>Cancel</button></div>
             </div>
         </div>
     );

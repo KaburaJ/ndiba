@@ -19,7 +19,6 @@ const Navbar = () => {
     setMenuOpen((prev) => !prev);
   };
 
-  // Close the menu when a link is clicked
   const handleLinkClick = () => {
     setMenuOpen(false);
   };
@@ -29,15 +28,15 @@ const Navbar = () => {
       <div className="navbar-content">
         <h1>Peter Ndiba</h1>
         <FaBars className="hamburger" onClick={toggleMenu} />
-        {menuOpen && menuOpen &&(<ul className={`nav-links ${menuOpen ? 'open' : ''}`} >
+        <ul className={`nav-links ${menuOpen ? 'open' : ''}`}>
           <li><a href="#home" onClick={handleLinkClick}>Home</a></li>
           <li><a href="#about" onClick={handleLinkClick}>About</a></li>
           <li><a href="#experience" onClick={handleLinkClick}>Experience</a></li>
+          <li><a href="#skills" onClick={handleLinkClick}>Skills</a></li>
           <li><a href="#projects" onClick={handleLinkClick}>Projects</a></li>
           <li><a href="#blogs" onClick={handleLinkClick}>Blogs</a></li>
           <li><a href="#achievements" onClick={handleLinkClick}>Achievements</a></li>
-          {/* <li><a href="#contact" onClick={handleLinkClick}>Contact</a></li> */}
-        </ul>)}
+        </ul>
       </div>
     </nav>
   );
