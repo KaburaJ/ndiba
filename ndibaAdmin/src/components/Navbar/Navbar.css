@@ -26,7 +26,7 @@
     list-style: none;
     margin: 0;
     padding: 0;
-    display: flex;
+    /* display: flex; */
   }
   
   .navbar-content ul li {
@@ -105,7 +105,7 @@
     /* Display the hamburger icon on smaller screens */
     .hamburger {
       display: block; 
-      margin-right: 5%;
+      margin-right: 5% !important;
     }
   
     /* Hide nav-links by default */
@@ -115,7 +115,7 @@
       /* background-color: rgba(0, 0, 0, 0.7);  */
       position: fixed;
       top: 48px;
-      right: 200%; 
+      right: -200%; 
       left: 0;
       z-index: 99;
       align-items: center;
