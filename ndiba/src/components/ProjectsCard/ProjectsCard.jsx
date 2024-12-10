@@ -16,8 +16,6 @@ const ProjectsCard = ({ cardData, onSave, onDelete }) => {
     return (
         <div className="card-hover">
             <div className="card-hover__content">
-                <FaPencilAlt onClick={handleEditClick} className="icon" />
-                <FaTrash onClick={handleDeleteClick} className="icon" />
                 <h3 className="card-hover__title">{cardData.title}</h3>
                 <p className="card-hover__text">{cardData.content}</p>
                 <a
