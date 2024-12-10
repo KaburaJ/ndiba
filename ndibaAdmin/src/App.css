@@ -224,6 +224,7 @@ a.repeat:hover {
   left: 10px;
 }
 
+
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -239,7 +240,7 @@ a.repeat:hover {
 }
 
 .modal-content {
-  background: white;
+  background: #001931;
   padding-left: 10px;
   padding-right: 10px;
   /* padding-top: 5px; */
