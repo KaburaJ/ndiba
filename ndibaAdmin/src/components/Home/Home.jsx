@@ -9,9 +9,9 @@ import Publications from "../Publications/Publications";
 import Achievements from "../Achievements/Achievements";
 import Footer from "../Footer/Footer";
 import Navbar from "../Navbar/Navbar";
-import TenorGif from "../Gif/Gif";
 import ConsoleText from "../ConsoleText/ConsoleText";
 import Skills from "../Skills/Skills";
+import TenorGif from "../Gif /Gif";
 
 const Modal = ({ isOpen, onClose, onSave, name, roles }) => {
   const [newName, setNewName] = useState(name);
@@ -99,7 +99,7 @@ const Home = () => {
     <div id="home">
       <Navbar />
       <div className="content">
-        <TenorGif />
+        <TenorGif/>
         <div className="overlay">
           <h1 className="intro-text">
             Hello, I am
