@@ -105,6 +105,7 @@
     /* Display the hamburger icon on smaller screens */
     .hamburger {
       display: block; 
+      margin-right: 5% !important;
     }
   
     /* Hide nav-links by default */
@@ -114,9 +115,9 @@
       /* background-color: rgba(0, 0, 0, 0.7);  */
       position: fixed;
       top: 48px;
-      right: 300%; 
+      right: -200%; 
       left: 0;
-      z-index: 999;
+      z-index: 99;
       align-items: center;
       justify-content: center;
       transition: right 0.6s ease-in-out; 
