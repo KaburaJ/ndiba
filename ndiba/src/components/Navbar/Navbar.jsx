@@ -1,39 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import './Navbar.css';
+import React, { useState, useEffect } from 'react';  
+import './Navbar.css'; 
 import { FaBars } from 'react-icons/fa';
 
 const Navbar = () => {
-  const [isVisible, setIsVisible] = useState(true); // State for navbar visibility
+  const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    let timeoutId;
-    let lastScrollY = window.scrollY;
-
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-
-      // Show the navbar when scrolling
-      if (currentScrollY < lastScrollY || currentScrollY === 0) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
-
-      lastScrollY = currentScrollY;
-
-      // Set a timeout to check if scrolling has stopped
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => {
-        setIsVisible(true); // Show the navbar after user stops scrolling
-      }, 200); // Adjust delay as needed
+      setScrolled(window.scrollY > 50); // Change background color after 50px scroll
     };
 
     window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      clearTimeout(timeoutId);
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const toggleMenu = () => {
@@ -45,7 +24,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`navbar ${isVisible ? 'visible' : 'hidden'}`}>
+    <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className="navbar-content">
         <h1>Peter Ndiba</h1>
         <FaBars className="hamburger" onClick={toggleMenu} />

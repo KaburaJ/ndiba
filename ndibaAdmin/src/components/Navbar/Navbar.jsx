@@ -8,7 +8,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      setScrolled(window.scrollY > 50); // Change background color after 50px scroll
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -36,6 +36,7 @@ const Navbar = () => {
           <li><a href="#projects" onClick={handleLinkClick}>Projects</a></li>
           <li><a href="#blogs" onClick={handleLinkClick}>Blogs</a></li>
           <li><a href="#achievements" onClick={handleLinkClick}>Achievements</a></li>
+          <li><a href="#contact" onClick={handleLinkClick}>Contact</a></li>
         </ul>
       </div>
     </nav>

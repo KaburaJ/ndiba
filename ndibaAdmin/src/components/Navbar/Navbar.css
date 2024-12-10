@@ -1,11 +1,11 @@
-/* Navbar styles */
+
 .navbar {
     position: fixed;
     width: 100%;
     top: 0;
     left: 0;
     padding: .5rem;
-    background-color: rgba(0, 0, 0, 0.7); /* Set consistent background color */
+    background-color:transparent;
     color: white;
     transition: background-color 0.3s ease;
     z-index: 1000;
