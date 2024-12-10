@@ -1,41 +1,71 @@
 import React, { useState, useEffect } from "react";
-import { database } from "../../firebase"; // Adjust based on your file structure
-import { ref, set, remove, onValue } from "firebase/database";
+import { database, storage } from "../../firebase";
+import { ref as dbRef, set, remove, onValue } from "firebase/database";
+import { ref as storageRef, uploadBytes, getDownloadURL } from "firebase/storage";
+import ExperienceCard from "../ExperienceCards/ExperienceCards";
 import "./Experience.css";
-import PublicationCard from "../PublicationCard/PublicationCard";
-import blogImg from "../images/yucel-moran-fZYgnAoeio4-unsplash.jpg";
 
 const Experience = () => {
-    const userId = "user1"; // Replace with dynamic user ID if needed
+    const userId = "user1";
+    const [cards, setCards] = useState([]);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [currentCard, setCurrentCard] = useState(null);
+    const [updatedData, setUpdatedData] = useState({ title: "", content: "", image: "" });
 
-    const [blogCards, setCards] = useState([]);
-    // Fetch cards from Firebase
     useEffect(() => {
-        const cardsRef = ref(database, `users/${userId}/experience`);
-        const unsubscribe = onValue(cardsRef, (snapshot) => {
+        const cardsRef = dbRef(database, `users/${userId}/experience`);
+        onValue(cardsRef, (snapshot) => {
             const data = snapshot.val();
             if (data) {
-                // Convert the snapshot into an array of experience cards
-                const loadedCards = Object.keys(data).map((key) => ({
-                    id: key,
-                    ...data[key],  // Spread the experience data for each key
-                }));
+                const loadedCards = Object.keys(data).map((key) => ({ id: key, ...data[key] }));
                 setCards(loadedCards);
-                // console.log(blogCards)
             } else {
-                setCards([]);  // If no data is found, clear the card list
+                setCards([]);
             }
-        }, (error) => {
-            console.error("Error fetching experience data: ", error);
         });
-
-        // Clean up the listener when the component is unmounted
-        return () => unsubscribe();
     }, [userId]);
+
+    const handleSaveCard = (id, newData) => {
+        const cardRef = dbRef(database, `users/${userId}/experience/${id}`);
+        set(cardRef, newData).catch((error) => console.error("Error saving card:", error));
+
+        setCards((prevCards) => prevCards.map((card) => (card.id === id ? { ...card, ...newData } : card)));
+    };
+
+    const handleEditClicked = (card) => {
+        setCurrentCard(card);
+        setUpdatedData({ title: card.title, content: card.content, image: card.image || "" });
+        setIsModalOpen(true);
+    };
+
+    const handleModalSave = () => {
+        handleSaveCard(currentCard.id, updatedData);
+        setIsModalOpen(false);
+    };
+
+    const handleAddCard = () => {
+        const newCard = {
+            title: "New Job",
+            content: "Job description goes here.",
+            image: "",
+        };
+
+        const newCardRef = dbRef(database, `users/${userId}/experience/${Date.now()}`);
+        set(newCardRef, newCard);
+    };
+
+    const handleDeleteCard = (id) => {
+        const cardRef = dbRef(database, `users/${userId}/experience/${id}`);
+        remove(cardRef);
+        setCards((prevCards) => prevCards.filter((card) => card.id !== id));
+    };
 
     return (
         <div className="projects-container" id="experience">
-            <div className="animate one" style={{ marginTop: "-.1%", marginLeft: "10px" }}>
+        <div
+                className="animate one"
+                style={{ marginTop: "-.1%", marginLeft: "10px", marginBottom: "40px" }}
+            >
                 <span>M</span>
                 <span>y</span>&nbsp;
                 <span>E</span>
@@ -49,14 +79,15 @@ const Experience = () => {
                 <span>c</span>
                 <span>e</span>
             </div>
-            <div className="cardsa">
-                {blogCards.map((card) => (
-                    <div key={card.id}>
-                        {/* {console.log(card)}  Check each card's content */}
-                        {card && (
-                            <PublicationCard cardData={card} />
-                        )}
-                    </div>
+            <div className="cards-grid">
+                {cards.map((card) => (
+                    <ExperienceCard
+                        key={card.id}
+                        cardData={card}
+                        onEditClick={handleEditClicked}
+                        onDelete={handleDeleteCard}
+                        showImage={true}
+                    />
                 ))}
             </div>
         </div>

@@ -12,6 +12,7 @@ import Contact from "./components/Contact/Contact";
 import Footer from "./components/Footer/Footer";
 import { database } from "./firebase"; // Import the Realtime Database setup
 import { ref, onValue, set, off } from 'firebase/database'; // Import required functions
+import Skills from "./components/Skills/Skills";
 
 const Modal = ({ isOpen, onClose, onSave, name, roles }) => {
   const [newName, setNewName] = useState(name);
@@ -136,6 +137,7 @@ const App = () => {
 
       </div>
       <About />
+      <Skills/>
       <Experience />
       <Projects />
       <Publications />

@@ -88,6 +88,7 @@ article:has(:hover, :focus) {
 .articles {
   display: grid;
   width: 100%;
+  height: auto;
   margin-inline: auto;
   /* padding-inline: 4px; */
   grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
@@ -153,7 +154,7 @@ article:has(:hover, :focus) {
   border-radius: 5px;
   max-width: 500px;
   width: 100%;
-  height: 80vh;
+  height: 100%;
   color: white;
   margin-top: 30px;
   display: flex;
@@ -237,12 +238,12 @@ article:has(:hover, :focus) {
 @media (max-width: 768px) {
   .articles {
     width: 105%;
-    
   }
 }
-@media (max-width: 575px) {
+@media (min-width: 575px) {
   .articles {
-    width: 130%;
+    width: 108%;
+    margin-left: -3.5%;
     
   }
 }
@@ -251,10 +252,58 @@ article:has(:hover, :focus) {
   .articles {
     display: flex;
     flex-direction: column;
-    height: 57vh;
+    /* height: 48vh; */
     width: 120%;
     margin-left: -20px;
     grid-template-columns: repeat(1, 1fr);
+    
+  }
+  .modal-content {
+    width: 92%;
+    height: 85vh;
+
+  }
+}
+
+@media (max-width: 360px) {
+  .articles {
+    display: flex;
+    flex-direction: column;
+    width: 120%;
+    height: auto;
+    margin-left: -20px;
+    
+  }
+  .modal-content {
+    width: 92%;
+    height: 85vh;
+
+  }
+}
+
+@media (max-width: 344px) {
+  .articles {
+    display: flex;
+    flex-direction: column;
+    width: 120%;
+    height: auto;
+    margin-left: -20px;
+    
+  }
+  .modal-content {
+    width: 92%;
+    height: 85vh;
+
+  }
+}
+
+
+@media (max-width: 412px) {
+  .articles {
+    display: flex;
+    flex-direction: column;
+    width: 120%;
+    margin-left: -20px;
     
   }
   .modal-content {

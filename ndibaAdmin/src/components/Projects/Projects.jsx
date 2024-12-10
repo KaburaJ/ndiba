@@ -45,8 +45,8 @@ const Projects = () => {
             }
         });
     }, [userId]);
-    
-    
+
+
 
     const handleAddCard = () => {
         const currentDate = new Date();
@@ -58,12 +58,12 @@ const Projects = () => {
             month: currentDate.getMonth() + 1, // Months are 0-indexed
             year: currentDate.getFullYear(),
         };
-    
+
         const newCardRef = ref(database, `users/${userId}/projects/${Date.now()}`);
         set(newCardRef, newCard); // Save new card in Firebase
     };
-    
-    
+
+
 
     const handleSaveCard = (id, newData) => {
         const cardRef = ref(database, `users/${userId}/projects/${id}`);
@@ -74,11 +74,11 @@ const Projects = () => {
             .catch((error) => {
                 console.error("Error updating card:", error);
             });
-    
+
         const updatedCards = cards.map((card) => (card.id === id ? { ...card, ...newData } : card));
         setCards(updatedCards);
     };
-    
+
 
     const handleDeleteCard = (id) => {
         const cardRef = ref(database, `users/${userId}/projects/${id}`);
@@ -90,7 +90,7 @@ const Projects = () => {
     const handleEditClicked = (card) => {
         const defaultMonth = new Date().getMonth() + 1; // Current month
         const defaultYear = new Date().getFullYear();  // Current year
-    
+
         const data = {
             title: card.title,
             content: card.content,
@@ -98,26 +98,38 @@ const Projects = () => {
             month: card.month || defaultMonth,
             year: card.year || defaultYear,
         };
-    
+
         console.log("Updated Data:", data); // Debugging
         setCurrentCard(card);
         setUpdatedData(data);
         setIsModalOpen(true);
     };
-    
-    
+
+
     const handleModalSave = () => {
         const updatedCard = { ...currentCard, ...updatedData }; // Include all updated fields
         handleSaveCard(currentCard.id, updatedCard);
         setIsModalOpen(false);
     };
-       
+
+    const handlePreviousClick = (event) => {
+        event.stopPropagation();
+        setCurrentPage((prev) => Math.max(prev - 1, 1))
+
+    }
+
+    const handleNextClick = (event) => {
+        event.stopPropagation();
+        setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+        console.log("next clicked")
+    }
+
 
     return (
         <div className="projects-container" id="projects">
             <div
                 className="animate one"
-                style={{ marginTop: "-.1%", marginLeft: "10px", marginBottom: "40px" }}
+                style={{ marginTop: "-.1%", marginLeft: "10px", marginBottom: "10px" }}
             >
                 <span>M</span>
                 <span>y</span>&nbsp;
@@ -173,104 +185,107 @@ const Projects = () => {
 
             {/* Pagination Controls */}
             {totalPages > 1 && (
-                <div className="pagination-controls" style={{ marginTop: "20px", textAlign: "center" }}>
-                    <button
-                        onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-                        disabled={currentPage === 1}
-                    >
-                        Previous
-                    </button>
-                    <span style={{ margin: "0 10px", color:"white" }} >
-                        Page {currentPage} of {totalPages}
-                    </span>
-                    <button
-                        onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
-                        disabled={currentPage === totalPages}
-                    >
-                        Next
-                    </button>
-                </div>
+                <div className="pagination-controls">
+                <button
+                    onClick={handlePreviousClick}
+                    disabled={currentPage === 1}
+                    className={`pagination-button ${currentPage === 1 ? "disabled" : ""}`}
+                >
+                    Previous
+                </button>
+            
+                <span className="pagination-info">{currentPage} of {totalPages}</span>
+            
+                <button
+                    onClick={handleNextClick}
+                    disabled={currentPage === totalPages}
+                    className={`pagination-button ${currentPage === totalPages ? "disabled" : ""}`}
+                >
+                    Next
+                </button>
+            </div>
+
             )}
 
-{isModalOpen && (
-    <div className="modal" style={{ maxWidth: "80%", height:"auto", overflow:"scroll" }}>
-        <div className="modal-content">
-            <h2>Edit Card</h2>
-            <label>
-                Month:
-                <input
-                    type="number"
-                    min="1"
-                    max="12"
-                    value={updatedData.month}
-                    onChange={(e) => setUpdatedData({ ...updatedData, month: Number(e.target.value) })}
-                />
-            </label>
-            <label>
-                Title:
-                <input
-                    type="text"
-                    value={updatedData.title}
-                    onChange={(e) => setUpdatedData({ ...updatedData, title: e.target.value })}
-                />
-            </label>
-            <label>
-                Content:
-                <textarea
-                    value={updatedData.content}
-                    onChange={(e) => setUpdatedData({ ...updatedData, content: e.target.value })}
-                />
-            </label>
-            <label>
-                Link:
-                <input
-                    type="text"
-                    value={updatedData.link}
-                    onChange={(e) => setUpdatedData({ ...updatedData, link: e.target.value })}
-                />
-            </label>
-           
-            <label>
-                Year:
-                <input
-                    type="number"
-                    value={updatedData.year}
-                    onChange={(e) => setUpdatedData({ ...updatedData, year: Number(e.target.value) })}
-                />
-            </label><label>
-    Month:
-    <input
-        type="number"
-        min="1"
-        max="12"
-        value={updatedData.month}
-        onChange={(e) => {
-            const newMonth = Number(e.target.value);
-            console.log("Updated Month:", newMonth); // Debugging
-            setUpdatedData({ ...updatedData, month: newMonth });
-        }}
-    />
-</label>
-<label>
-    Year:
-    <input
-        type="number"
-        value={updatedData.year}
-        onChange={(e) => {
-            const newYear = Number(e.target.value);
-            console.log("Updated Year:", newYear); // Debugging
-            setUpdatedData({ ...updatedData, year: newYear });
-        }}
-    />
-</label>
+            {isModalOpen && (
+                <div className="modal" style={{ maxWidth: "80%", height: "auto", overflow: "scroll" }}>
+                    <div className="modal-content">
+                        <h2>Edit Card</h2>
+                        <label>
+                            Month:
+                            <input
+                                type="number"
+                                min="1"
+                                max="12"
+                                value={updatedData.month}
+                                onChange={(e) => setUpdatedData({ ...updatedData, month: Number(e.target.value) })}
+                            />
+                        </label>
+                        <label>
+                            Title:
+                            <input
+                                type="text"
+                                value={updatedData.title}
+                                onChange={(e) => setUpdatedData({ ...updatedData, title: e.target.value })}
+                            />
+                        </label>
+                        <label>
+                            Content:
+                            <textarea
+                                value={updatedData.content}
+                                onChange={(e) => setUpdatedData({ ...updatedData, content: e.target.value })}
+                            />
+                        </label>
+                        <label>
+                            Link:
+                            <input
+                                type="text"
+                                value={updatedData.link}
+                                onChange={(e) => setUpdatedData({ ...updatedData, link: e.target.value })}
+                            />
+                        </label>
 
-            <div style={{ display: "flex", flexDirection: "row" }}>
-                <button onClick={handleModalSave}>Save</button>
-                <button onClick={() => setIsModalOpen(false)}>Cancel</button>
-            </div>
-        </div>
-    </div>
-)}
+                        <label>
+                            Year:
+                            <input
+                                type="number"
+                                value={updatedData.year}
+                                onChange={(e) => setUpdatedData({ ...updatedData, year: Number(e.target.value) })}
+                            />
+                        </label><label>
+                            Month:
+                            <input
+                                type="number"
+                                min="1"
+                                max="12"
+                                value={updatedData.month}
+                                onChange={(e) => {
+                                    const newMonth = Number(e.target.value);
+                                    console.log("Updated Month:", newMonth); // Debugging
+                                    setUpdatedData({ ...updatedData, month: newMonth });
+                                }}
+                            />
+                        </label>
+                        <label>
+                            Year:
+                            <input
+                                type="number"
+                                value={updatedData.year}
+                                onChange={(e) => {
+                                    const newYear = Number(e.target.value);
+                                    console.log("Updated Year:", newYear); // Debugging
+                                    setUpdatedData({ ...updatedData, year: newYear });
+                                }}
+                            />
+                        </label>
+
+                        <div style={{ display: "flex", flexDirection: "row" }}>
+                            <button onClick={handleModalSave}>Save</button>
+                            <button onClick={() => setIsModalOpen(false)}>Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            )}
 
         </div>
     );

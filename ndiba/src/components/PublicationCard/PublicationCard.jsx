@@ -1,38 +1,150 @@
-import blogImg from "../images/yucel-moran-fZYgnAoeio4-unsplash.jpg";
 import React, { useState } from "react";
 import "./PublicationCard.css";
 import { FaPencilAlt, FaTrash } from "react-icons/fa";
 
-const PublicationCard = ({ cardData }) => {  
-    if (!cardData || !cardData.image) return null;
+const PublicationCard = ({ cardData, onSave, onDelete, showImage = true }) => {
+    const [isEditing, setIsEditing] = useState(false);
+
+    const handleEditClick = () => {
+        setIsEditing(true);
+    };
+
+    const handleDeleteClick = () => {
+        onDelete(cardData.id);
+    };
+
+    const handleSaveClick = (newData) => {
+        onSave(cardData.id, newData);
+        setIsEditing(false);
+    };
+
     return (
         <>
             <section className="articles" style={{ position: "relative" }}>
-                <article>
+                <article
+                    onClick={() => cardData.link && window.open(cardData.link, "_blank")}
+                    style={{ cursor: cardData.link ? "pointer" : "default" }}
+                >
                     <div className="article-wrapper" style={{ marginBottom: "20px" }}>
-                        <figure>
-                        <img src={cardData.image || blogImg} alt={cardData.title || "Image"} />
-                        </figure>
+                        {showImage && (
+                            <figure>
+                                <img
+                                    src={cardData.image || "defaultImage.jpg"}
+                                    alt="Card"
+                                />
+                            </figure>
+                        )}
                         <div className="article-body">
-                            <h2 style={{fontSize:"16px"}}>{cardData.title}</h2>
-                            <p style={{fontSize:"14px"}}>{cardData.content}</p>
+                            <h2>{cardData.title}</h2>
+                            <p>{cardData.content}</p>
                             {cardData.link && (
-                                <a href={cardData.link} className="read-more" target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} style={{ marginTop: "20px" }}>
+                                <a
+                                    href={cardData.link}
+                                    className="read-more"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    onClick={(e) => e.stopPropagation()}
+                                >
                                     Read more
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="icon" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                                    </svg>
                                 </a>
                             )}
                         </div>
                     </div>
                 </article>
+                {isEditing && (
+                    <EditModal
+                        cardData={cardData}
+                        onSave={handleSaveClick}
+                        onCancel={() => setIsEditing(false)}
+                    />
+                )}
             </section>
         </>
     );
 };
 
+const EditModal = ({ cardData, onSave, onCancel }) => {
+    const [newData, setNewData] = useState({ ...cardData });
+    const [imagePreview, setImagePreview] = useState(cardData.image || "");
+    const [loading, setLoading] = useState(false);
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setNewData({ ...newData, [name]: value });
+    };
+
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setNewData({ ...newData, image: file });
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setImagePreview(reader.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
+    const handleSave = () => {
+        if (newData.image && newData.image instanceof File) {
+            // Upload image to Cloudinary first
+            handleImageUpload();
+        } else {
+            onSave(newData);
+        }
+    };
+
+    const handleImageUpload = async () => {
+        const formData = new FormData();
+        formData.append("file", newData.image);
+        formData.append("upload_preset", "ibu9fmn9");
+
+        const url = "https://api.cloudinary.com/v1_1/dfqjfd2iv/image/upload";
+
+        setLoading(true);
+        try {
+            const response = await fetch(url, { method: "POST", body: formData });
+            const result = await response.json();
+            if (result.secure_url) {
+                newData.image = result.secure_url;
+                onSave(newData);
+            } else {
+                alert("Image upload failed.");
+            }
+        } catch (error) {
+            alert("Error during upload.");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    return (
+        <div className="modal">
+            <div className="modal-content">
+                <h2>Edit Card</h2>
+                <input
+                    type="text"
+                    name="title"
+                    value={newData.title}
+                    onChange={handleChange}
+                />
+                <textarea
+                    name="content"
+                    value={newData.content}
+                    onChange={handleChange}
+                />
+                <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageChange}
+                />
+                {imagePreview && <img src={imagePreview} alt="Image Preview" />}
+                <div style={{display:"flex", flexDirection:"row", marginTop:"20px"}}>
+                <button onClick={handleSave} disabled={loading}>Save</button>
+                <button onClick={onCancel}>Cancel</button></div>
+            </div>
+        </div>
+    );
+};
+
 export default PublicationCard;
-
-
-
