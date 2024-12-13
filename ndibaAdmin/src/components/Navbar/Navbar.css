@@ -93,9 +93,8 @@
   justify-content: center;
 }
 
-.nav-links.open li a {
-  /* border: none; */
-}
+/* .nav-links.open li a {
+} */
 
 .nav-links li {
   margin: 0; 
