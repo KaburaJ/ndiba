@@ -5,7 +5,9 @@ section {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding-left: 20%;
+    padding-left:18%;
+    box-sizing: border-box;
+    /* overflow: hidden; */
 }
 
 .parent-skill {
@@ -17,10 +19,10 @@ section {
 .skills-container {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    gap: 40px 50px;
+    gap: 40px 55px;
     justify-content: space-evenly;
-    padding-top: 40px;
-    padding-bottom: 40px;
+    padding-top: 20px;
+    /* padding-bottom: 40px; */
 }
 
 .skill {
@@ -108,3 +110,55 @@ section {
         font-size: 16px;
     }
 }
+
+@media (max-width: 375px) {
+    section {
+        width: 70%;
+        padding: 0 10px;
+    }
+
+    .skills-container {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+
+    .skill {
+        width: 90px;
+        height: 90px;
+    }
+
+    .progress-number {
+        font-size: 1.2rem;
+    }
+
+    .title {
+        font-size: 16px;
+    }
+}
+
+
+@media (max-width: 800px) {
+    section {
+        width: 100%;
+        padding: 0 10px;
+    }
+
+    .skills-container {
+        grid-template-columns: repeat(6, 1fr);
+        gap: 20px;
+    }
+
+    .skill {
+        width: 90px;
+        height: 90px;
+    }
+
+    .progress-number {
+        font-size: 1.2rem;
+    }
+
+    .title {
+        font-size: 16px;
+    }
+}
+

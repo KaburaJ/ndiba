@@ -93,7 +93,7 @@ export default function Skills() {
                         <div className="parent-skill" key={skill.id}>
                             <div className="skill">
                                 <div className="progress" data-progress={skill.proficiency}>
-                                    <span className="progress-number">0%</span>
+                                    <span className="progress-number" style={{color:"white"}}>0%</span>
                                 </div>
                             </div>
                             <span className="title">{skill.name}</span>

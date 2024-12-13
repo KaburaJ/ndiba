@@ -1,15 +1,33 @@
+/* article {
+  --img-scale: 1.001;
+  --title-color: #fff;
+  --link-icon-translate: -20px;
+  --link-icon-opacity: 0;
+  position: relative;
+  border-radius: 26px;
+  box-shadow: none;
+  background: #003363;
+  transform-origin: center;
+  transition: all 0.4s ease-in-out;
+  overflow: hidden;
+} */
+
 article {
   --img-scale: 1.001;
   --title-color: #fff;
   --link-icon-translate: -20px;
   --link-icon-opacity: 0;
   position: relative;
-  border-radius: 6px;
+  border-radius: 26px;
   box-shadow: none;
   background: #003363;
   transform-origin: center;
   transition: all 0.4s ease-in-out;
   overflow: hidden;
+  width: 24.5em !important;
+  height: 29.5em;
+  margin-left: -12%;
+  overflow-y: scroll;
 }
 
 article a::after {
@@ -87,7 +105,7 @@ article:has(:hover, :focus) {
 
 .articles {
   display: grid;
-  width: 100%;
+  min-width: 100%;
   height: auto;
   margin-inline: auto;
   /* padding-inline: 4px; */

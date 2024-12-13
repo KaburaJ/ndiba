@@ -1,34 +1,31 @@
 .card-hover {
     width: 100%;
     position: relative;
-    border-radius: 5px;
+    cursor: pointer;
+    border-radius: 15px;
     align-items: center;
+    justify-content: center;
     margin: 0 auto;
     overflow: scroll;
     box-shadow: 0 0 32px -10px rgba(0, 0, 0, 0.08);
   }
-  .card-hover:has(.card-hover__link:hover) .card-hover__extra {
+  /* .card-hover:has(.card-hover__link:hover) .card-hover__extra {
     transform: translateY(0);
     transition: transform 0.35s;
-  }
-  .card-hover:hover .card-hover__content {
-    background-color: #003363;
-    bottom: 100%;
-    transform: translateY(100%);
-    padding: 50px 60px;
-    transition: all 0.35s cubic-bezier(0.1, 0.72, 0.4, 0.97);
-  }
-  .card-hover:hover .card-hover__link {
+  } */
+
+  /* .card-hover:hover .card-hover__link {
     opacity: 1;
     transform: translate(-50%, 0);
     transition: all 0.3s 0.35s cubic-bezier(0.1, 0.72, 0.4, 0.97);
-  }
-  .card-hover:hover .back {
+  } */
+  /* .card-hover:hover .back {
     transform: scale(1);
     transition: 0.35s 0.1s transform cubic-bezier(0.1, 0.72, 0.4, 0.97);
-  }
+  } */
   .card-hover__content {
-    min-width: 140%;
+    /* min-width: 140%; */
+    /* min-width: 100%; */
     text-align: center;
     background-color: #003363;
     color: white;
@@ -36,12 +33,12 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    transform: translateY(0);
-    transition: all 0.35s 0.35s cubic-bezier(0.1, 0.72, 0.4, 0.97);
-    will-change: bottom, background-color, transform, padding;
-    z-index: 1;
+    /* transform: translateY(0); */
+    /* transition: all 0.35s 0.35s cubic-bezier(0.1, 0.72, 0.4, 0.97); */
+    /* will-change: bottom, background-color, transform, padding; */
+    /* z-index: 1; */
   }
-  .card-hover__content::before, .card-hover__content::after {
+  /* .card-hover__content::before, .card-hover__content::after {
     content: '';
     width: 100%;
     height: 120px;
@@ -57,7 +54,7 @@
   .card-hover__content::after {
     bottom: -80px;
     clip-path: ellipse(60% 80px at top center);
-  }
+  } */
   /* .card-hover__title {
     font-size: 1.5rem;
     margin-bottom: 1em;
@@ -78,10 +75,10 @@
     /* margin-left: -10%; */
   }
   .card-hover__link {
-    position: absolute;
+    /* position: absolute; */
     bottom: 1rem;
     left: 50%;
-    transform: translate(-50%, 10%);
+    /* transform: translate(-50%, 10%); */
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -89,77 +86,29 @@
     color: #000;
     opacity: 0;
     padding: 10px;
-    transition: all 0.35s;
+    /* transition: all 0.35s; */
   }
-  .card-hover__link:hover svg {
-    transform: translateX(4px);
-  }
-  .card-hover__link svg {
-    width: 18px;
-    margin-left: 4px;
-    transition: transform 0.3s;
-  }
-  .card-hover__extra {
-    height: 50%;
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    width: 100%;
-    font-size: 1.5rem;
-    text-align: center;
-    background-color: #003363;
-    padding: 80px;
-    bottom: 0;
-    z-index: 0;
-    color: #003363;
-    transform: translateY(100%);
-    will-change: transform;
-    transition: transform 0.35s;
-  }
-  .card-hover__extra span {
-    color: #000;
-  }
+  
   .card-hover .back {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 70%;
     object-fit: cover;
     object-position: center;
     /* z-index: -1; */
-    transform: scale(1.2);
-    transition: 0.35s 0.35s transform cubic-bezier(0.1, 0.72, 0.4, 0.97);
+    /* transform: scale(1.2); */
+    /* transition: 0.35s 0.35s transform cubic-bezier(0.1, 0.72, 0.4, 0.97); */
   }
   .card-hover {
   width: 100%;
-  height: 500px;
+  height: 380px;
   position: relative;
   overflow: hidden;
   box-shadow: 0 0 32px -10px rgba(0, 0, 0, 0.08);
 }
 
-.card-hover:hover .card-hover__content {
-  background-color: #003363;
-  bottom: 100%;
-  transform: translateY(100%);
-  padding: 50px 60px;
-  margin-left: -20%;
-  transition: all 0.35s cubic-bezier(0.1, 0.72, 0.4, 0.97);
-}
-
-.card-hover:hover .card-hover__link {
-  opacity: 1;
-  transform: translate(-50%, 0);
-  transition: all 0.3s 0.35s cubic-bezier(0.1, 0.72, 0.4, 0.97);
-}
-
-.card-hover:hover .back {
-  transform: scale(1);
-  transition: 0.35s 0.1s transform cubic-bezier(0.1, 0.72, 0.4, 0.97);
-}
 
 .card-hover__content {
   width: 100%;
@@ -167,32 +116,33 @@
   background-color: #003363;
   color: white;
   padding: 0 60px 50px;
-  position: absolute;
-  margin-left: -20%;
+  margin: 0 auto;
+  /* margin-left: -20%; */
   bottom: 0;
   left: 0;
-  transform: translateY(0);
-  transition: all 0.35s 0.35s cubic-bezier(0.1, 0.72, 0.4, 0.97);
+  height: 10em;
+  overflow-y: scroll;
   z-index: 1;
 }
 
 .card-hover__title {
   font-size: 130%;
   margin-bottom: 1em;
-  width: 80%;
-  margin-left: 8%;
 }
 
 .card-hover__text {
-  width: 90%;
-  /* margin-left: -10%; */
+  width: 22em;
+  text-align: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-left: -15% !important;
 }
 
 .card-hover__link {
   position: absolute;
   bottom: 1rem;
   left: 50%;
-  transform: translate(-50%, 10%);
+  /* transform: translate(-50%, 10%); */
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -200,7 +150,7 @@
   color: #000;
   opacity: 0;
   padding: 10px;
-  transition: all 0.35s;
+  /* transition: all 0.35s; */
 }
 
 .card-hover__link:hover svg {
@@ -210,7 +160,7 @@
 .card-hover__link svg {
   width: 18px;
   margin-left: 4px;
-  transition: transform 0.3s;
+  /* transition: transform 0.3s; */
 }
 
 .card-hover .back {
@@ -221,22 +171,26 @@
   height: 100%;
   object-fit: cover;
   object-position: center;
-  transform: scale(1.2);
-  transition: 0.35s 0.35s transform cubic-bezier(0.1, 0.72, 0.4, 0.97);
+  /* transform: scale(1.2); */
+  /* transition: 0.35s 0.35s transform cubic-bezier(0.1, 0.72, 0.4, 0.97); */
 }
 
 .icon-container {
-  position: absolute;
+  /* position: absolute; */
   bottom: 10px;
   right: 10px;
   display: flex;
   gap: 10px;
+  margin-top: 20px;
+  margin-left: -40px;
+
 }
 
 .icon {
   color: red;
   font-size: 1.5rem;
   cursor: pointer;
+
 }
 .modal {
   position: fixed;
@@ -285,13 +239,14 @@
 }
 
 .modal-content img {
-  max-width: 100%; /* Ensure image fits the container */
-  max-height: 150px; /* Limit image height */
+  /* max-width: 100%; Ensure image fits the container */
+  /* max-height: 150px; */
   display: block;
   margin: 10px auto;
   border: 1px solid #ddd;
   border-radius: 4px;
-  object-fit: cover; /* Ensures the image maintains aspect ratio */
+  object-fit: contain; /* Ensures the image maintains aspect ratio */
+object-position: center;
 }
 
 .modal-content button {
@@ -377,9 +332,10 @@
     margin-bottom: 20px;
   }
 
-  .card-hover__text {
-    margin-left: 5%;
-  }
+  /* .card-hover__text {
+    margin-left: -15%;
+    width: ;
+  } */
 }
 
 @media (min-width: 400px) and (max-width:810px) {
@@ -403,9 +359,9 @@
   .card-hover__title {
     padding-left: 7%;
   }
-  .card-hover__text {
+  /* .card-hover__text {
     padding-left: 7%;
-  }
+  } */
 }
 @media (max-width:360px){
   .card-hover {
@@ -415,10 +371,10 @@
 }
 
 @media (max-width:375px){
-  .card-hover__text {
+  /* .card-hover__text {
    font-size: 12px;
    margin-left: -1%;
-  }
+  } */
 }
 
 

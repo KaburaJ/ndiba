@@ -9,6 +9,11 @@ body {
   background-color: black;
 }
 
+.base-content {
+  display: flex;
+  flex-direction: column;
+}
+
 .overlay {
   position: absolute;
   top: 0;
@@ -47,7 +52,7 @@ body {
   position: relative;
   color: white;
   max-width: 100%;
-  margin-left: 32%;
+  margin-left: 30%;
   font-size: 290%;
   font-weight: 200;
   /* font-size: 3rem; */
@@ -224,6 +229,7 @@ a.repeat:hover {
   left: 10px;
 }
 
+
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -239,7 +245,7 @@ a.repeat:hover {
 }
 
 .modal-content {
-  background: white;
+  background: #001931;
   padding-left: 10px;
   padding-right: 10px;
   /* padding-top: 5px; */
@@ -399,7 +405,7 @@ a.repeat:hover {
     position: relative;
     color: white;
     margin-left: 10%;
-    font-size: 200%;
+    font-size: 1.7rem;
     font-weight: 200;
     width: 80%;
     /* font-size: 3rem; */
@@ -514,7 +520,7 @@ a.repeat:hover {
   .intro-text {
     position: relative;
     color: white;
-    margin-left: 10%;
+    margin-left: 8%;
     margin-top: 40%;
     font-weight: 600;
     font-size: 190%;
@@ -524,8 +530,8 @@ a.repeat:hover {
   .intro-sub-text {
     position: relative;
     color: white;
-    margin-left: 10%;
-    font-size: 16px;
+    margin-left: 8%;
+    font-size: 1rem;
     font-weight: 200;
     /* font-size: 3rem; */
     display: flex;

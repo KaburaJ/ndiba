@@ -4,12 +4,14 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
 }
 
 body,
 input,
 textarea {
   font-family: "Poppins", sans-serif;
+
 }
 
 .contact {
@@ -33,6 +35,7 @@ textarea {
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
+
 }
 
 .form {
@@ -41,7 +44,7 @@ textarea {
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.9);
-  z-index: 99;
+  z-index: 1000;
   overflow: hidden;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -247,21 +250,20 @@ textarea.input {
 
 .social-media p {
   color: #333;
-  
 }
 
 .social-icons {
   display: flex;
-  margin-top: 0.5rem;
+  margin-left: 35%;
+  padding-top: 20px;
 }
 
 .social-icons a {
   width: 35px;
   height: 35px;
   border-radius: 5px;
-  /* background: linear-gradient(45deg, #24a8e6, #003363); */
+  background: linear-gradient(45deg, #24a8e6, #003363);
   color: #fff;
-  border: none;
   text-align: center;
   line-height: 35px;
   margin-right: 0.5rem;
@@ -312,6 +314,10 @@ textarea.input {
   left: 50%;
   transform: translate(181%, 11%);
   opacity: 0.2;
+}
+
+.modal {
+  z-index: 10000;
 }
 
 @media (max-width: 850px) {

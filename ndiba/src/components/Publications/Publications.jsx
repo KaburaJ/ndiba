@@ -123,8 +123,8 @@ const Publications = () => {
     return (
         <div className="projects-container" id="blogs">
             <div className="animate one" style={{ marginTop: "-.1%", marginLeft: "10px", marginBottom:"40px" }}>
-                <span>M</span>
-                <span>y</span>&nbsp;
+                {/* <span>M</span>
+                <span>y</span>&nbsp; */}
                 <span>B</span>
                 <span>l</span>
                 <span>o</span>

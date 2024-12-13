@@ -12,6 +12,24 @@ const ExperienceCard = ({ cardData, onEditClick, onDelete, showImage }) => {
                 <h2>{cardData.title}</h2>
                 <p>{cardData.content}</p>
             </div>
+            {/* <div className="card-actions">
+                <FaPencilAlt
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        onEditClick(cardData)
+                    }}
+                    className="icon"
+                    style={{ zIndex: 999 }}
+                />
+                <FaTrash
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        onDelete(cardData.id)
+                    }}
+                    className="icon"
+                    style={{ zIndex: 999 }}
+                />
+            </div> */}
         </div>
     );
 };

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./ProjectsCard.css";
 import { FaPencilAlt, FaTrash } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const ProjectsCard = ({ cardData, onSave, onDelete }) => {
     const [isEditing, setIsEditing] = useState(false);
-
     const handleEditClick = () => {
         setIsEditing(true);
     };
@@ -13,21 +13,31 @@ const ProjectsCard = ({ cardData, onSave, onDelete }) => {
         onDelete(cardData.id);
     };
 
+    const navigateProject = () => {
+        window.open(cardData.link, "_blank");
+      };
+      
+
     return (
-        <div className="card-hover">
+        <div className="card-hover" onClick={navigateProject} >
             <div className="card-hover__content">
+                {/* <div className="icon-container">
+                <FaPencilAlt onClick={handleEditClick} className="icon" />
+                <FaTrash onClick={handleDeleteClick} className="icon" /></div> */}
                 <h3 className="card-hover__title">{cardData.title}</h3>
                 <p className="card-hover__text">{cardData.content}</p>
-                <a
-                    href={cardData.link}
-                    className="card-hover__link"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <span>See More</span>
-                </a>
             </div>
             <img src={cardData.image} alt="Project" className="back" />
+            {isEditing && (
+                <EditModal
+                    cardData={cardData}
+                    onSave={(newData) => {
+                        onSave(cardData.id, newData);
+                        setIsEditing(false);
+                    }}
+                    onCancel={() => setIsEditing(false)}
+                />
+            )}
         </div>
     );
 };
@@ -222,6 +232,13 @@ const EditModal = ({ cardData, onSave, onCancel }) => {
                     {loading && <progress value={progress} max="100" />}
                     <button type="submit" disabled={loading}>Upload</button>
                 </form>
+                <input
+                    type="text"
+                    name="link"
+                    value={newData.link}
+                    onChange={(e) => setNewData({ ...newData, link: e.target.value })}
+                    placeholder="Link to your project"
+                />
                 <div style={{display:"flex", flexDirection:"row", marginTop:"20px"}}>
                 <button onClick={() => onSave(newData)} disabled={loading}>Save</button>
                 <button onClick={onCancel}>Cancel</button></div>

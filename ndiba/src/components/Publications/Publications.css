@@ -126,15 +126,16 @@ a, a:link, a:visited {
   .cardsb {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+    gap: 30px !important;
     margin-top: 30px;
+    margin: 0 auto !important;
   }
 
 /* Larger screens, 992px and above */
 @media (min-width: 992px) {
   .cardsb {
     grid-template-columns: repeat(3, 1fr); 
-    gap:15px 45px;
+    gap:15px 5px !important;
     margin: 0 auto;
     padding: 20px 40px;
   }
@@ -144,7 +145,7 @@ a, a:link, a:visited {
 @media (min-width: 768px) and (max-width: 991px) {
   .cardsb {
     grid-template-columns: repeat(2, 1fr); 
-    gap:15px 35px;
+    gap:15px 35px ;
     margin: 0 auto;
     padding: 20px 30px;
   }
@@ -252,6 +253,17 @@ a, a:link, a:visited {
   }
 }
 
+/* Extra small screens, 575px and below */
+@media (max-width: 575px) {
+  .cardsb {
+    display: flex;
+    flex-direction: column; /* 1 card per row */
+    gap: 15px;
+    margin: 0 auto;
+    padding: 10px;
+  }
+}
+
 @media (max-width: 540px) {
   .cardsb {
     display: flex;
@@ -264,16 +276,7 @@ a, a:link, a:visited {
   }
 }
 
-/* Extra small screens, 575px and below */
-@media (max-width: 575px) {
-  .cardsb {
-    display: flex;
-    flex-direction: column; /* 1 card per row */
-    gap: 15px;
-    margin: 0 auto;
-    padding: 10px;
-  }
-}
+
 
 /* 430px screen*/
 @media (max-width: 430px) {
@@ -285,6 +288,33 @@ a, a:link, a:visited {
     padding: 10px;
     /* margin-left: -40px; */
     width: 90%;
+  }
+}
+
+
+/* Very small screens, 375px and below */
+@media (max-width: 414px) {
+
+  .cardsb {
+    display: flex;
+    flex-direction: column; /* 1 card per row */
+    gap: 20px;
+    left: -2%;
+    margin: 0 auto !important;
+    padding: 5px;
+  }
+}
+
+
+@media (max-width: 412px) {
+
+  .cardsb {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin: 0 auto !important;
+    padding: 5px;
+    margin-left: -16% !important;
   }
 }
 
@@ -301,19 +331,6 @@ a, a:link, a:visited {
   }
 }
 
-@media (max-width: 360px) {
-
-  .cardsb {
-    display: flex;
-    flex-direction: column; 
-    gap: 25px !important;
-    padding: 5px;
-    margin: 0 auto !important;
-    /* margin-left: -10px; */
-    /* width: 100%; */
-  }
-}
-
 /* Very small screens, 375px and below */
 @media (max-width: 375px) {
 
@@ -322,10 +339,25 @@ a, a:link, a:visited {
     flex-direction: column; /* 1 card per row */
     gap: 5px;
     left: -2%;
+    width: 85%;
     /* margin: 0 auto !important; */
     padding: 5px;
   }
 }
+
+@media (max-width: 360px) {
+
+  .cardsb {
+    display: flex;
+    flex-direction: column; 
+    gap: 25px !important;
+    padding: 5px;
+    margin: 0 auto !important;
+    /* margin-left: 5% !important; */
+    /* width: 100%; */
+  }
+}
+
 
 @media (max-width: 344px) {
 
@@ -335,20 +367,6 @@ a, a:link, a:visited {
     gap: 25px !important;
     left: -2%;
     /* margin: 0 auto !important; */
-    padding: 5px;
-  }
-}
-
-
-/* Very small screens, 375px and below */
-@media (max-width: 414px) {
-
-  .cardsb {
-    display: flex;
-    flex-direction: column; /* 1 card per row */
-    gap: 20px;
-    left: -2%;
-    margin: 0 auto !important;
     padding: 5px;
   }
 }

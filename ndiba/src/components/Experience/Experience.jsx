@@ -64,7 +64,7 @@ const Experience = () => {
         <div className="projects-container" id="experience">
         <div
                 className="animate one"
-                style={{ marginTop: "-.1%", marginLeft: "10px", marginBottom: "40px" }}
+                style={{ marginTop: "-1%", marginLeft: "10px", marginBottom: "40px" }}
             >
                 <span>M</span>
                 <span>y</span>&nbsp;
@@ -90,6 +90,29 @@ const Experience = () => {
                     />
                 ))}
             </div>
+            {isModalOpen && (
+  <div className="modal">
+    <div className="modal-content">
+      <h2>Edit Experience</h2>
+        Title:
+        <input
+          type="text"
+          value={updatedData.title}
+          onChange={(e) => setUpdatedData({ ...updatedData, title: e.target.value })}
+        />
+        Content:
+        <textarea
+          value={updatedData.content}
+          onChange={(e) => setUpdatedData({ ...updatedData, content: e.target.value })}
+        />
+      <div className="modal-actions">
+        <button onClick={handleModalSave} className="modal-save-button">Save</button>
+        <button onClick={() => setIsModalOpen(false)} className="modal-cancel-button">Cancel</button>
+      </div>
+    </div>
+  </div>
+)}
+
         </div>
     );
 };

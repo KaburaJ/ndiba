@@ -136,6 +136,7 @@ const App = () => {
         />
 
       </div>
+      {/* <div className="base-content"> */}
       <About />
       <Skills/>
       <Experience />
@@ -143,6 +144,7 @@ const App = () => {
       <Publications />
       <Achievements />
       <Contact />
+      {/* </div> */}
       <Footer />
     </div>
   );

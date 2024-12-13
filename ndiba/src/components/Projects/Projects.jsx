@@ -143,7 +143,7 @@ const Projects = () => {
                 <span>s</span>
             </div>
             <div className="cardsp">
-                {visibleCards.map((card) => (
+                {cards.map((card) => (
                     <div key={card.id}>
                         <ProjectsCard
                             cardData={card}
@@ -156,7 +156,7 @@ const Projects = () => {
             </div>
 
             {/* Pagination Controls */}
-            {totalPages > 1 && (
+            {/* {totalPages > 1 && (
                 <div className="pagination-controls">
                 <button
                     onClick={handlePreviousClick}
@@ -177,7 +177,7 @@ const Projects = () => {
                 </button>
             </div>
 
-            )}
+            )} */}
 
             {isModalOpen && (
                 <div className="modal" style={{ maxWidth: "80%", height: "auto", overflow: "scroll" }}>

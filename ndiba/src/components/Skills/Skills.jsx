@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { database } from "../../firebase"; // Adjust based on your file structure
+import React, { useState, useEffect } from "react";
+import { database } from "../../firebase";
 import { ref, set, remove, onValue } from "firebase/database";
-import "./Skills.css"
-import PublicationCard from "../PublicationCard/PublicationCard";
+import "./Skills.css";
+import { FaPen, FaTrash } from "react-icons/fa";
 
-const Skills = () => {
+export default function Skills() {
     const userId = "user1"; // Replace with dynamic user ID if needed
     const [skills, setSkills] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -40,10 +40,10 @@ const Skills = () => {
             alert("Please provide valid skill information.");
             return;
         }
-    
+
         const newId = isEditMode && currentSkill ? currentSkill.id : Date.now().toString();
         const skillRef = ref(database, `users/${userId}/skills/${newId}`);
-        
+
         set(skillRef, newSkill)
             .then(() => {
                 // Reset modal state only after the Firebase operation completes
@@ -57,7 +57,7 @@ const Skills = () => {
                 alert("Failed to save skill. Please try again.");
             });
     };
-    
+
 
     // Delete skill from Firebase
     const handleDeleteSkill = (id) => {
@@ -76,8 +76,8 @@ const Skills = () => {
     };
 
     return (
-<div className="projects-container" id="skills">
-            <div className="animate one" style={{ marginTop: "-.1%", marginLeft: "10px", marginBottom: "40px" }}>
+        <div className="projects-container" id="skills">
+            <div className="animate one" style={{ marginTop: "-1%", marginLeft: "10px", marginBottom: "40px" }}>
                 <span>M</span>
                 <span>y</span>&nbsp;
                 <span>S</span>
@@ -93,10 +93,32 @@ const Skills = () => {
                         <div className="parent-skill" key={skill.id}>
                             <div className="skill">
                                 <div className="progress" data-progress={skill.proficiency}>
-                                    <span className="progress-number">0%</span>
+                                    <span className="progress-number" style={{ color: "white" }}>0%</span>
                                 </div>
                             </div>
                             <span className="title">{skill.name}</span>
+                            <div style={{ marginTop: "10px" }}>
+
+                                <FaPen onClick={() => handleEditSkill(skill)}
+                                    style={{
+                                        padding: "5px 10px",
+                                        borderRadius: "5px",
+                                        // backgroundColor: "#1a8ac1",
+                                        color: "red",
+                                        border: "none",
+                                        marginRight: "5px",
+                                        cursor: "pointer",
+                                    }} />
+                                <FaTrash
+                                    onClick={() => handleDeleteSkill(skill.id)}
+                                    style={{
+                                        padding: "5px 10px",
+                                        borderRadius: "5px",
+                                        color: "red",
+                                        border: "none",
+                                        cursor: "pointer",
+                                    }} />
+                            </div>
                         </div>
                     ))}
                 </div>
@@ -158,5 +180,3 @@ function progressBarAndCountNumber() {
         element.firstElementChild.textContent = `${progressValue}%`;
     });
 }
-
-export default Skills
