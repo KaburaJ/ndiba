@@ -6,7 +6,7 @@
     align-items: center;
     justify-content: center;
     margin: 0 auto;
-    overflow: scroll;
+    overflow: hidden;
     box-shadow: 0 0 32px -10px rgba(0, 0, 0, 0.08);
   }
   /* .card-hover:has(.card-hover__link:hover) .card-hover__extra {
@@ -120,8 +120,11 @@
   /* margin-left: -20%; */
   bottom: 0;
   left: 0;
-  height: 10em;
+  height: 12em;
+  overflow-x: hidden;
   overflow-y: scroll;
+  scrollbar-width: 2px;
+  scroll-behavior: smooth;
   z-index: 1;
 }
 

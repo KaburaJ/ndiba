@@ -30,6 +30,7 @@ const Navbar = () => {
         <FaBars className="hamburger" onClick={toggleMenu} />
         <ul className={`nav-links ${menuOpen ? 'open' : ''}`}>
           <li><a href="#home" onClick={handleLinkClick}>Home</a></li>
+          
           <li><a href="#about" onClick={handleLinkClick}>About</a></li>
           <li><a href="#skills" onClick={handleLinkClick}>Skills</a></li>
           <li><a href="#experience" onClick={handleLinkClick}>Experience</a></li>
