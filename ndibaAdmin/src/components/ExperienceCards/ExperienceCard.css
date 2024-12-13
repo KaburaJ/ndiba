@@ -1,5 +1,5 @@
 
-  .features-one {
+.features-one {
     background: var(--logistiq-white);
     padding: 120px 0 0;
     z-index: 1;
@@ -76,7 +76,10 @@
     }
 
     .features-one__single {
-        padding: 10px;
+        /* padding: 10px; */
+        /* margin-left: -14%; */
+        width: 100% !important;
+        margin:0 auto !important;
     }
 
     .features-one__single-content h2 {

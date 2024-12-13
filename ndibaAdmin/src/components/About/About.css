@@ -2,7 +2,7 @@
   background-color: rgba(0, 0, 0, 0.9);
   color: white;
   text-align: center;
-  padding-bottom: 20px;
+  /* padding-bottom: 20px; */
   padding-top: 10px;
   margin-top: 2px;
 }
@@ -48,7 +48,7 @@
 }
 
 .github .resume-download {
-  background-color: #003363;
+  background-color: #24a8e6;
   border-radius: 20px;
   width: 20vw;
   padding: 10px;
@@ -58,7 +58,7 @@
 }
 
 .about-key-word {
-  color: #003363;
+  color: #24a8e6;
 }
 
 a,
@@ -180,7 +180,7 @@ a.repeat:hover {
 /* Animation One */
 
 .one span {
-  color: #003363;
+  color: #24a8e6;
   opacity: 0;
   transform: translate(-150px, -50px) rotate(-180deg) scale(3);
   animation: revolveScale .4s forwards;
@@ -233,6 +233,7 @@ a.repeat:hover {
 
 @media (max-width: 768px) {
   .about {
+    display: flex;
     flex-direction: column;
     padding-left: 20px;
     padding-right: 20px;
