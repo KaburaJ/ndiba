@@ -1,29 +1,31 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import Navbar from "./components/Navbar/Navbar";
 import TenorGif from "./components/Gif/Gif";
 import "./App.css";
 import ConsoleText from "./components/ConsoleText/ConsoleText";
-import About from "./components/About/About";
-import Projects from "./components/Projects/Projects";
-import Publications from "./components/Publications/Publications";
-import Experience from "./components/Experience/Experience";
-import Achievements from "./components/Achievements/Achievements";
-import Contact from "./components/Contact/Contact";
 import Footer from "./components/Footer/Footer";
-import { database } from "./firebase"; // Import the Realtime Database setup
-import { ref, onValue, set, off } from 'firebase/database'; // Import required functions
-import Skills from "./components/Skills/Skills";
+import { database } from "./firebase"; // Firebase setup
+import { ref, onValue, set, off } from 'firebase/database'; // Firebase functions
+
+// Lazy load other components
+const About = React.lazy(() => import("./components/About/About"));
+const Skills = React.lazy(() => import("./components/Skills/Skills"));
+const Projects = React.lazy(() => import("./components/Projects/Projects"));
+const Publications = React.lazy(() => import("./components/Publications/Publications"));
+const Experience = React.lazy(() => import("./components/Experience/Experience"));
+const Achievements = React.lazy(() => import("./components/Achievements/Achievements"));
+const Contact = React.lazy(() => import("./components/Contact/Contact"));
 
 const Modal = ({ isOpen, onClose, onSave, name, roles }) => {
   const [newName, setNewName] = useState(name);
-  const [newRoles, setNewRoles] = useState(roles.join(", ")); // Convert roles array to string
+  const [newRoles, setNewRoles] = useState(roles.join(", "));
 
   const handleSave = () => {
-    onSave(newName, newRoles.split(",").map(role => role.trim())); // Split string into array and trim spaces
-    onClose(); // Close the modal
+    onSave(newName, newRoles.split(",").map(role => role.trim()));
+    onClose();
   };
 
-  if (!isOpen) return null; // If modal is not open, return null
+  if (!isOpen) return null;
 
   return (
     <div className="modal-overlay">
@@ -56,52 +58,44 @@ const Modal = ({ isOpen, onClose, onSave, name, roles }) => {
 
 const App = () => {
   const [name, setName] = useState("Peter Ndiba");
-  const [roles, setRoles] = useState(["ROS Developer"]); // Initialize as an array
+  const [roles, setRoles] = useState(["ROS Developer"]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const userID = "user1"; // Replace with a dynamic value in a real app
+  const userID = "user1";
 
   useEffect(() => {
-    // Load initial data from Firebase using the unique user ID
     const nameRef = ref(database, `users/${userID}/name`);
     const roleRef = ref(database, `users/${userID}/role`);
 
-    // Listen for value changes
     onValue(nameRef, (snapshot) => {
       setName(snapshot.val() || "Peter Ndiba");
     });
 
     onValue(roleRef, (snapshot) => {
-      setRoles(snapshot.val() ? snapshot.val().split(",") : ["ROS Developer"]); // Split roles string into array
+      setRoles(snapshot.val() ? snapshot.val().split(",") : ["ROS Developer"]);
     });
 
-    // Cleanup the listener on unmount
     return () => {
-      off(nameRef); // Remove listener for name
-      off(roleRef); // Remove listener for role
+      off(nameRef);
+      off(roleRef);
     };
   }, [userID]);
 
   const saveChanges = (newName, newRoles) => {
-    // Save changes to Firebase
     set(ref(database, `users/${userID}/name`), newName);
-    set(ref(database, `users/${userID}/role`), newRoles.join(",")); // Join array back into string
-    setName(newName); // Update local state
-    setRoles(newRoles); // Update local roles
+    set(ref(database, `users/${userID}/role`), newRoles.join(","));
+    setName(newName);
+    setRoles(newRoles);
   };
 
-  // Function to convert name into span elements
   const formatName = (name) => {
-    // Split the name by spaces and map over the words
-    return name.split(' ').map((word, wordIndex) => (
-      <span key={wordIndex} style={{ marginRight: '5px' }}>
-        {/* For each word, split by characters */}
-        {word.split('').map((char, index) => (
+    return name.split(" ").map((word, wordIndex) => (
+      <span key={wordIndex} style={{ marginRight: "5px" }}>
+        {word.split("").map((char, index) => (
           <span key={index}>{char}</span>
         ))}
       </span>
     ));
   };
-
 
   return (
     <div id="home">
@@ -115,17 +109,16 @@ const App = () => {
               className="animatey oney"
               style={{ marginTop: "-.1%", marginLeft: "10px" }}
             >
-              {formatName(name)} {/* Call the formatName function */}
+              {formatName(name)}
             </div>
           </h1>
           <p className="intro-sub-text">
             I am a
             <ConsoleText
               words={roles}
-              colors={['#24a8e6', '#24a8e6', '#24a8e6']}
+              colors={["#24a8e6", "#24a8e6", "#24a8e6"]}
             />
           </p>
-
         </div>
         <Modal
           isOpen={isModalOpen}
@@ -134,17 +127,18 @@ const App = () => {
           name={name}
           roles={roles}
         />
-
       </div>
-      {/* <div className="base-content"> */}
-      <About />
-      <Skills/>
-      <Experience />
-      <Projects />
-      <Publications />
-      <Achievements />
-      <Contact />
-      {/* </div> */}
+
+      {/* Suspense Wrapping Lazy Loaded Components */}
+      <Suspense fallback={<div>Loading...</div>}>
+        <About />
+        <Skills />
+        <Experience />
+        <Projects />
+        {/* <Publications /> */}
+        <Achievements />
+        <Contact />
+      </Suspense>
       <Footer />
     </div>
   );

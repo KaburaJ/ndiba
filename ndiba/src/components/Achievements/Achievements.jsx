@@ -4,6 +4,7 @@ import { ref, set, remove, onValue } from "firebase/database";
 import "./Achievements.css";
 import PublicationCard from "../PublicationCard/PublicationCard";
 import blogImg from "../images/yucel-moran-fZYgnAoeio4-unsplash.jpg";
+import ProjectsCard from "../ProjectsCard/ProjectsCard";
 
 const Achievements = () => {
     const userId = "user1"; // Replace this with your actual user ID or authentication logic
@@ -93,13 +94,20 @@ const Achievements = () => {
             </div>
             <div className="cardsach">
                 {blogCards.map((card) => (
-                    <PublicationCard
-                        key={card.id}
-                        cardData={card}
-                        onSave={handleSaveCard}
-                        onDelete={handleDeleteCard}
-                        onEditClick={() => handleEditClicked(card)}
-                    />
+                    // <PublicationCard
+                    //     key={card.id}
+                    //     cardData={card}
+                    //     onSave={handleSaveCard}
+                    //     onDelete={handleDeleteCard}
+                    //     onEditClick={() => handleEditClicked(card)}
+                    // />
+                    <ProjectsCard
+                            key={card.id}
+                            cardData={card}
+                            onSave={handleSaveCard}
+                            onDelete={handleDeleteCard}
+                            onEditClick={() => handleEditClicked(card)}
+                        />
                 ))}
             </div>
 

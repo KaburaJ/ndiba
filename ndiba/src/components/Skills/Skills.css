@@ -58,6 +58,41 @@ section {
 }
 
 /* Responsiveness */
+@media (max-width: 1024px) {
+    section {
+        width: 100%;
+        padding-left: 0;
+    }
+
+    .skills-container {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px 40px;
+    }}
+
+@media (max-width: 800px) {
+    section {
+        width: 100%;
+        padding: 0 10px;
+    }
+
+    .skills-container {
+        grid-template-columns: repeat(6, 1fr);
+        gap: 20px;
+    }
+
+    .skill {
+        width: 90px;
+        height: 90px;
+    }
+
+    .progress-number {
+        font-size: 1.2rem;
+    }
+
+    .title {
+        font-size: 16px;
+    }
+}
 
 /* For tablets and small screens (768px and below) */
 @media (max-width: 768px) {
@@ -85,11 +120,37 @@ section {
     }
 }
 
+@media (max-width: 540px) {
+    section {
+        width: 60%;
+        padding-left: 0;
+        margin-left: 20%;
+    }
+
+    .skills-container {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px 40px;
+    }
+
+    .skill {
+        width: 120px;
+        height: 120px;
+    }
+
+    .progress-number {
+        font-size: 1.5rem;
+    }
+
+    .title {
+        font-size: 14px !important;
+    }
+}
+
 /* For mobile screens (480px and below) */
 @media (max-width: 480px) {
     section {
         width: 100%;
-        padding: 0 10px;
+        padding: 0 20px;
     }
 
     .skills-container {
@@ -107,7 +168,33 @@ section {
     }
 
     .title {
-        font-size: 16px;
+        font-size: 16px !important;
+    }
+}
+
+@media (max-width: 414px), (max-width: 412px), (max-width: 428px) {
+    section {
+        width: 70%;
+        padding: 0 10px;
+        margin-left: 19%;
+    }
+
+    .skills-container {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+
+    .skill {
+        width: 90px;
+        height: 90px;
+    }
+
+    .progress-number {
+        font-size: 1.2rem;
+    }
+
+    .title {
+        font-size: 14px !important;
     }
 }
 
@@ -115,6 +202,7 @@ section {
     section {
         width: 70%;
         padding: 0 10px;
+        margin-left: 19%;
     }
 
     .skills-container {
@@ -132,19 +220,20 @@ section {
     }
 
     .title {
-        font-size: 16px;
+        font-size: 14px !important;
     }
 }
 
 
-@media (max-width: 800px) {
+@media (max-width: 360px) {
     section {
-        width: 100%;
+        width: 70%;
         padding: 0 10px;
+        margin-left: 19%;
     }
 
     .skills-container {
-        grid-template-columns: repeat(6, 1fr);
+        grid-template-columns: repeat(3, 1fr);
         gap: 20px;
     }
 
@@ -158,7 +247,6 @@ section {
     }
 
     .title {
-        font-size: 16px;
+        font-size: 14px !important;
     }
 }
-

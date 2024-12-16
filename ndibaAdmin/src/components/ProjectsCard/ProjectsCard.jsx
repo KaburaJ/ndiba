@@ -20,7 +20,8 @@ const ProjectsCard = ({ cardData, onSave, onDelete }) => {
       
 
     return (
-        <div className="card-hover" onClick={navigateProject} >
+        <div className="card-hover" >
+            {/* onClick={navigateProject} */}
             <div className="card-hover__content">
                 <div className="icon-container">
                 <FaPencilAlt onClick={handleEditClick} className="icon" />

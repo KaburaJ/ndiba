@@ -4,6 +4,7 @@ import { ref, set, remove, onValue } from "firebase/database";
 import "./Achievements.css";
 import PublicationCard from "../PublicationCard/PublicationCard";
 import blogImg from "../images/yucel-moran-fZYgnAoeio4-unsplash.jpg";
+import ProjectsCard from "../ProjectsCard/ProjectsCard";
 
 const Achievements = () => {
     const userId = "user1"; // Replace this with your actual user ID or authentication logic
@@ -75,7 +76,7 @@ const Achievements = () => {
 
     return (
         <div className="projects-container" id="achievements">
-            <div className="animate one" style={{ marginTop: "-.1%", marginLeft: "10px", marginBottom:"40px" }}>
+            <div className="animate one" style={{ marginTop: "-.1%", marginLeft: "10px", marginBottom: "40px" }}>
                 <span>M</span>
                 <span>y</span>&nbsp;
                 <span>A</span>
@@ -93,7 +94,14 @@ const Achievements = () => {
             </div>
             <div className="cardsach">
                 {blogCards.map((card) => (
-                    <PublicationCard
+                    // <PublicationCard
+                    //     key={card.id}
+                    //     cardData={card}
+                    //     onSave={handleSaveCard}
+                    //     onDelete={handleDeleteCard}
+                    //     onEditClick={() => handleEditClicked(card)}
+                    // />
+                    <ProjectsCard
                         key={card.id}
                         cardData={card}
                         onSave={handleSaveCard}
@@ -102,32 +110,32 @@ const Achievements = () => {
                     />
                 ))}
                 <button
-                onClick={handleAddCard}
-                style={{
-                    marginLeft:"6%",
-                    marginTop: "5%",
-                    width: "240px",
-                    height: "50px",
-                    borderRadius: "8px",
-                    border: "none",
-                    backgroundColor: "#24a8e6",
-                    color: "#FFF",
-                    fontSize: "18px",
-                    cursor: "pointer",
-                    boxShadow: "0 4px 10px rgba(0, 0, 0, 0.3)",
-                    transition: "background-color 0.3s ease, transform 0.2s ease",
-                }}
-                onMouseEnter={(e) => {
-                    e.target.style.backgroundColor = "#1a8ac1";
-                    e.target.style.transform = "scale(1.05)";
-                }}
-                onMouseLeave={(e) => {
-                    e.target.style.backgroundColor = "#24a8e6";
-                    e.target.style.transform = "scale(1)";
-                }}
-            >
-                Add Achievement
-            </button>
+                    onClick={handleAddCard}
+                    style={{
+                        marginLeft: "6%",
+                        marginTop: "5%",
+                        width: "240px",
+                        height: "50px",
+                        borderRadius: "8px",
+                        border: "none",
+                        backgroundColor: "#24a8e6",
+                        color: "#FFF",
+                        fontSize: "18px",
+                        cursor: "pointer",
+                        boxShadow: "0 4px 10px rgba(0, 0, 0, 0.3)",
+                        transition: "background-color 0.3s ease, transform 0.2s ease",
+                    }}
+                    onMouseEnter={(e) => {
+                        e.target.style.backgroundColor = "#1a8ac1";
+                        e.target.style.transform = "scale(1.05)";
+                    }}
+                    onMouseLeave={(e) => {
+                        e.target.style.backgroundColor = "#24a8e6";
+                        e.target.style.transform = "scale(1)";
+                    }}
+                >
+                    Add Achievement
+                </button>
             </div>
 
             {isModalOpen && (
