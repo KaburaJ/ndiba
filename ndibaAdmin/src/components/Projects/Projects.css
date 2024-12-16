@@ -3,6 +3,7 @@
   text-align: center;
   padding: 60px;
   padding-top: 80px;
+  box-sizing: border-box;
   /* margin-top: 2px; */
 }
 
@@ -405,6 +406,7 @@ a.repeat:hover {
     gap: 5px;
     margin: 0 auto;
     padding: 5px;
+    left: -6%;
   }
 
   /* .card-hover__text {
