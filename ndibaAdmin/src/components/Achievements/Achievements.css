@@ -3,6 +3,7 @@
   text-align: center;
   padding: 60px;
   padding-top: 80px;
+  box-sizing: border-box;
   /* margin-top: 2px; */
 }
 
@@ -376,8 +377,21 @@ a.repeat:hover {
     /* 1 card per row */
     gap: 15px;
     padding: 10px;
-    margin-left: -40px;
+    margin-left: -6% !important;
     width: 90%;
+  }
+}
+
+@media (max-width: 375px), (max-width:390px) {
+
+  .cardsach {
+    display: flex !important;
+    flex-direction: column !important;
+    /* 1 card per row */
+    gap: 5px;
+    /* margin: 0 auto; */
+    padding: 5px;
+    left: 0%;
   }
 }
 
@@ -405,6 +419,7 @@ a.repeat:hover {
     gap: 5px;
     margin: 0 auto;
     padding: 5px;
+    left: -6%;
   }
 
   /* .card-hover__text {

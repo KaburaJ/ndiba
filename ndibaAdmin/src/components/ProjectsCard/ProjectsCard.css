@@ -308,8 +308,6 @@ overflow: hidden;
 
 }
 
-/*  */
-
 
 @media (max-width:810px) {
 
@@ -358,6 +356,8 @@ overflow: hidden;
   padding-left: 7%;
 } */
 }
+
+
 
 @media (min-width: 412px) {
 
@@ -412,6 +412,9 @@ overflow: hidden;
   /* margin: 0 auto !important; */
   margin-bottom: 20px;
   left: 0% !important;
+}
+.card-hover__text {
+  min-width: 18em;
 }
 }
 
