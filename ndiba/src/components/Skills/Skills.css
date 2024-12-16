@@ -172,7 +172,7 @@ section {
     }
 }
 
-@media (max-width: 414px), (max-width: 412px), (max-width: 428px) {
+@media (max-width: 414px), (max-width: 412px), (max-width: 430px){
     section {
         width: 70%;
         padding: 0 10px;

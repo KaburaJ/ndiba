@@ -481,7 +481,7 @@ a.repeat:hover {
     font-size: 50%
   }
 }
-@media (max-width: 430px) {
+/* @media (max-width: 430px) {
   .overlay {
     height: 70.2vh;
   }
@@ -502,7 +502,6 @@ a.repeat:hover {
     margin-left: 10%;
     font-size: 16px;
     font-weight: 200;
-    /* font-size: 3rem; */
     display: flex;
   }
 
@@ -511,7 +510,7 @@ a.repeat:hover {
     width: 240px;
     font-size: 50%
   }
-}
+} */
 @media (max-width: 412px) {
   .overlay {
     height: 70.2vh;

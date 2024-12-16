@@ -3,6 +3,7 @@
   text-align: center;
   padding: 60px;
   padding-top: 80px;
+  box-sizing: border-box;
   /* margin-top: 2px; */
 }
 
@@ -352,8 +353,8 @@ a.repeat:hover {
     /* 1 card per row */
     gap: 15px;
     padding: 10px;
-    margin-left: -45px;
-    width: 90%;
+    margin-left: 5%;
+    width: 70%;
   }
 }
 
@@ -376,8 +377,21 @@ a.repeat:hover {
     /* 1 card per row */
     gap: 15px;
     padding: 10px;
-    margin-left: -40px;
+    margin-left: -6% !important;
     width: 90%;
+  }
+}
+
+@media (max-width: 375px), (max-width:390px) {
+
+  .cardsp {
+    display: flex !important;
+    flex-direction: column !important;
+    /* 1 card per row */
+    gap: 5px;
+    /* margin: 0 auto; */
+    padding: 5px;
+    left: 0%;
   }
 }
 
@@ -389,13 +403,12 @@ a.repeat:hover {
     /* 1 card per row */
     gap: 5px;
     padding: 5px;
-    left: 5%;
-    margin: 0 auto;
+    margin-left: -15% !important;
+    /* margin: 0 auto; */
     width: 100%;
   }
 }
 
-/* Very small screens, 375px and below */
 /* Very small screens, 375px and below */
 @media (max-width: 375px) {
 
