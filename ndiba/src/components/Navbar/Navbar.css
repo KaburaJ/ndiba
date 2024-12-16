@@ -119,7 +119,7 @@
 
   /* Display the hamburger icon on smaller screens */
   .hamburger {
-    position: fixed;
+    /* position: fixed; */
     display: block; 
     margin-left: 22rem !important;
   }
@@ -129,7 +129,7 @@
     display: none; 
     flex-direction: column; 
     /* background-color: rgba(0, 0, 0, 0.7);  */
-    position: fixed;
+    /* position: fixed; */
     top: 48px;
     right: -200%; 
     left: 0;
@@ -147,7 +147,7 @@
 
 @media (max-width: 768px){
   .hamburger {
-    position: fixed;
+    /* position: fixed; */
     display: block; 
     margin-left: 44rem !important;
   }
@@ -156,7 +156,7 @@
 
 @media (max-width: 540px)  {
   .hamburger {
-    position: fixed;
+    /* position: fixed; */
     display: block; 
     /* align-items: end; */
     margin-left: 30rem !important;
@@ -165,7 +165,7 @@
 @media (max-width: 412px),
 (max-width: 414px), (max-width: 430px){
   .hamburger {
-    position: fixed;
+    /* position: fixed; */
     display: block; 
     /* align-items: end; */
     margin-left: 23rem !important;
@@ -177,7 +177,7 @@
 (max-width: 375px),
 (max-width: 360px){
   .hamburger {
-    position: fixed;
+    /* position: fixed; */
     display: block; 
     /* align-items: end; */
     margin-left: 20rem !important;
@@ -187,7 +187,7 @@
 
 @media (max-width: 344px) {
   .hamburger {
-    position: fixed;
+    /* position: fixed; */
     display: block; 
     /* align-items: end; */
     margin-left: 16rem !important;

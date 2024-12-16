@@ -396,6 +396,7 @@ a.repeat:hover {
 }
 
 /* Very small screens, 375px and below */
+/* Very small screens, 375px and below */
 @media (max-width: 375px) {
 
   .cardsp {
@@ -405,6 +406,7 @@ a.repeat:hover {
     gap: 5px;
     margin: 0 auto;
     padding: 5px;
+    left: -6%;
   }
 
   /* .card-hover__text {
