@@ -1,48 +1,49 @@
 import React, { useEffect, useState } from "react";
 import "./Contact.css";
-import { FaEnvelope, FaGithub, FaLinkedinIn, FaMapMarker, FaPhone, FaTwitter } from "react-icons/fa";
+import { FaEnvelope, FaGithub, FaLinkedin, FaLinkedinIn, FaMapMarker, FaPhone, FaTwitter } from "react-icons/fa";
 import emailjs from '@emailjs/browser';
-import { database } from "../../firebase"; 
+import { database } from "../../firebase";
 import { ref, onValue } from "firebase/database";
+import { LogoLinkedin } from 'react-ionicons'
 
 const Contact = () => {
-  const userId = "user1"; 
+  const userId = "user1";
   const [socialLinks, setSocialLinks] = useState({
-      linkedin: '',
-      github: '',
-      youtube: '',
-      twitter: ''
+    linkedin: '',
+    github: '',
+    youtube: '',
+    twitter: ''
   });
   const [contactInfo, setContactInfo] = useState({
-      email: '',
-      phone: '',
-      about: '',
-      resumeUrl: '', 
+    email: '',
+    phone: '',
+    about: '',
+    resumeUrl: '',
   });
 
   useEffect(() => {
-      const userRef = ref(database, `users/${userId}/about/`);
-      const unsubscribe = onValue(userRef, (snapshot) => {
-          const data = snapshot.val();
-          if (data) {
-              setSocialLinks({
-                  linkedin: data.socialLinks?.linkedin || '',
-                  github: data.socialLinks?.github || '',
-                  youtube: data.socialLinks?.youtube || '',
-                  twitter: data.socialLinks?.twitter || ''
-              });
-              setContactInfo({
-                  email: data.email || '',
-                  phone: data.phone || '',
-                  about: data.about || '',
-                  resumeUrl: data.resumeUrl || '',
-              });
-          } else {
-              console.log("No entries found.");
-          }
-      });
+    const userRef = ref(database, `users/${userId}/about/`);
+    const unsubscribe = onValue(userRef, (snapshot) => {
+      const data = snapshot.val();
+      if (data) {
+        setSocialLinks({
+          linkedin: data.socialLinks?.linkedin || '',
+          github: data.socialLinks?.github || '',
+          youtube: data.socialLinks?.youtube || '',
+          twitter: data.socialLinks?.twitter || ''
+        });
+        setContactInfo({
+          email: data.email || '',
+          phone: data.phone || '',
+          about: data.about || '',
+          resumeUrl: data.resumeUrl || '',
+        });
+      } else {
+        console.log("No entries found.");
+      }
+    });
 
-      return () => unsubscribe();
+    return () => unsubscribe();
   }, [userId]);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -75,10 +76,10 @@ const Contact = () => {
 
     emailjs
       .send(
-        process.env.REACT_APP_SERVICE_ID,  
-        process.env.REACT_APP_TEMPLATE_ID,  
-        templateParams, 
-        process.env.REACT_APP_PUBLIC_KEY 
+        process.env.REACT_APP_SERVICE_ID,
+        process.env.REACT_APP_TEMPLATE_ID,
+        templateParams,
+        process.env.REACT_APP_PUBLIC_KEY
       )
       .then(
         (result) => {
@@ -128,22 +129,22 @@ const Contact = () => {
               <p>Connect with me :</p>
               <div className="social-icons">
                 {socialLinks.linkedin && (
-                  <a href={socialLinks.linkedin} target="_blank" rel="noopener noreferrer">
-                    <FaLinkedinIn style={{ color: "#003363", fontSize: "1.5rem" }} />
+                  <a href={socialLinks.linkedin || ''} target="_blank" rel="noopener noreferrer">
+                    <FaLinkedin style={{ color: "#003363", fontSize: "1.5rem" }} />
                   </a>
                 )}
                 {socialLinks.twitter && (
-                  <a href={socialLinks.twitter} target="_blank" rel="noopener noreferrer">
+                  <a href={socialLinks.twitter || ''} target="_blank" rel="noopener noreferrer">
                     <FaTwitter style={{ color: "#003363", fontSize: "1.5rem", marginLeft: "10px" }} />
                   </a>
                 )}
                 {socialLinks.github && (
-                  <a href={socialLinks.github} target="_blank" rel="noopener noreferrer">
+                  <a href={socialLinks.github || ''} target="_blank" rel="noopener noreferrer">
                     <FaGithub style={{ color: "#003363", fontSize: "1.5rem", marginLeft: "10px" }} />
                   </a>
                 )}
                 {contactInfo.email && (
-                  <a href={`mailto:${contactInfo.email}`}>
+                  <a href={`mailto:${contactInfo.email || ''}`}>
                     <FaEnvelope style={{ color: "#003363", fontSize: "1.5rem", marginLeft: "10px" }} />
                   </a>
                 )}

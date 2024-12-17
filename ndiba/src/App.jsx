@@ -102,7 +102,10 @@ const App = () => {
       <Navbar />
       <div className="content">
         <TenorGif />
-        <div className="overlay">
+       
+        
+      </div>
+      <div className="overlay">
           <h1 className="intro-text">
             Hello, I am
             <div
@@ -120,8 +123,6 @@ const App = () => {
             />
           </p>
         </div>
-        
-      </div>
 
       {/* Suspense Wrapping Lazy Loaded Components */}
       <Suspense fallback={<div>Loading...</div>}>
