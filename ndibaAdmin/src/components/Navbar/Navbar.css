@@ -121,7 +121,7 @@
   .hamburger {
     position: fixed;
     display: block; 
-    margin-left: 22rem !important;
+    margin-left: 20rem !important;
   }
 
   /* Hide nav-links by default */

@@ -1,3 +1,4 @@
+
 .card-hover {
   width: 100%;
   position: relative;
@@ -23,6 +24,94 @@
   transform: scale(1);
   transition: 0.35s 0.1s transform cubic-bezier(0.1, 0.72, 0.4, 0.97);
 } */
+
+/* Container for the entire project card */
+.project-container {
+  display: flex; /* Align image and description side by side */
+  align-items: flex-start; /* Align content to the top */
+  gap: 15px; /* Space between image and description */
+  padding: 10px;
+  background-color: #fff; /* White background */
+  border: 1px solid #ddd; /* Light border */
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  max-width: 600px; /* Optional: Control width of the card */
+}
+
+/* Image styling */
+.project-image {
+  width: 100%; /* Set fixed width for the image */
+  height: 250px; /* Set fixed height */
+  object-fit: cover; /* Crop and center image */
+  border-radius: 5px;
+}
+
+/* Project description */
+.project-description {
+  flex: 1; /* Allow the description to fill available space */
+  height: 120px; /* Fixed height */
+  overflow-y: auto; /* Scrollbar for overflow content */
+  padding: 10px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 5px;  background-color: #003363;
+  position: relative; /* For positioning icons */
+  box-sizing: border-box;
+  margin-top: -5px;
+}
+
+
+
+/* Icon container */
+.icon-container {
+  position: absolute;
+  top: -14px; /* Position at the top-right */
+  left: 10px;
+  display: flex;
+  gap: 10px; /* Space between icons */
+}
+
+.icon {
+  cursor: pointer;
+  font-size: 1rem; /* Icon size */
+  color: #666;
+  transition: color 0.2s ease;
+}
+
+.icon:hover {
+  color: #333; /* Darker color on hover */
+}
+
+/* Project title */
+.project-title {
+  font-size: 1.1rem;
+  margin: 0 0 5px;
+  color: white;
+}
+
+/* Project text */
+.project-text {
+  font-size: 0.9rem;
+  color: white;
+  margin: 0;
+  line-height: 1.4;
+  padding-bottom: 10px;
+}
+
+/* Scrollbar customization for WebKit browsers */
+.project-description::-webkit-scrollbar {
+  width: 6px; /* Thin scrollbar for WebKit browsers */
+}
+
+.project-description::-webkit-scrollbar-thumb {
+  background-color: #ccc; /* Light grey scrollbar thumb */
+  border-radius: 3px;
+}
+
+.project-description::-webkit-scrollbar-track {
+  background-color: #003363; /* Track color */
+}
+
+
 .card-hover__content {
   /* min-width: 140%; */
   /* min-width: 100%; */
@@ -347,7 +436,7 @@ overflow: hidden;
   width: 100%;
   /* height: auto; */
   margin: 0 auto;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 }
 .card-hover__title {
   padding-left: 7%;
