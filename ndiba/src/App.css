@@ -14,12 +14,16 @@ body {
   flex-direction: column;
 }
 
+.content{
+  min-height: 100%;
+}
+
 .overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  min-height: 121.5vh !important;
+  height: 100vh !important;
   background-color: rgba(0, 0, 0, 0.6);
   z-index: 2;
 }
@@ -287,7 +291,7 @@ a.repeat:hover {
 }
 
 /* Media queries for responsiveness */
-@media (max-width: 1200px) {
+@media (max-width: 1200px){
   
   .about {
     padding-left: 50px;
@@ -302,7 +306,7 @@ a.repeat:hover {
   }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1024px), (max-width: 1280px) {
   .overlay {
     height: 98vh;
   }
@@ -310,18 +314,19 @@ a.repeat:hover {
   .intro-text {
     position: relative;
     color: white;
-    margin-left: 18%;
-    margin-top: 20%;
+    margin-left: 15%;
+    margin-top: 22%;
     font-weight: 600;
-    font-size: 290%;
+    margin-bottom: 3%;
+    font-size: 65px;
     display: flex;
   }
 
   .intro-sub-text {
     position: relative;
     color: white;
-    margin-left: 20%;
-    font-size: 25px;
+    margin-left: 16%;
+    font-size: 30px;
     font-weight: 200;
     /* font-size: 3rem; */
     display: flex;
@@ -355,27 +360,53 @@ a.repeat:hover {
   .overlay{
     height: 88.8vh;
   }
-}
-
-@media (max-width: 820px) {
-  .overlay{
-    height: 89vh;
-  }
   .intro-text {
     position: relative;
     color: white;
-    margin-left: 18%;
-    margin-top: 45%;
+    margin-left: 15%;
+    margin-top: 55%;
     font-weight: 600;
-    font-size: 290%;
+    margin-bottom: 3%;
+    font-size: 55px;
     display: flex;
   }
 
   .intro-sub-text {
     position: relative;
     color: white;
-    margin-left: 20%;
-    font-size: 20px;
+    margin-left: 16%;
+    font-size: 26px;
+    font-weight: 200;
+    /* font-size: 3rem; */
+    display: flex;
+  }
+  #edit-button {
+    margin-left: 30% !important;
+    width: 240px;
+    font-size: 50%
+  }
+}
+
+@media (max-width: 820px), (max-width: 853px) {
+  .overlay{
+    height: 89vh;
+  }
+  .intro-text {
+    position: relative;
+    color: white;
+    margin-left: 15%;
+    margin-top: 60%;
+    font-weight: 600;
+    margin-bottom: 3%;
+    font-size: 50px;
+    display: flex;
+  }
+
+  .intro-sub-text {
+    position: relative;
+    color: white;
+    margin-left: 16%;
+    font-size: 24px;
     font-weight: 200;
     /* font-size: 3rem; */
     display: flex;
@@ -395,7 +426,8 @@ a.repeat:hover {
     position: relative;
     color: white;
     margin-left: 10%;
-    margin-top: 30%;
+    margin-top: 35%;
+    margin-bottom: 3%;
     font-weight: 600;
     font-size: 290%;
     display: flex;
@@ -451,7 +483,7 @@ a.repeat:hover {
   }
 }
 
-@media (max-width: 540px) {
+@media (max-width: 540px), (max-width: 430px) {
   .overlay {
     height: 70.4vh;
   }
@@ -459,9 +491,10 @@ a.repeat:hover {
     position: relative;
     color: white;
     margin-left: 10%;
-    margin-top: 40%;
+    margin-top: 38%;
     font-weight: 600;
-    font-size: 190%;
+    font-size: 30px;
+    margin-bottom: 3%;
     display: flex;
   }
 
@@ -511,7 +544,7 @@ a.repeat:hover {
     font-size: 50%
   }
 } */
-@media (max-width: 412px) {
+@media (max-width: 414px), (max-width: 412px) {
   .overlay {
     height: 70.2vh;
   }
@@ -520,9 +553,10 @@ a.repeat:hover {
     position: relative;
     color: white;
     margin-left: 8%;
-    margin-top: 40%;
+    margin-top: 45%;
     font-weight: 600;
-    font-size: 24px;
+    margin-bottom: 3%;
+    font-size: 28px;
     display: flex;
   }
 
@@ -545,6 +579,9 @@ a.repeat:hover {
 
 
 @media (max-width: 390px) {
+  .content{
+    height: 48vh;
+  }
   .overlay {
     height: 70.3vh;
   }
@@ -552,18 +589,18 @@ a.repeat:hover {
   .intro-text {
     position: relative;
     color: white;
-    margin-left: 5%;
-    margin-top: 65%;
+    margin-left: 8%;
+    margin-top: 35%;
     margin-bottom: 5%;
     font-weight: 600;
-    font-size: 160%;
+    font-size: 26px;
     display: flex;
   }
 
   .intro-sub-text {
     position: relative;
     color: white;
-    margin-left: 5%;
+    margin-left: 9%;
     font-size: 16px;
     max-width: 100%;
     font-weight: 200;
@@ -581,25 +618,26 @@ a.repeat:hover {
 
 @media (max-width: 375px) {
   .overlay {
-    min-height: 55.6vh;
+    /* min-height: 55.6vh; */
+    min-height: 45vh !important;
   }
 
   .intro-text {
     position: relative;
     color: white;
-    margin-left: 5%;
+    margin-left: 8%;
     margin-top: 25%;
     margin-bottom: 5%;
     font-weight: 600;
-    font-size: 160%;
+    font-size: 26px;
     display: flex;
   }
 
   .intro-sub-text {
     position: relative;
     color: white;
-    margin-left: 5%;
-    font-size: 16px;
+    margin-left: 9%;
+    font-size: 14px;
     max-width: 100%;
     font-weight: 200;
     margin-bottom: 5%;
@@ -629,10 +667,10 @@ a.repeat:hover {
     position: relative;
     color: white;
     margin-left: 5%;
-    margin-top: 35%;
+    margin-top: 32%;
     margin-bottom: 5%;
     font-weight: 600;
-    font-size: 160%;
+    font-size: 26px;
     display: flex;
   }
 
@@ -640,7 +678,7 @@ a.repeat:hover {
     position: relative;
     color: white;
     margin-left: 5%;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 200;
     margin-bottom: 5%;
     /* font-size: 3rem; */
@@ -663,7 +701,7 @@ a.repeat:hover {
     position: relative;
     color: white;
     margin-left: 8%;
-    margin-top: 45%;
+    margin-top: 55%;
     margin-bottom: 5%;
     font-weight: 600;
     font-size: 140%;
@@ -674,7 +712,7 @@ a.repeat:hover {
     position: relative;
     color: white;
     margin-left: 8%;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 200;
     margin-bottom: 5%;
     /* font-size: 3rem; */

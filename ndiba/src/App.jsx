@@ -120,13 +120,7 @@ const App = () => {
             />
           </p>
         </div>
-        <Modal
-          isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
-          onSave={saveChanges}
-          name={name}
-          roles={roles}
-        />
+        
       </div>
 
       {/* Suspense Wrapping Lazy Loaded Components */}

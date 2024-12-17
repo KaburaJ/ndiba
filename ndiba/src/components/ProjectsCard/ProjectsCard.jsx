@@ -20,14 +20,16 @@ const ProjectsCard = ({ cardData, onSave, onDelete }) => {
 
     return (
         <div className="card-hover" onClick={navigateProject} >
-            <div className="card-hover__content">
-                {/* <div className="icon-container">
-                <FaPencilAlt onClick={handleEditClick} className="icon" />
-                <FaTrash onClick={handleDeleteClick} className="icon" /></div> */}
+            <img src={cardData.image} alt="Project" className="project-image" />
+      <div className="project-description">
+        <h3 className="project-title">{cardData.title}</h3>
+        <p className="project-text">{cardData.content}</p>
+      </div>
+            {/* <div className="card-hover__content">
                 <h3 className="card-hover__title">{cardData.title}</h3>
                 <p className="card-hover__text">{cardData.content}</p>
             </div>
-            <img src={cardData.image} alt="Project" className="back" />
+            <img src={cardData.image} alt="Project" className="back" /> */}
             {isEditing && (
                 <EditModal
                     cardData={cardData}
