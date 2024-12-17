@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { database, storage } from "../../firebase";
+import { database } from "../../firebase";
 import { ref as dbRef, set, remove, onValue } from "firebase/database";
-import { ref as storageRef, uploadBytes, getDownloadURL } from "firebase/storage";
 import ExperienceCard from "../ExperienceCards/ExperienceCards";
 import "./Experience.css";
 
@@ -10,15 +9,34 @@ const Experience = () => {
     const [cards, setCards] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [currentCard, setCurrentCard] = useState(null);
-    const [updatedData, setUpdatedData] = useState({ title: "", content: "", image: "" });
+    const [updatedData, setUpdatedData] = useState({
+        title: "",
+        content: "",
+        startDate: "",
+        endDate: "",
+        image: ""
+    });
 
+    // Fetch cards and sort them
     useEffect(() => {
         const cardsRef = dbRef(database, `users/${userId}/experience`);
         onValue(cardsRef, (snapshot) => {
             const data = snapshot.val();
             if (data) {
-                const loadedCards = Object.keys(data).map((key) => ({ id: key, ...data[key] }));
-                setCards(loadedCards);
+                const loadedCards = Object.keys(data).map((key) => ({
+                    id: key,
+                    ...data[key]
+                }));
+
+                // Sort cards: most recent startDate first
+                const sortedCards = loadedCards.sort((a, b) => {
+                    const dateA = new Date(a.startDate || "1970-01");
+                    const dateB = new Date(b.startDate || "1970-01");
+
+                    return dateB - dateA; // Sort descending
+                });
+
+                setCards(sortedCards);
             } else {
                 setCards([]);
             }
@@ -28,26 +46,28 @@ const Experience = () => {
     const handleSaveCard = (id, newData) => {
         const cardRef = dbRef(database, `users/${userId}/experience/${id}`);
         set(cardRef, newData).catch((error) => console.error("Error saving card:", error));
-
-        setCards((prevCards) => prevCards.map((card) => (card.id === id ? { ...card, ...newData } : card)));
+        setIsModalOpen(false);
     };
 
     const handleEditClicked = (card) => {
         setCurrentCard(card);
-        setUpdatedData({ title: card.title, content: card.content, image: card.image || "" });
+        setUpdatedData({
+            title: card.title,
+            content: card.content,
+            startDate: card.startDate || "",
+            endDate: card.endDate || "",
+            image: card.image || ""
+        });
         setIsModalOpen(true);
-    };
-
-    const handleModalSave = () => {
-        handleSaveCard(currentCard.id, updatedData);
-        setIsModalOpen(false);
     };
 
     const handleAddCard = () => {
         const newCard = {
             title: "New Job",
             content: "Job description goes here.",
-            image: "",
+            startDate: "2024-01",
+            endDate: "",
+            image: ""
         };
 
         const newCardRef = dbRef(database, `users/${userId}/experience/${Date.now()}`);
@@ -57,14 +77,13 @@ const Experience = () => {
     const handleDeleteCard = (id) => {
         const cardRef = dbRef(database, `users/${userId}/experience/${id}`);
         remove(cardRef);
-        setCards((prevCards) => prevCards.filter((card) => card.id !== id));
     };
 
     return (
         <div className="projects-container" id="experience">
-        <div
+ <div
                 className="animate one"
-                style={{ marginTop: "-.1%", marginLeft: "10px", marginBottom: "40px" }}
+                style={{ marginTop: "-.1%", marginLeft: "10px", marginBottom: "10px" }}
             >
                 <span>M</span>
                 <span>y</span>&nbsp;
@@ -78,7 +97,7 @@ const Experience = () => {
                 <span>n</span>
                 <span>c</span>
                 <span>e</span>
-            </div>
+            </div>            
             <div className="cards-grid">
                 {cards.map((card) => (
                     <ExperienceCard
@@ -86,60 +105,44 @@ const Experience = () => {
                         cardData={card}
                         onEditClick={handleEditClicked}
                         onDelete={handleDeleteCard}
-                        showImage={true}
                     />
                 ))}
             </div>
-            <button
-                onClick={handleAddCard}
-                style={{
-                    marginLeft:"6%",
-                    marginTop: "5%",
-                    width: "240px",
-                    height: "50px",
-                    borderRadius: "8px",
-                    border: "none",
-                    backgroundColor: "#24a8e6",
-                    color: "#FFF",
-                    fontSize: "18px",
-                    cursor: "pointer",
-                    boxShadow: "0 4px 10px rgba(0, 0, 0, 0.3)",
-                    transition: "background-color 0.3s ease, transform 0.2s ease",
-                }}
-                onMouseEnter={(e) => {
-                    e.target.style.backgroundColor = "#1a8ac1";
-                    e.target.style.transform = "scale(1.05)";
-                }}
-                onMouseLeave={(e) => {
-                    e.target.style.backgroundColor = "#24a8e6";
-                    e.target.style.transform = "scale(1)";
-                }}
-            >
-                Add Experience
-            </button>
-            {isModalOpen && (
-  <div className="modal">
-    <div className="modal-content">
-      <h2>Edit Experience</h2>
-        {/* Title: */}
-        <input
-          type="text"
-          value={updatedData.title}
-          onChange={(e) => setUpdatedData({ ...updatedData, title: e.target.value })}
-        />
-        {/* Content: */}
-        <textarea
-          value={updatedData.content}
-          onChange={(e) => setUpdatedData({ ...updatedData, content: e.target.value })}
-        />
-      <div className="modal-actions">
-        <button onClick={handleModalSave} className="modal-save-button">Save</button>
-        <button onClick={() => setIsModalOpen(false)} className="modal-cancel-button">Cancel</button>
-      </div>
-    </div>
-  </div>
-)}
+            <button onClick={handleAddCard}>Add Experience</button>
 
+            {/* Modal */}
+            {isModalOpen && (
+                <div className="modal">
+                    <div className="modal-content">
+                        <h2>Edit Experience</h2>
+                        <input
+                            type="text"
+                            placeholder="Title"
+                            value={updatedData.title}
+                            onChange={(e) => setUpdatedData({ ...updatedData, title: e.target.value })}
+                        />
+                        <textarea
+                            placeholder="Description"
+                            value={updatedData.content}
+                            onChange={(e) => setUpdatedData({ ...updatedData, content: e.target.value })}
+                        />
+                        <input
+                            type="month"
+                            placeholder="Start Date"
+                            value={updatedData.startDate}
+                            onChange={(e) => setUpdatedData({ ...updatedData, startDate: e.target.value })}
+                        />
+                        <input
+                            type="month"
+                            placeholder="End Date"
+                            value={updatedData.endDate}
+                            onChange={(e) => setUpdatedData({ ...updatedData, endDate: e.target.value })}
+                        />
+                        <button onClick={() => handleSaveCard(currentCard.id, updatedData)}>Save</button>
+                        <button onClick={() => setIsModalOpen(false)}>Cancel</button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

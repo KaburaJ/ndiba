@@ -2,11 +2,18 @@ import React from "react";
 import "./ExperienceCard.css";
 import { FaPencilAlt, FaTrash } from "react-icons/fa";
 
-const ExperienceCard = ({ cardData, onEditClick, onDelete, showImage }) => {
+const ExperienceCard = ({ cardData, onEditClick, onDelete }) => {
+    const { startDate, endDate } = cardData;
+
+    // Display "Present" if no endDate is provided
+    const displayEndDate = endDate ? endDate : startDate ? "Present" : "";
+
     return (
         <div className="features-one__single">
             <div className="features-one__single-icon text-center">
-                {/* <img src={cardData.image} alt={cardData.title} style={{ width: "80px", height: "80px", borderRadius: "50%" }} /> */}
+                <p style={{color:"white"}}>
+                    {startDate} - {displayEndDate}
+                </p>
             </div>
             <div className="features-one__single-content">
                 <h2>{cardData.title}</h2>
@@ -16,18 +23,16 @@ const ExperienceCard = ({ cardData, onEditClick, onDelete, showImage }) => {
                 <FaPencilAlt
                     onClick={(e) => {
                         e.stopPropagation();
-                        onEditClick(cardData)
+                        onEditClick(cardData);
                     }}
                     className="icon"
-                    style={{ zIndex: 999 }}
                 />
                 <FaTrash
                     onClick={(e) => {
                         e.stopPropagation();
-                        onDelete(cardData.id)
+                        onDelete(cardData.id);
                     }}
                     className="icon"
-                    style={{ zIndex: 999 }}
                 />
             </div>
         </div>
