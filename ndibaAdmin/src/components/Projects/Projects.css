@@ -397,7 +397,7 @@ a.repeat:hover {
     /* 1 card per row */
     gap: 15px;
     padding: 10px;
-    margin-left: -6% !important;
+    margin-left: -12% !important;
     width: 90%;
   }
 }
@@ -435,7 +435,7 @@ a.repeat:hover {
     flex-direction: column !important;
     /* 1 card per row */
     gap: 5px;
-    /* margin: 0 auto; */
+    /* margin: 0 auto ; */
     padding: 5px;
     left: 0%;
   }

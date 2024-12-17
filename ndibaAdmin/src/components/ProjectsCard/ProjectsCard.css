@@ -400,141 +400,141 @@ overflow: hidden;
 
 @media (max-width:810px) {
 
-.card-hover {
-  min-width: 135% !important;
-  left: 0.5%;
-  margin: 0 auto;
-  margin-bottom: 20px;
-}
+  .card-hover {
+    min-width: 135% !important;
+    left: 0.5%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+  }
 }
 
 @media (max-width: 768px) {
 
-.card-hover {
-  width: 14em;
-  /* margin-left: -6%; */
-  margin: 0 auto;
-  height: 50vh;
-  /* margin-bottom: 10px; */
-}
-.card-hover__title{
-  font-size: 20px;
-  width: 12em !important;
-  margin-top: 20px;
-}
+  .card-hover {
+    width: 14em;
+    /* margin-left: -6%; */
+    margin: 0 auto;
+    height: 50vh;
+    /* margin-bottom: 10px; */
+  }
+  .card-hover__title{
+    font-size: 20px;
+    width: 12em !important;
+    margin-top: 20px;
+  }
 
-.card-hover__text {
-  font-size: 16px !important;
-  width: 13em !important;
+  .card-hover__text {
+    font-size: 16px !important;
+    width: 13em !important;
 
-}
+  }
 }
 
 @media (max-width:540px){
-.card-hover {
-  min-width: 128% !important;
-  width: 100%;
-  /* height: auto; */
-  margin: 0 auto;
-  /* margin-bottom: 20px; */
-}
-.card-hover__title {
-  padding-left: 7%;
-}
-/* .card-hover__text {
-  padding-left: 7%;
-} */
+  .card-hover {
+    min-width: 128% !important;
+    width: 100%;
+    /* height: auto; */
+    margin: 0 auto;
+    /* margin-bottom: 20px; */
+  }
+  .card-hover__title {
+    padding-left: 7%;
+  }
+  /* .card-hover__text {
+    padding-left: 7%;
+  } */
 }
 
 
 
 @media (min-width: 412px) {
 
-.card-hover {
-  left:0% !important;
+  .card-hover {
+    left:0% !important;
 
-}
+  }
 
-.card-hover__title{
-  font-size: 80%;
-  width: 19em;
-  margin-top: 20px;
-}
+  .card-hover__title{
+    font-size: 80%;
+    width: 19em;
+    margin-top: 20px;
+  }
 
-.card-hover__text {
-  font-size: 80%;
-  width: 22em;
+  .card-hover__text {
+    font-size: 80%;
+    width: 22em;
 
-}
+  }
 }
 
 
 @media (max-width: 375px){
-.card-hover__title {
-  font-size: 10px;
-}
-.card-hover__text {
- font-size: 12px;
- min-width: 16em;
-}
+  .card-hover__title {
+    font-size: 10px;
+  }
+  .card-hover__text {
+   font-size: 12px;
+   min-width: 16em;
+  }
 }
 
 @media (max-width:384px) {
-.card-hover{
-  left: 2% !important;
-}
+  .card-hover{
+    left: 2% !important;
+  }
 }
 
 
 @media (max-width:360px){
-.card-hover {
-  min-width: 120% !important;
-  margin-bottom: 20px !important;
-  left: -6% !important;
-}
+  .card-hover {
+    min-width: 120% !important;
+    margin-bottom: 20px !important;
+    left: -6% !important;
+  }
 }
 
 
 @media (max-width:390px){
-.card-hover {
-  min-width: 140%;
-  /* margin: 0 auto !important; */
-  margin-bottom: 20px;
-  left: 0% !important;
-}
-.card-hover__text {
-  min-width: 18em;
-}
+  .card-hover {
+    min-width: 140%;
+    /* margin: 0 auto !important; */
+    margin-bottom: 20px;
+    left: 0% !important;
+  }
+  .card-hover__text {
+    min-width: 18em;
+  }
 }
 
 @media (min-width: 300px) {
 
-.card-hover {
-  min-width: 130% !important;
-  left: -16.4%;
-  margin: 0 auto !important;
-  margin-bottom: 20px;
-}
+  .card-hover {
+    min-width: 130% !important;
+    left: -16.4%;
+    margin: 0 auto !important;
+    margin-bottom: 20px;
+  }
 
-/* .card-hover__text {
-  margin-left: -15%;
-  width: ;
-} */
+  /* .card-hover__text {
+    margin-left: -15%;
+    width: ;
+  } */
 }
 
 @media (min-width: 200px) {
 
-.card-hover {
-  min-width: 130% !important;
-  /* margin-left: -9%; */
-  margin: 0 auto;
-  margin-bottom: 20px;
+  .card-hover {
+    min-width: 130% !important;
+    /* margin-left: -9%; */
+    margin: 0 auto;
+    margin-bottom: 20px;
+  }
+
+  .card-hover .back{
+    min-width: 100% !important;
+    margin: 0 auto;
+  }
 }
 
-.card-hover .back{
-  min-width: 100% !important;
-  margin: 0 auto;
-}
-}
-
-
+  
