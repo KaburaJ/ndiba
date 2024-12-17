@@ -121,13 +121,13 @@ const Experience = () => {
   <div className="modal">
     <div className="modal-content">
       <h2>Edit Experience</h2>
-        Title:
+        {/* Title: */}
         <input
           type="text"
           value={updatedData.title}
           onChange={(e) => setUpdatedData({ ...updatedData, title: e.target.value })}
         />
-        Content:
+        {/* Content: */}
         <textarea
           value={updatedData.content}
           onChange={(e) => setUpdatedData({ ...updatedData, content: e.target.value })}

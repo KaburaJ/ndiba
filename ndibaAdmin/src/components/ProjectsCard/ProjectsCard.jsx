@@ -235,7 +235,7 @@ const EditModal = ({ cardData, onSave, onCancel }) => {
     return (
         <div className="modal">
             <div className="modal-content">
-                <h2>Edit Card</h2>
+                <h2 style={{color:"white"}}>Edit Card</h2>
                 <input type="text" name="title" value={newData.title} onChange={(e) => setNewData({ ...newData, title: e.target.value })} />
                 <textarea name="content" value={newData.content} onChange={(e) => setNewData({ ...newData, content: e.target.value })} />
                 <form onSubmit={handleFileUpload}>
