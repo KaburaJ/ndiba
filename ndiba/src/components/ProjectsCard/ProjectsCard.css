@@ -32,16 +32,15 @@
   }
   
   .project-description {
-    min-height: 200px; /* Fixed height for the description container */
-    overflow-y: auto; /* Enable vertical scrolling if content overflows */
-    padding: 10px; /* Add padding for content spacing */
-    background-color: #003363; /* Light background color */
-    margin-top: -8px;
+    flex: 1; /* Allow the description to fill available space */
+    height: 120px; /* Fixed height */
+    overflow-y: auto; /* Scrollbar for overflow content */
+    padding: 10px;
     border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 5px;
-    /* border: 1px solid #ddd; Light border for aesthetics */
-    /* border-radius: 5px; Rounded corners */
-    box-sizing: border-box; /* Include padding and border in height */
+    border-bottom-right-radius: 5px;  background-color: #003363;
+    position: relative; /* For positioning icons */
+    box-sizing: border-box;
+    margin-top: -5px;
   }
   
   .project-description::-webkit-scrollbar {
