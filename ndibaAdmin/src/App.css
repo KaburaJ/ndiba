@@ -691,7 +691,7 @@ a.repeat:hover {
 @media (max-width: 375px) {
   .overlay {
     /* min-height: 55.6vh; */
-    height: 44vh !important;
+    height: 48vh !important;
   }
 
   .intro-text {

@@ -4,7 +4,7 @@ import { FaEnvelope, FaGithub, FaLinkedin, FaLinkedinIn, FaMapMarker, FaPhone, F
 import emailjs from '@emailjs/browser';
 import { database } from "../../firebase";
 import { ref, onValue } from "firebase/database";
-import { LogoLinkedin } from 'react-ionicons'
+// import { LogoLinkedin } from 'react-ionicons'
 
 const Contact = () => {
   const userId = "user1";
