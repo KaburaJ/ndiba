@@ -40,7 +40,7 @@
     border-bottom-right-radius: 5px;  background-color: #003363;
     position: relative; /* For positioning icons */
     box-sizing: border-box;
-    margin-top: -5px;
+    margin-top: -7px;
   }
   
   .project-description::-webkit-scrollbar {
