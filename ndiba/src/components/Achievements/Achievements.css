@@ -271,6 +271,18 @@ a.repeat:hover {
   font-size: 16px;
 }
 
+@media (min-width: 1920px) {
+  .cardsach {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px 105px;
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-top: 30px;
+    margin-left: -5% !important;
+    margin-right: 3% !important;
+  }
+}
 
 
 @media (max-width: 768px) {
