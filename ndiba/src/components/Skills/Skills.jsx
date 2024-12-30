@@ -96,7 +96,7 @@ export default function Skills() {
                                     <span className="progress-number" style={{ color: "white" }}>0%</span>
                                 </div>
                             </div>
-                            <span className="title">{skill.name}</span>
+                            <span className="title" style={{fontSize:"1rem"}}>{skill.name}</span>
                             <div style={{ marginTop: "10px" }}>
 
                                 <FaPen onClick={() => handleEditSkill(skill)}
